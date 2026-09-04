@@ -61,6 +61,27 @@
   --tw-siyahi: #241c12;       /* ink */
 
   /* ---------------------------------------------------------------------
+     Fixed colours. These describe a specific physical thing and must not
+     shift with the art style, so they live here rather than among the
+     semantic roles.
+     --------------------------------------------------------------------- */
+
+  /* The green disc and brown triangle that Indian packaged food is
+     required to carry. Changing these would be misinformation, not a
+     restyle, so no art style may override them. */
+  --tw-fssai-veg: #2e7d32;
+  --tw-fssai-nonveg: #8b1a1a;
+
+  /* A glass of chai is the colour of a glass of chai. */
+  --tw-chai-foam: #f2dca8;
+  --tw-chai-body: #cd9a52;
+  --tw-chai-base: #9a6a2c;
+
+  /* Flame and the clay lamp under it. */
+  --tw-flame-core: #fff3c4;
+  --tw-terracotta: #7a4415;
+
+  /* ---------------------------------------------------------------------
      Semantic roles. Components only ever reference these.
      --------------------------------------------------------------------- */
   --tw-bg: var(--tw-ivory);

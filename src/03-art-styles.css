@@ -22,8 +22,11 @@
   --tw-ink: var(--tw-kajal);
   --tw-ink-soft: #6b4a10;
   --tw-primary: var(--tw-sindoor);
+  --tw-on-primary: #ffffff;
   --tw-accent: var(--tw-marigold);
+  --tw-on-accent: var(--tw-kajal);
   --tw-support: var(--tw-mor);
+  --tw-on-support: #ffffff;
   --tw-line: var(--tw-kajal);
   --tw-border-w: 4px;
   --tw-border-w-thick: 8px;

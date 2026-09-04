@@ -69,6 +69,27 @@
   --tw-siyahi: #241c12;       /* ink */
 
   /* ---------------------------------------------------------------------
+     Fixed colours. These describe a specific physical thing and must not
+     shift with the art style, so they live here rather than among the
+     semantic roles.
+     --------------------------------------------------------------------- */
+
+  /* The green disc and brown triangle that Indian packaged food is
+     required to carry. Changing these would be misinformation, not a
+     restyle, so no art style may override them. */
+  --tw-fssai-veg: #2e7d32;
+  --tw-fssai-nonveg: #8b1a1a;
+
+  /* A glass of chai is the colour of a glass of chai. */
+  --tw-chai-foam: #f2dca8;
+  --tw-chai-body: #cd9a52;
+  --tw-chai-base: #9a6a2c;
+
+  /* Flame and the clay lamp under it. */
+  --tw-flame-core: #fff3c4;
+  --tw-terracotta: #7a4415;
+
+  /* ---------------------------------------------------------------------
      Semantic roles. Components only ever reference these.
      --------------------------------------------------------------------- */
   --tw-bg: var(--tw-ivory);
@@ -257,8 +278,11 @@
   --tw-ink: var(--tw-kajal);
   --tw-ink-soft: #6b4a10;
   --tw-primary: var(--tw-sindoor);
+  --tw-on-primary: #ffffff;
   --tw-accent: var(--tw-marigold);
+  --tw-on-accent: var(--tw-kajal);
   --tw-support: var(--tw-mor);
+  --tw-on-support: #ffffff;
   --tw-line: var(--tw-kajal);
   --tw-border-w: 4px;
   --tw-border-w-thick: 8px;
@@ -828,7 +852,7 @@ hr { border: 0; border-top: 2px solid var(--tw-line-soft); margin: var(--tw-s6) 
 
 /* Zari button: gold thread edge that catches light on hover. */
 .tw-btn-zari {
-  --_fg: #2a1a05;
+  --_fg: var(--tw-kajal);
   border-color: var(--tw-sona-dark);
   background-image:
     linear-gradient(180deg, var(--tw-sona-light), var(--tw-sona) 48%, var(--tw-sona-dark));
@@ -878,9 +902,11 @@ hr { border: 0; border-top: 2px solid var(--tw-line-soft); margin: var(--tw-s6) 
   background: var(--tw-surface);
   color: var(--tw-ink);
   border: var(--tw-border-w) solid var(--tw-line);
-  /* The arch narrows to roughly 16% inset at the shoulders, so the side
-     padding has to clear that or text runs under the curve. */
-  padding: calc(var(--tw-s20) + var(--tw-s2)) var(--tw-s10) var(--tw-s8);
+  /* The arch mask reaches its full width only below the shoulders, and it
+     narrows to a 16% inset on each side. Side padding is therefore a
+     percentage, not a fixed length: a fixed value clears the curve at one
+     width and gets sliced by it at another. */
+  padding: var(--tw-s16) 21% var(--tw-s8);
   text-align: center;
   -webkit-mask-image: var(--tw-mask-arch);
   mask-image: var(--tw-mask-arch);
@@ -906,6 +932,10 @@ hr { border: 0; border-top: 2px solid var(--tw-line-soft); margin: var(--tw-s6) 
   border: 1px solid var(--tw-line);
   pointer-events: none;
 }
+/* The rosettes sit outside the frame's own box, so the component reserves
+   the room itself. Without this it clips against a flush container edge,
+   which is the common case rather than the rare one. */
+.tw-frame-rosette { margin: 17px; }
 .tw-frame-rosette::after {
   content: "";
   position: absolute;
@@ -970,7 +1000,7 @@ hr { border: 0; border-top: 2px solid var(--tw-line-soft); margin: var(--tw-s6) 
   position: relative;
   padding: var(--tw-s8) var(--tw-s6) var(--tw-s6);
   color: var(--tw-kajal);
-  background: linear-gradient(180deg, #f2dca8 0%, #cd9a52 55%, #9a6a2c 100%);
+  background: linear-gradient(180deg, var(--tw-chai-foam) 0%, var(--tw-chai-body) 55%, var(--tw-chai-base) 100%);
   border: var(--tw-border-w) solid var(--tw-line);
   border-radius: 4px 4px 44% 44% / 4px 4px 16% 16%;
   box-shadow: var(--tw-shadow);
@@ -1069,8 +1099,8 @@ hr { border: 0; border-top: 2px solid var(--tw-line-soft); margin: var(--tw-s6) 
   border-radius: 2px;
   vertical-align: -0.15em;
 }
-.tw-mark-veg { color: #2e7d32; }
-.tw-mark-nonveg { color: #8b1a1a; }
+.tw-mark-veg { color: var(--tw-fssai-veg); }
+.tw-mark-nonveg { color: var(--tw-fssai-nonveg); }
 .tw-mark-veg::before {
   content: "";
   width: 0.5em; height: 0.5em;
@@ -1225,7 +1255,7 @@ hr { border: 0; border-top: 2px solid var(--tw-line-soft); margin: var(--tw-s6) 
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 42%;
-  background: linear-gradient(180deg, var(--tw-tamba), #7a4415);
+  background: linear-gradient(180deg, var(--tw-tamba), var(--tw-terracotta));
   border-radius: 0 0 50% 50% / 0 0 100% 100%;
 }
 .tw-diya::after {
@@ -1236,7 +1266,7 @@ hr { border: 0; border-top: 2px solid var(--tw-line-soft); margin: var(--tw-s6) 
   width: 28%;
   height: 52%;
   translate: -50% calc(var(--tw-flame-lift) * -1);
-  background: radial-gradient(ellipse at 50% 75%, #fff3c4 8%, var(--tw-marigold) 42%, var(--tw-kesari) 72%, transparent 78%);
+  background: radial-gradient(ellipse at 50% 75%, var(--tw-flame-core) 8%, var(--tw-marigold) 42%, var(--tw-kesari) 72%, transparent 78%);
   border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
   filter: blur(0.4px);
   animation: tw-flame 1.7s ease-in-out infinite;

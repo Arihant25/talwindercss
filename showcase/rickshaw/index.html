@@ -1,278 +1,479 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-tw-art="truck">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Book an auto · Rickshaw Ride</title>
+  <title>Namma Auto · Confirm your ride</title>
+  <meta name="description" content="An auto rickshaw booking screen built with TalwinderCSS in the truck art style." />
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Yatra+One&family=Kalam:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Rozha+One&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Kalam:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../dist/talwinder.css" />
   <style>
-    body { background: var(--tw-charcoal); color: var(--tw-cream); font-family: var(--tw-font-body); min-height: 100vh; }
-
-    .app-shell {
-      max-width: 420px;
-      margin: 30px auto;
-      background: var(--tw-ivory);
-      color: var(--tw-charcoal);
-      border-radius: 32px;
-      overflow: hidden;
-      border: 8px solid #1a1a1a;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      position: relative;
+    body {
+      min-height: 100svh;
+      padding: var(--tw-s6) var(--tw-s4) var(--tw-s10);
     }
-    .status-bar {
-      background: black;
-      color: white;
-      padding: 8px 16px;
+
+    .page-top {
+      max-width: 760px;
+      margin: 0 auto var(--tw-s6);
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      font-family: var(--tw-font-mono);
-      font-size: 0.75rem;
+      gap: var(--tw-s4);
+      flex-wrap: wrap;
     }
-
-    .header {
-      background: repeating-linear-gradient(135deg, var(--tw-tulsi) 0 20px, var(--tw-haldi) 20px 40px);
-      padding: 30px 20px 40px;
-      color: var(--tw-black);
-      text-align: center;
-      border-bottom: 3px solid var(--tw-black);
-    }
-    .header h1 {
-      background: var(--tw-black);
-      color: var(--tw-haldi);
-      display: inline-block;
-      padding: 8px 20px;
-      font-family: var(--tw-font-display);
-      font-size: 1.6rem;
-      border: 3px solid var(--tw-haldi);
-      transform: rotate(-2deg);
-      margin: 0;
-    }
-    .header .tag {
-      display: inline-block;
-      margin-top: 12px;
-      background: var(--tw-ivory);
-      color: var(--tw-black);
-      border: 2px solid var(--tw-black);
-      padding: 4px 10px;
+    .page-top .tag {
       font-family: var(--tw-font-hand);
-      font-size: 1rem;
+      font-size: 1.05rem;
+      color: var(--tw-ink-soft);
     }
 
-    .body { padding: 20px; }
-
-    .location {
-      background: white;
-      border: 2px solid var(--tw-black);
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 4px 4px 0 var(--tw-black);
-      margin-bottom: 20px;
+    /* --- Phone shell --------------------------------------------------- */
+    .phone {
+      width: min(400px, 100%);
+      margin-inline: auto;
+      background: var(--tw-surface);
+      border: var(--tw-border-w-thick) solid var(--tw-line);
+      border-radius: 34px;
+      box-shadow: 12px 14px 0 var(--tw-shadow-color);
+      overflow: hidden;
     }
-    .location .stop {
-      display: grid;
-      grid-template-columns: 22px 1fr;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 8px 0;
-    }
-    .location .stop + .stop { border-top: 1px dashed rgba(0,0,0,0.2); }
-    .location .stop .pin { font-family: var(--tw-font-display); font-size: 1.2rem; text-align: center; }
-    .location .stop.pickup .pin { color: var(--tw-mor-pankh); }
-    .location .stop.drop .pin { color: var(--tw-sindoor); }
-    .location .stop .name { font-weight: 700; font-size: 1rem; }
-    .location .stop .sub { font-size: 0.85rem; color: var(--tw-muted); }
 
-    .fare-card {
-      background: var(--tw-haldi);
-      color: var(--tw-black);
-      border: 4px solid var(--tw-black);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 6px 6px 0 var(--tw-black);
+    .phone-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 20px 6px;
+      background: var(--tw-kajal);
+      color: var(--tw-ivory);
+      font-family: var(--tw-font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+    }
+    .phone-status .bars { display: flex; align-items: flex-end; gap: 2px; }
+    .phone-status .bars i { width: 3px; background: var(--tw-ivory); border-radius: 1px; }
+    .phone-status .bars i:nth-child(1) { height: 4px; }
+    .phone-status .bars i:nth-child(2) { height: 6px; }
+    .phone-status .bars i:nth-child(3) { height: 8px; }
+    .phone-status .bars i:nth-child(4) { height: 10px; opacity: 0.35; }
+    .phone-status .batt {
+      width: 20px; height: 9px;
+      border: 1px solid var(--tw-ivory);
+      border-radius: 2px;
       position: relative;
     }
-    .fare-card::before {
-      content: "METER";
+    .phone-status .batt::before {
+      content: "";
       position: absolute;
-      top: -12px; left: 20px;
-      background: var(--tw-black);
-      color: var(--tw-haldi);
-      padding: 2px 10px;
-      font-family: var(--tw-font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
+      inset: 1px;
+      right: 7px;
+      background: var(--tw-ivory);
     }
-    .fare-card .amount {
-      font-family: var(--tw-font-display);
-      font-size: 3.4rem;
-      line-height: 1;
-      color: var(--tw-lal);
+    .phone-status .batt::after {
+      content: "";
+      position: absolute;
+      right: -3px; top: 2px;
+      width: 2px; height: 5px;
+      background: var(--tw-ivory);
+      border-radius: 0 1px 1px 0;
     }
-    .fare-card .breakdown {
-      margin-top: 12px;
-      font-family: var(--tw-font-mono);
-      font-size: 0.85rem;
-      display: grid;
-      gap: 4px;
-    }
-    .fare-card .breakdown .row { display: flex; justify-content: space-between; }
-    .fare-card .breakdown .row.total { border-top: 2px solid var(--tw-black); padding-top: 4px; font-weight: 700; }
 
-    .ride-details {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 20px;
+    /* Green and yellow auto livery, the Bengaluru paint job. */
+    .livery {
+      height: 14px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--tw-tulsi) 0 26px,
+        var(--tw-haldi) 26px 52px);
+      border-bottom: 3px solid var(--tw-line);
     }
-    .ride-details .cell {
-      background: var(--tw-cream);
-      border: 2px solid var(--tw-black);
-      padding: 10px;
-      text-align: center;
-      border-radius: 8px;
-    }
-    .ride-details .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--tw-muted); }
-    .ride-details .value { font-family: var(--tw-font-display); font-size: 1.2rem; color: var(--tw-lal); }
 
-    .driver-card {
-      background: white;
-      border: 2px solid var(--tw-black);
-      border-radius: 12px;
-      padding: 16px;
-      display: grid;
-      grid-template-columns: 60px 1fr auto;
-      gap: 14px;
+    .phone-head {
+      display: flex;
       align-items: center;
-      margin-bottom: 20px;
-      box-shadow: 4px 4px 0 var(--tw-black);
+      justify-content: space-between;
+      gap: var(--tw-s3);
+      padding: var(--tw-s4) var(--tw-s5);
+      background: var(--tw-accent);
+      color: var(--tw-on-accent);
+      border-bottom: var(--tw-border-w) solid var(--tw-line);
     }
-    .driver-card .avatar {
-      width: 60px; height: 60px;
-      background: var(--tw-marigold);
-      border-radius: 50%;
-      border: 3px solid var(--tw-black);
-      display: flex; align-items: center; justify-content: center;
+    .phone-head .brand {
       font-family: var(--tw-font-display);
-      font-size: 1.6rem;
+      font-size: 1.3rem;
+      line-height: 1;
     }
-    .driver-card .name { font-weight: 700; font-size: 1.1rem; }
-    .driver-card .plate {
+    .phone-head .sub { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .phone-body { padding: var(--tw-s5); display: grid; gap: var(--tw-s5); }
+
+    .sec-title {
+      font-family: var(--tw-font-display);
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tw-ink-soft);
+      margin-bottom: var(--tw-s2);
+    }
+
+    /* --- Stops --------------------------------------------------------- */
+    .stop {
+      position: relative;
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      column-gap: var(--tw-s3);
+      padding: var(--tw-s2) 0;
+    }
+    /* Dashed connector, drawn from the pickup pin down to the drop pin. */
+    .stop.from::after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 46px;
+      bottom: -28px;
+      width: 3px;
+      background: repeating-linear-gradient(
+        180deg, var(--tw-line) 0 5px, transparent 5px 11px);
+    }
+    .pin {
+      width: 18px; height: 18px;
+      margin-top: 16px;
+      border-radius: 50%;
+      border: 3px solid var(--tw-line);
+      background: var(--tw-support);
+    }
+    .stop.to .pin { background: var(--tw-primary); border-radius: 3px; }
+    .stop + .stop { border-top: 1px dashed var(--tw-line-soft); padding-top: var(--tw-s3); }
+    .stop .lbl {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tw-ink-soft);
+    }
+    .stop .addr { font-weight: 700; line-height: 1.35; }
+    .stop .area { font-size: 0.82rem; color: var(--tw-ink-soft); }
+
+    /* --- Meter card ---------------------------------------------------- */
+    .meter {
+      background: var(--tw-kajal);
+      color: var(--tw-haldi);
+      border: var(--tw-border-w) solid var(--tw-line);
+      border-radius: var(--tw-radius-sm);
+      padding: var(--tw-s4);
       font-family: var(--tw-font-mono);
-      background: var(--tw-haldi);
-      display: inline-block;
-      padding: 2px 8px;
-      border: 2px solid var(--tw-black);
-      font-weight: 700;
+      box-shadow: inset 0 0 0 2px rgba(244, 196, 48, 0.25);
+    }
+    .meter-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--tw-s2);
+      padding-bottom: var(--tw-s2);
+      margin-bottom: var(--tw-s3);
+      border-bottom: 1px dashed rgba(244, 196, 48, 0.4);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .meter-head .seal {
+      color: var(--tw-ivory);
+      border: 1px solid rgba(255, 246, 224, 0.5);
+      border-radius: 2px;
+      padding: 1px 6px;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+    .meter-line {
+      display: flex;
+      align-items: baseline;
+      gap: var(--tw-s2);
       font-size: 0.85rem;
+      padding: 3px 0;
+    }
+    .meter-line .what { white-space: nowrap; }
+    .meter-line .dots {
+      flex: 1;
+      border-bottom: 1px dotted rgba(244, 196, 48, 0.45);
+      transform: translateY(-3px);
+    }
+    .meter-line .amt { white-space: nowrap; }
+    .meter-line .qty { color: color-mix(in srgb, var(--tw-haldi) 60%, var(--tw-kajal)); font-size: 0.72rem; }
+    .meter-total {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--tw-s2);
+      margin-top: var(--tw-s3);
+      padding-top: var(--tw-s3);
+      border-top: 2px solid rgba(244, 196, 48, 0.55);
+    }
+    .meter-total .k { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; }
+    .meter-total .v { font-size: 2.4rem; font-weight: 700; line-height: 1; color: var(--tw-marigold); }
+    .meter-note { margin-top: var(--tw-s2); font-size: 0.68rem; color: color-mix(in srgb, var(--tw-haldi) 60%, var(--tw-kajal)); }
+
+    /* --- Detail tiles --------------------------------------------------- */
+    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--tw-s2); }
+    .tile {
+      text-align: center;
+      padding: var(--tw-s3) var(--tw-s2);
+      background: var(--tw-surface-2);
+      border: 2px solid var(--tw-line);
+      border-radius: var(--tw-radius-sm);
+    }
+    .tile .v {
+      font-family: var(--tw-font-mono);
+      font-weight: 700;
+      font-size: 1.15rem;
+      line-height: 1.1;
+      color: var(--tw-kajal);
+    }
+    .tile .k {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tw-ink-soft);
       margin-top: 2px;
     }
-    .driver-card .rating { color: var(--tw-marigold); font-size: 1.2rem; text-align: right; }
-    .driver-card .rides { font-size: 0.75rem; color: var(--tw-muted); text-align: right; }
 
-    .book-button {
-      width: 100%;
-      padding: 18px;
-      background: repeating-linear-gradient(45deg, var(--tw-marigold) 0 14px, var(--tw-sindoor) 14px 28px, var(--tw-mor-pankh) 28px 42px);
-      color: white;
-      border: 4px solid var(--tw-black);
-      border-bottom-width: 8px;
+    /* --- Driver --------------------------------------------------------- */
+    .driver {
+      display: grid;
+      grid-template-columns: 62px 1fr;
+      gap: var(--tw-s3);
+      align-items: center;
+      padding: var(--tw-s3);
+      background: var(--tw-surface);
+      border: var(--tw-border-w) solid var(--tw-line);
+      border-radius: var(--tw-radius);
+      box-shadow: var(--tw-shadow-sm);
+    }
+    .driver .face {
+      width: 62px; height: 62px;
+      border-radius: 50%;
+      border: 3px solid var(--tw-line);
+      background: var(--tw-support);
+      color: #fff;
+      display: grid;
+      place-items: center;
       font-family: var(--tw-font-display);
-      font-size: 1.4rem;
-      cursor: pointer;
-      text-shadow: 2px 2px 0 var(--tw-black);
-      letter-spacing: 0.1em;
-      box-shadow: 4px 4px 0 var(--tw-black);
+      font-size: 1.5rem;
     }
-    .book-button:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--tw-black); }
+    .driver .name { font-family: var(--tw-font-display); font-size: 1.2rem; line-height: 1.2; }
+    .driver .meta { font-size: 0.78rem; color: var(--tw-ink-soft); }
+    .driver .stars { color: var(--tw-primary); letter-spacing: 0.05em; }
 
-    .tips {
-      margin-top: 16px;
-      padding: 12px;
-      background: var(--tw-sand);
-      border: 2px dashed var(--tw-chai);
-      border-radius: 8px;
-      font-family: var(--tw-font-hand);
-      color: var(--tw-chai);
-      font-size: 1rem;
-      text-align: center;
+    /* Yellow number plate, black letters, black keyline. */
+    .plate {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 3px 10px;
+      background: #ffd400;
+      color: #0b0b0b;
+      border: 2px solid #0b0b0b;
+      border-radius: 3px;
+      font-family: var(--tw-font-mono);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.09em;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
     }
 
-    .back-link { position: fixed; top: 12px; left: 12px; z-index: 10; }
+    .call-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--tw-s2); }
+    .call-row .tw-btn { font-size: 0.85rem; padding: 0.6em 0.8em; }
+
+    /* --- Ornament strip -------------------------------------------------- */
+    .strip {
+      height: 34px;
+      --tw-orn-scale: 0.6;
+    }
+
+    .cancel-note {
+      font-size: 0.76rem;
+      color: var(--tw-ink-soft);
+      line-height: 1.5;
+      border-left: 4px solid var(--tw-primary);
+      padding-left: var(--tw-s3);
+    }
+    .cancel-note b { color: var(--tw-ink); }
+
+    .phone-foot {
+      padding: var(--tw-s3) var(--tw-s5) var(--tw-s5);
+      background: var(--tw-surface-2);
+      border-top: var(--tw-border-w) solid var(--tw-line);
+      display: grid;
+      gap: var(--tw-s3);
+    }
+    .pay-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--tw-s2);
+      font-size: 0.85rem;
+      color: var(--tw-kajal);
+    }
+    .pay-row .method { font-weight: 700; }
+    .pay-row a { color: var(--tw-kajal); }
+    .home-bar {
+      width: 110px; height: 5px;
+      background: var(--tw-kajal);
+      border-radius: 999px;
+      margin: var(--tw-s2) auto 0;
+      opacity: 0.55;
+    }
+
+    @media (max-width: 420px) {
+      body { padding-inline: var(--tw-s2); }
+      .phone { border-radius: 24px; box-shadow: 7px 8px 0 var(--tw-shadow-color); }
+      .phone-body { padding: var(--tw-s4); }
+      .tiles { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+      .tile .v { font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
-  <a href="../index.html" class="tw-btn tw-btn-sm back-link">← All demos</a>
 
-  <div class="app-shell">
-    <div class="status-bar">
-      <span>9:42</span>
-      <span>4G · Full battery · No signal in the tunnel</span>
-    </div>
-
-    <div class="header">
-      <h1>Rickshaw Ride</h1>
-      <div class="tag">Book an auto in 30 seconds</div>
-    </div>
-
-    <div class="body">
-      <div class="location">
-        <div class="stop pickup">
-          <div class="pin">●</div>
-          <div>
-            <div class="name">Koramangala 5th Block</div>
-            <div class="sub">Sony World signal, near Sagar Ratna</div>
-          </div>
-        </div>
-        <div class="stop drop">
-          <div class="pin">▼</div>
-          <div>
-            <div class="name">Indiranagar 100 Ft Road</div>
-            <div class="sub">Opposite CultFit, past the third speed breaker</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="fare-card">
-        <div class="amount">₹ 84</div>
-        <div class="breakdown">
-          <div class="row"><span>Base fare (first 2 km)</span><span>₹35</span></div>
-          <div class="row"><span>Distance charge (0.4 km × ₹18)</span><span>₹7</span></div>
-          <div class="row"><span>Waiting time (2 min)</span><span>₹4</span></div>
-          <div class="row"><span>Convenience</span><span>₹15</span></div>
-          <div class="row"><span>Night charge (11pm - 5am)</span><span>₹23</span></div>
-          <div class="row total"><span>Total (approx)</span><span>₹84</span></div>
-        </div>
-      </div>
-
-      <div class="ride-details">
-        <div class="cell"><div class="label">Distance</div><div class="value">2.4 km</div></div>
-        <div class="cell"><div class="label">ETA</div><div class="value">8 min</div></div>
-        <div class="cell"><div class="label">Away</div><div class="value">3 min</div></div>
-      </div>
-
-      <div class="driver-card">
-        <div class="avatar">R</div>
-        <div>
-          <div class="name">Ramesh Kumar</div>
-          <div class="plate">KA 05 AB 4712</div>
-        </div>
-        <div>
-          <div class="rating">★ 4.9</div>
-          <div class="rides">2,481 rides</div>
-        </div>
-      </div>
-
-      <button class="book-button">CONFIRM RIDE</button>
-
-      <div class="tips">
-        Driver will call once before starting. No cancellation fee if the auto doesn't arrive in 10 minutes.
-      </div>
-    </div>
+  <div class="page-top">
+    <span class="tag">Namma Auto, booking screen</span>
+    <a href="../" class="tw-btn tw-btn-sm tw-no-print">Back to showcase</a>
   </div>
+
+  <main class="phone">
+
+    <div class="phone-status">
+      <span>9:41</span>
+      <span class="tw-flex tw-items-center tw-gap-2">
+        <span class="bars"><i></i><i></i><i></i><i></i></span>
+        <span>Jio 4G</span>
+        <span class="batt" aria-hidden="true"></span>
+      </span>
+    </div>
+
+    <div class="livery" aria-hidden="true"></div>
+
+    <div class="phone-head">
+      <div>
+        <div class="brand">Namma Auto</div>
+        <div class="sub">Confirm your ride</div>
+      </div>
+      <span class="tw-badge tw-badge-primary">Auto</span>
+    </div>
+
+    <div class="phone-body">
+
+      <section>
+        <h2 class="sec-title">Your trip</h2>
+        <div class="stops">
+          <div class="stop from">
+            <span class="pin" aria-hidden="true"></span>
+            <div>
+              <div class="lbl">Pickup</div>
+              <div class="addr">12, 4th Cross, Malleswaram</div>
+              <div class="area">Near Mantri Square, Bengaluru 560003</div>
+            </div>
+          </div>
+          <div class="stop to">
+            <span class="pin" aria-hidden="true"></span>
+            <div>
+              <div class="lbl">Drop</div>
+              <div class="addr">Church Street, opposite Blossom Book House</div>
+              <div class="area">Ashok Nagar, Bengaluru 560001</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tiles">
+        <div class="tile">
+          <div class="v">7.4 km</div>
+          <div class="k">Distance</div>
+        </div>
+        <div class="tile">
+          <div class="v">28 min</div>
+          <div class="k">Trip time</div>
+        </div>
+        <div class="tile">
+          <div class="v">340 m</div>
+          <div class="k">Driver away</div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sec-title">Fare estimate</h2>
+        <div class="meter">
+          <div class="meter-head">
+            <span>Meter reading</span>
+            <span class="seal">Sealed 04/2026</span>
+          </div>
+
+          <div class="meter-line">
+            <span class="what">Base fare <span class="qty">first 2 km</span></span>
+            <span class="dots"></span>
+            <span class="amt">₹36.00</span>
+          </div>
+          <div class="meter-line">
+            <span class="what">Distance <span class="qty">5.4 km at ₹18</span></span>
+            <span class="dots"></span>
+            <span class="amt">₹97.20</span>
+          </div>
+          <div class="meter-line">
+            <span class="what">Waiting <span class="qty">6 min at ₹2</span></span>
+            <span class="dots"></span>
+            <span class="amt">₹12.00</span>
+          </div>
+          <div class="meter-line">
+            <span class="what">Night charge <span class="qty">after 22:00, 1.5x</span></span>
+            <span class="dots"></span>
+            <span class="amt">₹72.60</span>
+          </div>
+          <div class="meter-line">
+            <span class="what">Platform fee</span>
+            <span class="dots"></span>
+            <span class="amt">₹5.00</span>
+          </div>
+
+          <div class="meter-total">
+            <span class="k">Total</span>
+            <span class="v">₹223</span>
+          </div>
+          <p class="meter-note">Rounded to the nearest rupee. Toll and parking, if any, are paid separately.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="sec-title">Your driver</h2>
+        <div class="driver">
+          <div class="face" aria-hidden="true">R</div>
+          <div>
+            <div class="name">Ramesh Gowda</div>
+            <div class="meta"><span class="stars">4.8 stars</span> · 6,412 rides · 9 years driving</div>
+            <span class="plate">KA 05 AB 4712</span>
+          </div>
+        </div>
+        <div class="call-row tw-mt-4">
+          <a href="tel:+918041234567" class="tw-btn tw-btn-support">Call driver</a>
+          <a href="#trip-note" class="tw-btn tw-btn-ghost">Send a note</a>
+        </div>
+      </section>
+
+      <div class="strip tw-pattern-phulkari" aria-hidden="true"></div>
+
+      <p id="trip-note" class="cancel-note">
+        Free cancellation for the next <b>2 minutes</b>. After that, or once Ramesh reaches the pickup point, a <b>₹25</b> cancellation fee is added to your next ride.
+      </p>
+
+    </div>
+
+    <div class="phone-foot">
+      <div class="pay-row">
+        <span>Paying by <span class="method">UPI, 98450 21874@ybl</span></span>
+        <a href="#trip-note">Change</a>
+      </div>
+      <button type="button" class="tw-btn tw-btn-truck tw-btn-block tw-btn-lg">Confirm ride, ₹223</button>
+      <div class="home-bar" aria-hidden="true"></div>
+    </div>
+
+  </main>
+
 </body>
 </html>

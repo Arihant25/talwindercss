@@ -1,7 +1,9 @@
-name: Deploy TalwinderCSS to GitHub Pages
+name: Build and deploy
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
@@ -18,24 +20,42 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # dist/ is committed so the CDN link works without a build. Rebuild
+      # here and fail if the result differs, which catches a src/ edit
+      # that was never built.
+      - name: Rebuild and check dist is current
+        run: |
+          node build.mjs
+          if ! git diff --quiet -- dist/; then
+            echo "dist/ is out of date. Run: node build.mjs"
+            git diff --stat -- dist/
+            exit 1
+          fi
+
+      - name: Check pages
+        run: node test/check.mjs
+
+      - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
         with:
           path: .
 
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4

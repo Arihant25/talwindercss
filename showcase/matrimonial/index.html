@@ -1,185 +1,411 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-tw-art="madhubani">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sunday Classifieds · Matrimonial</title>
+  <title>Matrimonials · The Deccan Standard</title>
+  <meta name="description" content="The Sunday matrimonial classifieds of The Deccan Standard, built with TalwinderCSS in the madhubani art style." />
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Yatra+One&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Rozha+One&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Kalam:wght@400;700&family=JetBrains+Mono&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../dist/talwinder.css" />
   <style>
+    /* ------------------------------------------------------------------
+       Everything here is layout particular to a classified page. Colour
+       comes from the madhubani tokens so the sheet stays in the
+       framework's world: aged paper ground, ink-dark text.
+       ------------------------------------------------------------------ */
+
     body {
-      background: #d9c9a1;
-      background-image:
-        radial-gradient(ellipse at center, rgba(255,255,255,.3), transparent 70%),
-        radial-gradient(circle at 20% 30%, rgba(0,0,0,0.03), transparent 20%),
-        radial-gradient(circle at 80% 60%, rgba(0,0,0,0.04), transparent 20%);
-    }
-    .page {
-      max-width: 1000px;
-      margin: 20px auto;
-      background:
-        radial-gradient(ellipse at top, rgba(0,0,0,0.03), transparent 60%),
-        linear-gradient(180deg, #f4e9c8, #ecdfb4);
-      color: #1a1a1a;
-      padding: 30px 40px;
-      font-family: "Times New Roman", "Noto Serif", serif;
-      box-shadow: 8px 8px 0 rgba(0,0,0,0.15);
-      border: 1px solid #8b7a4a;
-    }
-    .masthead { text-align: center; border-top: 4px double #1a1a1a; border-bottom: 4px double #1a1a1a; padding: 6px 0; margin-bottom: 12px; }
-    .masthead .name { font-family: "Georgia", "Yatra One", serif; font-size: 2.8rem; font-weight: 900; letter-spacing: 0.03em; line-height: 1; }
-    .masthead .meta { display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 4px; padding: 0 12px; }
-    .section-title {
-      text-align: center;
-      font-family: "Georgia", serif;
-      font-size: 1.6rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      padding: 4px 0;
-      background: #1a1a1a;
-      color: #f6ecd3;
-      margin: 20px -40px;
+      font-size: 15px;
+      line-height: 1.34;
+      padding: 0 0 var(--tw-s12);
     }
 
-    .cols { column-count: 3; column-gap: 24px; column-rule: 1px solid #6b5a3e; }
+    .paper {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: var(--tw-surface);
+      border-left: 1px solid var(--tw-line-soft);
+      border-right: 1px solid var(--tw-line-soft);
+      padding: var(--tw-s6) var(--tw-s8) var(--tw-s10);
+    }
+
+    /* --- Top rail ---------------------------------------------------- */
+
+    .rail {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--tw-s3);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tw-ink-soft);
+      padding-bottom: var(--tw-s2);
+    }
+    .rail .tw-btn { border-radius: 0; box-shadow: none; font-size: 0.72rem; padding: 0.4em 0.9em; }
+
+    /* --- Masthead ---------------------------------------------------- */
+
+    .masthead {
+      border-top: 3px solid var(--tw-line);
+      border-bottom: 1px solid var(--tw-line);
+      padding: var(--tw-s5) 0 var(--tw-s3);
+      text-align: center;
+    }
+    .masthead .title {
+      font-family: var(--tw-font-poster);
+      font-size: clamp(2.4rem, 1rem + 6vw, 5rem);
+      line-height: 0.94;
+      margin: 0;
+      color: var(--tw-ink);
+      letter-spacing: 0.01em;
+    }
+    .masthead .rule-under {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--tw-s3);
+      margin-top: var(--tw-s3);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tw-ink-soft);
+      flex-wrap: wrap;
+    }
+    .masthead .rule-under span { white-space: nowrap; }
+    .masthead .dot { color: var(--tw-primary); }
+
+    /* --- Section banner ---------------------------------------------- */
+
+    .banner {
+      border-top: 1px solid var(--tw-line);
+      border-bottom: 3px solid var(--tw-line);
+      margin-top: 2px;
+      padding: var(--tw-s4) 0 var(--tw-s3);
+      text-align: center;
+    }
+    .banner h2 {
+      font-family: var(--tw-font-body);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 0.8rem + 3vw, 2.6rem);
+      letter-spacing: 0.4em;
+      text-indent: 0.4em;
+      text-transform: uppercase;
+      margin: 0;
+      color: var(--tw-primary);
+    }
+    .banner p {
+      margin: var(--tw-s2) 0 0;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tw-ink-soft);
+    }
+
+    /* --- Tariff strip ------------------------------------------------ */
+
+    .tariff {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--tw-s5);
+      border-bottom: 1px solid var(--tw-line);
+      padding: var(--tw-s4) 0;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+    .tariff h3 {
+      font-family: var(--tw-font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin: 0 0 3px;
+      color: var(--tw-primary);
+    }
+    .tariff div + div { border-left: 1px solid var(--tw-line-soft); padding-left: var(--tw-s5); }
+    .tariff p { margin: 0; color: var(--tw-ink-soft); }
+
+    /* --- Column heads ------------------------------------------------ */
+
+    .head-rule {
+      display: flex;
+      align-items: center;
+      gap: var(--tw-s3);
+      margin: var(--tw-s8) 0 var(--tw-s4);
+    }
+    .head-rule::before, .head-rule::after {
+      content: "";
+      flex: 1;
+      height: 0;
+      border-top: 3px double var(--tw-line);
+    }
+    .head-rule h3 {
+      font-family: var(--tw-font-body);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin: 0;
+      white-space: nowrap;
+    }
+    .head-count {
+      display: block;
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tw-ink-soft);
+      margin: calc(var(--tw-s4) * -1) 0 var(--tw-s5);
+    }
+
+    /* --- The columns themselves -------------------------------------- */
+
+    .cols {
+      column-count: 3;
+      column-gap: var(--tw-s6);
+      column-rule: 1px solid var(--tw-line);
+      orphans: 3;
+      widows: 3;
+    }
+
     .ad {
       break-inside: avoid;
-      margin-bottom: 12px;
-      padding: 8px;
-      border-bottom: 1px solid #6b5a3e;
-      font-size: 0.92rem;
-      line-height: 1.35;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      margin: 0 0 var(--tw-s4);
+      padding-bottom: var(--tw-s3);
+      border-bottom: 1px dotted var(--tw-line);
+      font-size: 0.83rem;
+      line-height: 1.36;
+      text-align: justify;
+      hyphens: auto;
     }
-    .ad h4 {
-      font-family: "Georgia", serif;
-      font-size: 0.85rem;
-      font-weight: 900;
+    .ad:last-child { border-bottom: 0; }
+
+    /* The first few words of a classified are set in caps and carry the
+       community and city. That is the whole index the reader gets. */
+    .ad b {
       text-transform: uppercase;
-      margin: 0 0 4px;
       letter-spacing: 0.03em;
     }
-    .ad.boxed {
-      border: 2px solid #1a1a1a;
-      background: rgba(255,255,255,0.35);
-      padding: 10px;
+    .ad .box {
+      display: block;
+      margin-top: 3px;
+      font-family: var(--tw-font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+      color: var(--tw-ink-soft);
     }
-    .ad .code { font-family: "Courier New", monospace; font-size: 0.8rem; color: var(--tw-lal); font-weight: 700; }
 
-    .back-link { position: fixed; top: 12px; left: 12px; z-index: 10; }
-    .disclaimer {
-      margin-top: 20px;
-      border-top: 3px double #1a1a1a;
-      padding-top: 8px;
-      font-size: 0.75rem;
+    /* Boxed insertions cost more and are set with a rule around them. */
+    .ad-boxed {
+      border: 2px solid var(--tw-line);
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      padding: var(--tw-s3);
+      background: color-mix(in srgb, var(--tw-accent) 8%, transparent);
+    }
+    .ad-boxed .tag {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       text-align: center;
-      color: #4a3820;
+      color: var(--tw-primary);
+      border-bottom: 1px solid var(--tw-line);
+      margin: calc(var(--tw-s3) * -1) calc(var(--tw-s3) * -1) var(--tw-s2);
+      padding: 3px 0;
+    }
+
+    /* --- Foot -------------------------------------------------------- */
+
+    .foot {
+      margin-top: var(--tw-s10);
+      border-top: 3px double var(--tw-line);
+      padding-top: var(--tw-s4);
+      font-size: 0.7rem;
+      line-height: 1.5;
+      color: var(--tw-ink-soft);
+      column-count: 2;
+      column-gap: var(--tw-s8);
+    }
+    .foot p { margin: 0 0 var(--tw-s2); break-inside: avoid; }
+    .foot strong { color: var(--tw-ink); }
+
+    /* --- Responsive -------------------------------------------------- */
+
+    @media (max-width: 900px) {
+      .cols { column-count: 2; }
+      .tariff { grid-template-columns: 1fr 1fr; }
+      .tariff div:nth-child(3) { grid-column: 1 / -1; border-left: 0; padding-left: 0; border-top: 1px solid var(--tw-line-soft); padding-top: var(--tw-s3); }
+    }
+    @media (max-width: 620px) {
+      .paper { padding: var(--tw-s4) var(--tw-s4) var(--tw-s8); }
+      .cols { column-count: 1; column-rule: 0; }
+      .foot { column-count: 1; }
+      .tariff { grid-template-columns: 1fr; gap: var(--tw-s3); }
+      .tariff div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--tw-line-soft); padding-top: var(--tw-s3); }
+      .banner h2 { letter-spacing: 0.22em; text-indent: 0.22em; }
+      .head-rule h3 { letter-spacing: 0.12em; font-size: 0.9rem; }
     }
   </style>
 </head>
+
 <body>
-  <a href="../index.html" class="tw-btn tw-btn-sm tw-btn-ghost back-link">← All demos</a>
+<div class="paper">
 
-  <div class="page">
-    <div class="masthead">
-      <div class="name">THE SUNDAY CLASSIFIED</div>
-      <div class="meta">
-        <span>Volume 47 · Issue 12</span>
-        <span>Sunday, 15 November</span>
-        <span>Pages 24 · ₹8</span>
-      </div>
+  <div class="rail">
+    <span>Sunday, 5 October 2025 &nbsp;&middot;&nbsp; Classified Section C &nbsp;&middot;&nbsp; Pages C1 to C4</span>
+    <a href="../" class="tw-btn tw-btn-sm tw-no-print">Back to showcase</a>
+  </div>
+
+  <header class="masthead">
+    <h1 class="title">The Deccan Standard</h1>
+    <div class="rule-under">
+      <span>Established 1927</span>
+      <span class="dot">&#9679;</span>
+      <span>Bengaluru Edition</span>
+      <span class="dot">&#9679;</span>
+      <span>Classified Advertisements</span>
     </div>
+  </header>
 
-    <div class="section-title">Matrimonial · Wanted alliance</div>
+  <div class="banner">
+    <h2>Matrimonials</h2>
+    <p>Brides Wanted &nbsp;&middot;&nbsp; Grooms Wanted &nbsp;&middot;&nbsp; Second Marriage &nbsp;&middot;&nbsp; Box Replies</p>
+  </div>
 
-    <div class="cols">
-      <div class="ad">
-        <h4>Sindhi girl</h4>
-        Suitable match for beautiful, fair, homely Sindhi girl 27/5'3", MBA from Symbiosis Pune, working as product manager Bangalore, ₹22 LPA. Own house Ulhasnagar. Boy should be non-drinker, well settled, similar community preferred. Send bio and horoscope. <span class="code">Box 4419</span>
-      </div>
-
-      <div class="ad boxed">
-        <h4>Doctor · Bangalore</h4>
-        Wanted well-qualified alliance for our daughter, 29, MD (Radiology), doing residency at Manipal. Family originally from Mangalore, based in Bangalore since 2003. Only doctor/engineer/CA replies please. Caste no bar for right match. <span class="code">Box 5027</span>
-      </div>
-
-      <div class="ad">
-        <h4>Kayastha groom</h4>
-        Wanted for slim, wheatish, MA Eng Lit, teacher govt school Lucknow, 26/5'4". Boy should be non-smoker, MBA/CA/CS/Doctor, income above 15 LPA. Simple ceremony preferred. <span class="code">Box 4522</span>
-      </div>
-
-      <div class="ad">
-        <h4>Engineer boy</h4>
-        Software engineer, Iyer, 31/5'11", MS from Georgia Tech, working Microsoft Redmond WA, on H1B. Home in Chennai (Adyar). Looking for professional girl, PG minimum, willing to relocate. Only respond with photo. <span class="code">Box 4611</span>
-      </div>
-
-      <div class="ad">
-        <h4>Bengali bride sought</h4>
-        For only son, 32, businessman (import-export), Kolkata based, own flat Salt Lake. Looking for cultured, family-oriented, English speaking Bengali girl, 25 to 29. Send details along with kundli. Reply promptly. <span class="code">Box 4488</span>
-      </div>
-
-      <div class="ad boxed">
-        <h4>Rajput match</h4>
-        Handsome boy, 28, 6'0", Rajput, Mech Engineer BITS Pilani, working with Tata Motors, Pune. Salary ₹28 LPA. Ancestral property Jaipur. Looking for graduate girl, tall, fair, working preferred. <span class="code">Box 4573</span>
-      </div>
-
-      <div class="ad">
-        <h4>NRI Punjabi girl</h4>
-        Beautiful US citizen, 30/5'6", Software Architect at Google Mountain View. Divorced (issueless, short marriage). Looking for genuine, well-settled Punjabi boy in US/Canada. Height 6' plus. No dowry, no demands. <span class="code">Box 4560</span>
-      </div>
-
-      <div class="ad">
-        <h4>Marathi boy</h4>
-        Deshastha Brahmin boy, 29/5'9", CA + CS, working Big-4 audit firm Mumbai. Own flat Thane. Family two brothers, one sister (both settled). Homely, educated girl from Marathi family. <span class="code">Box 4602</span>
-      </div>
-
-      <div class="ad boxed">
-        <h4>Manglik match</h4>
-        Manglik girl 27/5'2", PhD Chemistry (submitted thesis), fair, slim, cultured. Family in Delhi. Looking for Manglik boy, PhD/IIT/IIM background preferred. Simple wedding. Horoscope must. <span class="code">Box 4631</span>
-      </div>
-
-      <div class="ad">
-        <h4>Kerala Christian</h4>
-        Alliance invited for our son, 30, Christian (Syrian Catholic), working Deloitte London (permanent). BSc + MBA. Looking for professional, God-fearing girl from Kerala family. Willing to relocate to UK. <span class="code">Box 4645</span>
-      </div>
-
-      <div class="ad">
-        <h4>Widower re-marriage</h4>
-        Gentleman 44 yrs, MBBS, own clinic Vadodara, widower with one daughter (in hostel). Wife of similar age, understanding nature, doctor / teacher preferred. Photograph appreciated. <span class="code">Box 4658</span>
-      </div>
-
-      <div class="ad">
-        <h4>IAS officer boy</h4>
-        For handsome IAS officer, 32, posted UP cadre, family based Delhi. Looking for professionally qualified girl from decent family. No caste bar. Send full details. <span class="code">Box 4675</span>
-      </div>
-
-      <div class="ad">
-        <h4>Gujarati girl · Ahmedabad</h4>
-        Only daughter, 26/5'4", CA (first attempt), working with father's firm. Looking for CA/CS/MBA Gujarati boy from good family in Ahmedabad, Baroda, Surat. Cousin married in Patel family. <span class="code">Box 4692</span>
-      </div>
-
-      <div class="ad boxed">
-        <h4>Second marriage</h4>
-        Beautiful lady 38, dentist, running own clinic Pune, divorced (mutual, no issue). Seeks decent professional gentleman, 38 to 45, well settled. Sincere replies only. Family will contact after screening. <span class="code">Box 4711</span>
-      </div>
-
-      <div class="ad">
-        <h4>Tamil groom</h4>
-        Wanted for 27 yr old Iyengar girl, MSc Computer Sci, working TCS Chennai. Boy should be Vaishnavite Brahmin, Iyengar preferred, IT professional, above ₹15 LPA. Horoscope must. <span class="code">Box 4728</span>
-      </div>
-
-      <div class="ad">
-        <h4>Any suitable</h4>
-        Government service girl 33, LDC posting Bhopal, own house. Slightly built. Family looking for simple, honest match. Widower / divorcee also considered. Small marriage. <span class="code">Box 4741</span>
-      </div>
+  <div class="tariff">
+    <div>
+      <h3>Tariff</h3>
+      <p>Rs 420 for the first 20 words, Rs 18 for each additional word. Boxed insertion Rs 900 extra. Box number allotment Rs 150.</p>
     </div>
-
-    <div class="disclaimer">
-      Contact via advertisement box number only. Enclose stamped envelope. Newspaper accepts no responsibility for claims. Advertisers are requested to verify all details before responding. Copyright © The Sunday Classified 1998. Printed at Sagar Press, delivered by 6 am.
+    <div>
+      <h3>Copy Deadline</h3>
+      <p>Thursday 4.00 p.m. for the following Sunday. Counter at 27, Mahatma Gandhi Road, open 10 a.m. to 6 p.m., Saturday till 1 p.m.</p>
+    </div>
+    <div>
+      <h3>Box Replies</h3>
+      <p>Address the envelope to the box number only, care of the Classified Department. Replies are held 45 days and then destroyed.</p>
     </div>
   </div>
+
+  <div class="head-rule"><h3>Brides Wanted</h3></div>
+  <p class="head-count">Ten insertions</p>
+
+  <div class="cols">
+
+    <p class="ad ad-boxed">
+      <span class="tag">Boxed Insertion</span>
+      <b>Kannada Brahmin (Smartha)</b>, Bengaluru. Boy 29/5'10", B.E. Computer Science, senior engineer with an American software company at Sarjapur Road, drawing 18 lakh. Father retired from Karnataka Power Corporation. Only son. Girl should be a graduate below 27, fair, from a respectable vegetarian family, willing to live with parents. Horoscope compulsory. Kuja dosha nil.
+      <span class="box">Box 4417-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Tamil Iyer, Vadama, Bharadwaja gotra</b>, Chennai (Mylapore). Boy 32/5'8", C.A., partner in an audit firm on Luz Church Road. Own flat. Girl should be professionally qualified and willing to settle in Chennai. Send horoscope with two photographs. No brokers.
+      <span class="box">Box 4482-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Punjabi Khatri</b>, Ludhiana. Boy 27/5'11", M.B.A. Symbiosis, looks after the family hosiery unit at Focal Point. Only child. Wanted tall, slim, convent educated girl, 23 to 26. Caste no bar for an educated girl from a good family. Simple marriage, no demands.
+      <span class="box">Box 4501-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Telugu Kamma</b>, Hyderabad (Kukatpally). Boy 31/5'9", M.S. from Texas, returned last year, works with an IT services firm at Madhapur. Father retired divisional engineer, A.P. Transco. Girl 26 to 29, employed in IT preferred. Dowry seekers excuse.
+      <span class="box">Box 4396-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Marwari Agarwal</b>, Jaipur. Boy 30/5'7", B.Com, wholesale cloth business at Johari Bazar, third generation. Strictly vegetarian, teetotaller. Girl from a business family preferred, Rajasthan or Delhi. Manglik matching required. Photograph must.
+      <span class="box">Box 4520-DS</span>
+    </p>
+
+    <p class="ad ad-boxed">
+      <span class="tag">Second Marriage</span>
+      <b>Malayali Nair</b>, Kochi, native Thrissur. Boy 34/5'10", divorcee, issueless, decree by mutual consent in 2023, deputy manager with a scheduled bank at Ernakulam. Own house at Kakkanad. Seeks bride 28 to 34. Divorcee or widow without encumbrance equally welcome. Caste no bar for a suitable match.
+      <span class="box">Box 4468-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Bengali Kayastha</b>, Kolkata (Salt Lake, Sector II). Boy 28/5'8", M.Tech from IIEST Shibpur, scientist grade B with a defence laboratory. Only sister married and settled at Durgapur. Girl should be a graduate, fair, homely, Bengali speaking. Early marriage preferred.
+      <span class="box">Box 4433-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Maratha</b>, Pune (Kothrud). Boy 33/5'6", M.B.B.S., M.D. (General Medicine), attached to a teaching hospital. Own bungalow and consulting room. Wanted a doctor bride, M.D. or M.S. preferred, up to 30. Father a retired deputy collector. Horoscope may be sent.
+      <span class="box">Box 4509-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Sikh Ramgarhia</b>, Jalandhar. Boy 26/6'0", diploma in mechanical engineering, running an automobile workshop on the Nakodar road. Amritdhari family. Girl 22 to 26 from an Amritdhari gursikh family, matric or above. Kurmai in December if settled.
+      <span class="box">Box 4471-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Gujarati Patel (Leuva)</b>, Anand. Boy 30/5'9", B.Pharm, own medical store near the bus stand, family holds fourteen bighas of irrigated land at Karamsad. Girl should be a graduate, Gujarati speaking, homely habits. Green card holder also acceptable. Photo and biodata by post.
+      <span class="box">Box 4494-DS</span>
+    </p>
+
+  </div>
+
+  <div class="head-rule"><h3>Grooms Wanted</h3></div>
+  <p class="head-count">Eight insertions</p>
+
+  <div class="cols">
+
+    <p class="ad">
+      <b>Tamil Mudaliar</b>, Coimbatore. Girl 26/5'4", M.Sc. Biotechnology, working with a research laboratory at Peelamedu, drawing 9 lakh. Fair, slim, plays the veena. Wanted an employed boy below 31, settled at Coimbatore or Bengaluru. Father a retired bank manager.
+      <span class="box">Box 4515-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Kashmiri Pandit</b>, Delhi (Pamposh Enclave). Girl 29/5'3", LL.B., practising at Tis Hazari courts, junior to a senior advocate. Wanted a professionally qualified boy from the community, settled in Delhi or the National Capital Region. Zaicha to be exchanged.
+      <span class="box">Box 4457-DS</span>
+    </p>
+
+    <p class="ad ad-boxed">
+      <span class="tag">Boxed Insertion</span>
+      <b>Bhumihar</b>, Patna (Kankarbagh). Girl 24/5'2", B.A. English Honours from Patna Women's College, now doing B.Ed. Fair, tall, domesticated, trained in classical vocal. Father a Class I officer with the Bihar government, mother a lecturer. Wanted a boy in central government service, a public sector undertaking or the defence services. Marriage in the Aghan lagan.
+      <span class="box">Box 4488-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Sindhi</b>, Ulhasnagar, presently Mumbai. Girl 27/5'5", B.Com, assists in the family garment business at Dadar. Wanted a business minded boy from Mumbai or Pune, 28 to 32. Caste no bar for a suitable and well settled match. Kindly send full particulars.
+      <span class="box">Box 4479-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Ezhava</b>, Alappuzha. Girl 25/5'1", staff nurse, employed at a hospital in Kuwait, on leave in Kerala till the 12th of October. Wanted a Malayali boy employed in the Gulf, preferably Kuwait or Doha. Church going family. Reply immediately with photograph.
+      <span class="box">Box 4443-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Rajput (Chauhan)</b>, Jodhpur. Girl 23/5'4", B.A., at home. Father a Subedar Major, retired, in the Rajputana Rifles. Wanted a boy from the army, the police or the paramilitary forces, Rajput only, from Rajasthan. Horoscope and photograph must.
+      <span class="box">Box 4522-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Jain Digambar</b>, Indore. Girl 28/5'6", C.A., cleared the final in 2022, employed with an audit firm at Mumbai, drawing 22 lakh. Strictly vegetarian, no onion or garlic at home. Wanted a chartered accountant, doctor or engineer, Jain, up to 33.
+      <span class="box">Box 4506-DS</span>
+    </p>
+
+    <p class="ad">
+      <b>Anglo-Indian</b>, Chennai (Perambur). Girl 31/5'5", B.Ed., teaching at a matriculation school on the Paper Mills Road. Wanted a well settled Christian gentleman, teetotaller, up to 38. A widower without encumbrance will also be considered. Only genuine parties need write.
+      <span class="box">Box 4462-DS</span>
+    </p>
+
+  </div>
+
+  <div class="foot">
+    <p><strong>Notice to readers.</strong> The Deccan Standard does not verify the particulars stated in matrimonial advertisements and accepts no responsibility for them. Readers are advised to satisfy themselves independently about age, employment, income, marital status and family background, and to consult their own advisers before parting with money or documents.</p>
+    <p><strong>Notice to advertisers.</strong> Copy must be accompanied by proof of identity and, where a professional qualification is claimed, a copy of the certificate. The paper reserves the right to refuse, edit or reclassify any insertion without assigning a reason. Demanding or offering dowry is an offence under the Dowry Prohibition Act, 1961, and any copy indicating a demand will be declined.</p>
+    <p><strong>Box replies.</strong> Classified Department, The Deccan Standard, 27 Mahatma Gandhi Road, Bengaluru 560 001. Telephone 080 2558 1140, extension 27. Unstamped replies will not be forwarded.</p>
+  </div>
+
+</div>
 </body>
 </html>

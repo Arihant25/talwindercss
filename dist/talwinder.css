@@ -1,0 +1,972 @@
+/*!
+ * TalwinderCSS v1.0.0
+ * A utility-first CSS framework for building Indian-inspired interfaces.
+ * https://arihant25.github.io/talwindercss
+ * Licensed under MIT
+ */
+
+/* -------------------------------------------------------------------------- */
+/*  1. Design tokens                                                          */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  /* Colours pulled from paint shops, sari shops and the corner chai stall. */
+  --tw-saffron: #ff9a1f;
+  --tw-marigold: #ffb000;
+  --tw-sindoor: #d81e2b;
+  --tw-haldi: #f4c430;
+  --tw-mehndi: #6b8e23;
+  --tw-tulsi: #2e7d32;
+  --tw-peacock: #1e5f74;
+  --tw-neel: #1a237e;
+  --tw-jamun: #4a148c;
+  --tw-gulaal: #e91e63;
+  --tw-chai: #6d4c1a;
+  --tw-kesari: #ff6f00;
+  --tw-mor-pankh: #0d7c66;
+  --tw-lal: #b0000a;
+  --tw-cream: #fbf6ec;
+  --tw-ivory: #fff8ea;
+  --tw-sand: #e8d9b6;
+  --tw-copper: #b87333;
+  --tw-brass: #c9a94a;
+  --tw-silver: #c0c0c0;
+  --tw-charcoal: #232323;
+  --tw-black: #0f0f0f;
+
+  /* Semantic tokens. Everything else in this file references these. */
+  --tw-bg: var(--tw-ivory);
+  --tw-fg: var(--tw-charcoal);
+  --tw-muted: #6b5a3e;
+  --tw-primary: var(--tw-sindoor);
+  --tw-accent: var(--tw-marigold);
+  --tw-border: #2b2b2b;
+  --tw-shadow: 6px 6px 0 var(--tw-black);
+  --tw-shadow-sm: 3px 3px 0 var(--tw-black);
+  --tw-shadow-lg: 10px 10px 0 var(--tw-black);
+
+  /* Rhythm. Loosely a 4px scale, with a couple of ornate stops. */
+  --tw-space-1: 4px;
+  --tw-space-2: 8px;
+  --tw-space-3: 12px;
+  --tw-space-4: 16px;
+  --tw-space-5: 20px;
+  --tw-space-6: 24px;
+  --tw-space-8: 32px;
+  --tw-space-10: 40px;
+  --tw-space-12: 48px;
+  --tw-space-16: 64px;
+  --tw-space-20: 80px;
+  --tw-space-24: 96px;
+
+  --tw-radius-sm: 4px;
+  --tw-radius: 10px;
+  --tw-radius-lg: 20px;
+  --tw-radius-arch: 100px 100px 8px 8px;
+  --tw-radius-mandap: 200px 200px 8px 8px;
+  --tw-radius-blob: 62% 38% 41% 59% / 45% 44% 56% 55%;
+
+  --tw-font-body: "Noto Serif", "Georgia", serif;
+  --tw-font-display: "Yatra One", "Rozha One", "Kalam", serif;
+  --tw-font-hand: "Kalam", "Caveat", cursive;
+  --tw-font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  --tw-font-devanagari: "Yatra One", "Tiro Devanagari Hindi", serif;
+}
+
+/* Dark mode: night at the dhaba, kerosene lamp on the counter. */
+[data-tw-theme="raat"] {
+  --tw-bg: #0e0a05;
+  --tw-fg: #f4e6c1;
+  --tw-muted: #a08a5b;
+  --tw-border: #f4e6c1;
+  --tw-shadow: 6px 6px 0 var(--tw-marigold);
+  --tw-shadow-sm: 3px 3px 0 var(--tw-marigold);
+  --tw-shadow-lg: 10px 10px 0 var(--tw-marigold);
+  --tw-cream: #1a1005;
+  --tw-ivory: #0e0a05;
+  --tw-sand: #2a1f10;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  2. Reset                                                                  */
+/* -------------------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--tw-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--tw-fg);
+  background-color: var(--tw-bg);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(255, 176, 0, 0.08), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(216, 30, 43, 0.06), transparent 40%);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--tw-font-display);
+  font-weight: 400;
+  margin: 0 0 var(--tw-space-4);
+  line-height: 1.2;
+}
+p { margin: 0 0 var(--tw-space-4); }
+a { color: var(--tw-primary); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--tw-kesari); }
+img { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+code, kbd, pre, samp { font-family: var(--tw-font-mono); }
+pre {
+  background: var(--tw-charcoal);
+  color: var(--tw-cream);
+  padding: var(--tw-space-4);
+  border-radius: var(--tw-radius);
+  overflow-x: auto;
+  border: 2px solid var(--tw-marigold);
+}
+code:not(pre code) {
+  background: var(--tw-sand);
+  color: var(--tw-lal);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  3. Layout utilities                                                       */
+/* -------------------------------------------------------------------------- */
+
+.tw-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--tw-space-4); }
+.tw-container-sm { max-width: 720px; }
+.tw-container-lg { max-width: 1400px; }
+
+.tw-flex { display: flex; }
+.tw-inline-flex { display: inline-flex; }
+.tw-grid { display: grid; }
+.tw-block { display: block; }
+.tw-inline-block { display: inline-block; }
+.tw-hidden { display: none; }
+
+.tw-flex-col { flex-direction: column; }
+.tw-flex-row { flex-direction: row; }
+.tw-flex-wrap { flex-wrap: wrap; }
+.tw-items-center { align-items: center; }
+.tw-items-start { align-items: flex-start; }
+.tw-items-end { align-items: flex-end; }
+.tw-items-stretch { align-items: stretch; }
+.tw-justify-center { justify-content: center; }
+.tw-justify-between { justify-content: space-between; }
+.tw-justify-around { justify-content: space-around; }
+.tw-justify-start { justify-content: flex-start; }
+.tw-justify-end { justify-content: flex-end; }
+.tw-flex-1 { flex: 1 1 0%; }
+.tw-flex-auto { flex: 1 1 auto; }
+
+.tw-gap-1 { gap: var(--tw-space-1); }
+.tw-gap-2 { gap: var(--tw-space-2); }
+.tw-gap-3 { gap: var(--tw-space-3); }
+.tw-gap-4 { gap: var(--tw-space-4); }
+.tw-gap-6 { gap: var(--tw-space-6); }
+.tw-gap-8 { gap: var(--tw-space-8); }
+
+.tw-grid-cols-1 { grid-template-columns: 1fr; }
+.tw-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.tw-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.tw-grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+.tw-grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+.tw-grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+.tw-grid-cols-12 { grid-template-columns: repeat(12, 1fr); }
+.tw-col-span-2 { grid-column: span 2 / span 2; }
+.tw-col-span-3 { grid-column: span 3 / span 3; }
+.tw-col-span-4 { grid-column: span 4 / span 4; }
+.tw-col-span-6 { grid-column: span 6 / span 6; }
+.tw-col-span-full { grid-column: 1 / -1; }
+
+/* Spacing (padding and margin). */
+.tw-p-0 { padding: 0; }
+.tw-p-1 { padding: var(--tw-space-1); }
+.tw-p-2 { padding: var(--tw-space-2); }
+.tw-p-3 { padding: var(--tw-space-3); }
+.tw-p-4 { padding: var(--tw-space-4); }
+.tw-p-6 { padding: var(--tw-space-6); }
+.tw-p-8 { padding: var(--tw-space-8); }
+.tw-p-12 { padding: var(--tw-space-12); }
+
+.tw-px-2 { padding-left: var(--tw-space-2); padding-right: var(--tw-space-2); }
+.tw-px-4 { padding-left: var(--tw-space-4); padding-right: var(--tw-space-4); }
+.tw-px-6 { padding-left: var(--tw-space-6); padding-right: var(--tw-space-6); }
+.tw-px-8 { padding-left: var(--tw-space-8); padding-right: var(--tw-space-8); }
+.tw-py-2 { padding-top: var(--tw-space-2); padding-bottom: var(--tw-space-2); }
+.tw-py-4 { padding-top: var(--tw-space-4); padding-bottom: var(--tw-space-4); }
+.tw-py-6 { padding-top: var(--tw-space-6); padding-bottom: var(--tw-space-6); }
+.tw-py-8 { padding-top: var(--tw-space-8); padding-bottom: var(--tw-space-8); }
+.tw-py-12 { padding-top: var(--tw-space-12); padding-bottom: var(--tw-space-12); }
+.tw-py-16 { padding-top: var(--tw-space-16); padding-bottom: var(--tw-space-16); }
+
+.tw-m-0 { margin: 0; }
+.tw-m-auto { margin: auto; }
+.tw-mx-auto { margin-left: auto; margin-right: auto; }
+.tw-mt-2 { margin-top: var(--tw-space-2); }
+.tw-mt-4 { margin-top: var(--tw-space-4); }
+.tw-mt-6 { margin-top: var(--tw-space-6); }
+.tw-mt-8 { margin-top: var(--tw-space-8); }
+.tw-mt-12 { margin-top: var(--tw-space-12); }
+.tw-mb-2 { margin-bottom: var(--tw-space-2); }
+.tw-mb-4 { margin-bottom: var(--tw-space-4); }
+.tw-mb-6 { margin-bottom: var(--tw-space-6); }
+.tw-mb-8 { margin-bottom: var(--tw-space-8); }
+
+/* -------------------------------------------------------------------------- */
+/*  4. Typography utilities                                                   */
+/* -------------------------------------------------------------------------- */
+
+.tw-font-display { font-family: var(--tw-font-display); }
+.tw-font-body { font-family: var(--tw-font-body); }
+.tw-font-hand { font-family: var(--tw-font-hand); }
+.tw-font-mono { font-family: var(--tw-font-mono); }
+.tw-font-devanagari { font-family: var(--tw-font-devanagari); }
+
+.tw-text-xs { font-size: 0.75rem; }
+.tw-text-sm { font-size: 0.875rem; }
+.tw-text-base { font-size: 1rem; }
+.tw-text-lg { font-size: 1.125rem; }
+.tw-text-xl { font-size: 1.25rem; }
+.tw-text-2xl { font-size: 1.5rem; }
+.tw-text-3xl { font-size: 1.875rem; }
+.tw-text-4xl { font-size: 2.25rem; }
+.tw-text-5xl { font-size: 3rem; }
+.tw-text-6xl { font-size: 3.75rem; }
+.tw-text-7xl { font-size: 4.5rem; }
+
+.tw-text-center { text-align: center; }
+.tw-text-left { text-align: left; }
+.tw-text-right { text-align: right; }
+
+.tw-font-light { font-weight: 300; }
+.tw-font-normal { font-weight: 400; }
+.tw-font-bold { font-weight: 700; }
+.tw-font-black { font-weight: 900; }
+
+.tw-uppercase { text-transform: uppercase; }
+.tw-italic { font-style: italic; }
+.tw-underline { text-decoration: underline; text-underline-offset: 4px; }
+.tw-no-underline { text-decoration: none; }
+.tw-tracking-wide { letter-spacing: 0.05em; }
+.tw-tracking-wider { letter-spacing: 0.1em; }
+.tw-tracking-widest { letter-spacing: 0.2em; }
+
+/* -------------------------------------------------------------------------- */
+/*  5. Colour utilities                                                       */
+/* -------------------------------------------------------------------------- */
+
+.tw-text-saffron { color: var(--tw-saffron); }
+.tw-text-marigold { color: var(--tw-marigold); }
+.tw-text-sindoor { color: var(--tw-sindoor); }
+.tw-text-haldi { color: var(--tw-haldi); }
+.tw-text-mehndi { color: var(--tw-mehndi); }
+.tw-text-tulsi { color: var(--tw-tulsi); }
+.tw-text-peacock { color: var(--tw-peacock); }
+.tw-text-neel { color: var(--tw-neel); }
+.tw-text-jamun { color: var(--tw-jamun); }
+.tw-text-gulaal { color: var(--tw-gulaal); }
+.tw-text-chai { color: var(--tw-chai); }
+.tw-text-kesari { color: var(--tw-kesari); }
+.tw-text-mor { color: var(--tw-mor-pankh); }
+.tw-text-lal { color: var(--tw-lal); }
+.tw-text-cream { color: var(--tw-cream); }
+.tw-text-ivory { color: var(--tw-ivory); }
+.tw-text-charcoal { color: var(--tw-charcoal); }
+.tw-text-copper { color: var(--tw-copper); }
+.tw-text-brass { color: var(--tw-brass); }
+.tw-text-white { color: #ffffff; }
+.tw-text-muted { color: var(--tw-muted); }
+
+.tw-bg-saffron { background-color: var(--tw-saffron); }
+.tw-bg-marigold { background-color: var(--tw-marigold); }
+.tw-bg-sindoor { background-color: var(--tw-sindoor); }
+.tw-bg-haldi { background-color: var(--tw-haldi); }
+.tw-bg-mehndi { background-color: var(--tw-mehndi); }
+.tw-bg-tulsi { background-color: var(--tw-tulsi); }
+.tw-bg-peacock { background-color: var(--tw-peacock); }
+.tw-bg-neel { background-color: var(--tw-neel); }
+.tw-bg-jamun { background-color: var(--tw-jamun); }
+.tw-bg-gulaal { background-color: var(--tw-gulaal); }
+.tw-bg-chai { background-color: var(--tw-chai); }
+.tw-bg-kesari { background-color: var(--tw-kesari); }
+.tw-bg-mor { background-color: var(--tw-mor-pankh); }
+.tw-bg-lal { background-color: var(--tw-lal); }
+.tw-bg-cream { background-color: var(--tw-cream); }
+.tw-bg-ivory { background-color: var(--tw-ivory); }
+.tw-bg-sand { background-color: var(--tw-sand); }
+.tw-bg-charcoal { background-color: var(--tw-charcoal); }
+.tw-bg-black { background-color: var(--tw-black); }
+.tw-bg-white { background-color: #ffffff; }
+.tw-bg-transparent { background-color: transparent; }
+
+/* Tricolour gradient (jhanda). Kesari, white, mor. */
+.tw-bg-tiranga {
+  background: linear-gradient(
+    to bottom,
+    var(--tw-kesari) 0%,
+    var(--tw-kesari) 33.33%,
+    #ffffff 33.33%,
+    #ffffff 66.66%,
+    var(--tw-mor-pankh) 66.66%,
+    var(--tw-mor-pankh) 100%
+  );
+}
+.tw-bg-tiranga-h {
+  background: linear-gradient(
+    to right,
+    var(--tw-kesari) 0%,
+    var(--tw-kesari) 33.33%,
+    #ffffff 33.33%,
+    #ffffff 66.66%,
+    var(--tw-mor-pankh) 66.66%,
+    var(--tw-mor-pankh) 100%
+  );
+}
+.tw-bg-holi {
+  background:
+    radial-gradient(circle at 20% 30%, var(--tw-gulaal) 0, transparent 25%),
+    radial-gradient(circle at 80% 20%, var(--tw-haldi) 0, transparent 25%),
+    radial-gradient(circle at 50% 70%, var(--tw-mor-pankh) 0, transparent 25%),
+    radial-gradient(circle at 15% 85%, var(--tw-jamun) 0, transparent 22%),
+    radial-gradient(circle at 90% 90%, var(--tw-peacock) 0, transparent 22%),
+    var(--tw-cream);
+}
+.tw-bg-chai-gradient {
+  background: linear-gradient(135deg, #f7dfa5 0%, var(--tw-chai) 100%);
+}
+
+/* Border utilities */
+.tw-border { border: 2px solid var(--tw-border); }
+.tw-border-4 { border: 4px solid var(--tw-border); }
+.tw-border-8 { border: 8px solid var(--tw-border); }
+.tw-border-t { border-top: 2px solid var(--tw-border); }
+.tw-border-b { border-bottom: 2px solid var(--tw-border); }
+.tw-border-marigold { border-color: var(--tw-marigold); }
+.tw-border-sindoor { border-color: var(--tw-sindoor); }
+.tw-border-peacock { border-color: var(--tw-peacock); }
+.tw-border-brass { border-color: var(--tw-brass); }
+.tw-border-charcoal { border-color: var(--tw-charcoal); }
+.tw-border-dashed { border-style: dashed; }
+.tw-border-dotted { border-style: dotted; }
+.tw-border-double { border-style: double; }
+
+.tw-rounded-none { border-radius: 0; }
+.tw-rounded-sm { border-radius: var(--tw-radius-sm); }
+.tw-rounded { border-radius: var(--tw-radius); }
+.tw-rounded-lg { border-radius: var(--tw-radius-lg); }
+.tw-rounded-full { border-radius: 9999px; }
+.tw-rounded-arch { border-radius: var(--tw-radius-arch); }
+.tw-rounded-mandap { border-radius: var(--tw-radius-mandap); }
+.tw-rounded-blob { border-radius: var(--tw-radius-blob); }
+
+.tw-shadow-none { box-shadow: none; }
+.tw-shadow-sm { box-shadow: var(--tw-shadow-sm); }
+.tw-shadow { box-shadow: var(--tw-shadow); }
+.tw-shadow-lg { box-shadow: var(--tw-shadow-lg); }
+.tw-shadow-brass { box-shadow: 6px 6px 0 var(--tw-brass); }
+.tw-shadow-sindoor { box-shadow: 6px 6px 0 var(--tw-sindoor); }
+
+/* -------------------------------------------------------------------------- */
+/*  6. Buttons                                                                */
+/* -------------------------------------------------------------------------- */
+
+.tw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tw-space-2);
+  padding: 12px 24px;
+  font-family: var(--tw-font-display);
+  font-size: 1rem;
+  line-height: 1;
+  border: 3px solid var(--tw-border);
+  border-radius: var(--tw-radius);
+  background: var(--tw-marigold);
+  color: var(--tw-black);
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--tw-shadow-sm);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.tw-btn:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--tw-black); color: var(--tw-black); }
+.tw-btn:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--tw-black); }
+
+.tw-btn-sindoor { background: var(--tw-sindoor); color: #ffffff; }
+.tw-btn-sindoor:hover { color: #ffffff; }
+.tw-btn-mehndi { background: var(--tw-mehndi); color: #ffffff; }
+.tw-btn-mehndi:hover { color: #ffffff; }
+.tw-btn-peacock { background: var(--tw-peacock); color: #ffffff; }
+.tw-btn-peacock:hover { color: #ffffff; }
+.tw-btn-jamun { background: var(--tw-jamun); color: #ffffff; }
+.tw-btn-jamun:hover { color: #ffffff; }
+.tw-btn-brass {
+  background: linear-gradient(180deg, #e0c060 0%, #c9a94a 50%, #a68830 100%);
+  color: var(--tw-black);
+  border-color: #6b4a10;
+}
+.tw-btn-ghost { background: transparent; }
+.tw-btn-ghost:hover { background: var(--tw-cream); }
+
+.tw-btn-sm { padding: 6px 14px; font-size: 0.875rem; }
+.tw-btn-lg { padding: 16px 32px; font-size: 1.25rem; }
+.tw-btn-block { display: flex; width: 100%; }
+
+/* Truck-art style button: bold outline, striped underlay. */
+.tw-btn-truck {
+  position: relative;
+  padding: 14px 28px 18px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      var(--tw-marigold) 0 12px,
+      var(--tw-sindoor) 12px 24px,
+      var(--tw-mor-pankh) 24px 36px
+    );
+  color: #ffffff;
+  text-shadow: 2px 2px 0 var(--tw-black);
+  border: 4px solid var(--tw-black);
+  border-bottom-width: 8px;
+  font-family: var(--tw-font-display);
+  letter-spacing: 0.05em;
+}
+.tw-btn-truck:hover { color: #ffffff; }
+
+/* "Horn OK Please" — the classic sign painted on the back of trucks. */
+.tw-btn-horn-ok {
+  display: inline-block;
+  padding: 12px 20px;
+  background: var(--tw-ivory);
+  border: 3px solid var(--tw-black);
+  color: var(--tw-lal);
+  font-family: var(--tw-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: inset 0 0 0 6px var(--tw-marigold), 4px 4px 0 var(--tw-black);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  7. Cards                                                                  */
+/* -------------------------------------------------------------------------- */
+
+.tw-card {
+  background: var(--tw-cream);
+  border: 3px solid var(--tw-border);
+  border-radius: var(--tw-radius);
+  padding: var(--tw-space-6);
+  box-shadow: var(--tw-shadow);
+}
+
+.tw-card-rangoli {
+  position: relative;
+  background: var(--tw-cream);
+  border: 3px solid var(--tw-sindoor);
+  border-radius: var(--tw-radius);
+  padding: var(--tw-space-8);
+  box-shadow: var(--tw-shadow);
+}
+.tw-card-rangoli::before,
+.tw-card-rangoli::after {
+  content: "❋";
+  position: absolute;
+  font-size: 2rem;
+  color: var(--tw-marigold);
+  line-height: 1;
+}
+.tw-card-rangoli::before { top: -14px; left: -14px; }
+.tw-card-rangoli::after { bottom: -14px; right: -14px; }
+
+.tw-card-bandhani {
+  background:
+    radial-gradient(circle, var(--tw-haldi) 3px, transparent 4px) 0 0 / 20px 20px,
+    var(--tw-sindoor);
+  color: var(--tw-cream);
+  border: 3px solid var(--tw-black);
+  border-radius: var(--tw-radius);
+  padding: var(--tw-space-6);
+}
+
+.tw-card-arch {
+  background: var(--tw-cream);
+  border: 4px solid var(--tw-border);
+  border-radius: var(--tw-radius-arch);
+  padding: var(--tw-space-12) var(--tw-space-6) var(--tw-space-6);
+  box-shadow: var(--tw-shadow);
+  text-align: center;
+}
+
+.tw-card-poster {
+  background: var(--tw-marigold);
+  color: var(--tw-black);
+  border: 6px double var(--tw-black);
+  padding: var(--tw-space-6);
+  font-family: var(--tw-font-display);
+  text-align: center;
+  box-shadow: var(--tw-shadow-lg);
+}
+
+/* Newspaper classified: black serif, thin rule, aged paper. */
+.tw-card-classified {
+  background: #f6ecd3;
+  color: #1a1a1a;
+  border: 1px solid #6b5a3e;
+  padding: var(--tw-space-4);
+  font-family: "Times New Roman", serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.tw-card-classified h3 {
+  font-family: "Times New Roman", serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  border-bottom: 2px solid #1a1a1a;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  8. Ornamental dividers                                                    */
+/* -------------------------------------------------------------------------- */
+
+.tw-toran {
+  height: 40px;
+  background:
+    radial-gradient(circle at 50% 0, var(--tw-marigold) 12px, transparent 13px) 0 0 / 30px 40px,
+    radial-gradient(circle at 50% 0, var(--tw-tulsi) 6px, transparent 7px) 0 22px / 30px 40px;
+  background-repeat: repeat-x;
+}
+
+.tw-divider-paisley {
+  text-align: center;
+  color: var(--tw-sindoor);
+  font-size: 1.5rem;
+  letter-spacing: 1em;
+  margin: var(--tw-space-6) 0;
+}
+.tw-divider-paisley::before { content: "☙  ✽  ❦  ✽  ❧"; }
+
+.tw-divider-line {
+  border: 0;
+  border-top: 2px dashed var(--tw-border);
+  margin: var(--tw-space-6) 0;
+}
+
+.tw-divider-double {
+  border: 0;
+  height: 6px;
+  background:
+    linear-gradient(var(--tw-border), var(--tw-border)) 0 0 / 100% 2px no-repeat,
+    linear-gradient(var(--tw-border), var(--tw-border)) 0 100% / 100% 2px no-repeat;
+  margin: var(--tw-space-6) 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  9. Ornamental backgrounds                                                 */
+/* -------------------------------------------------------------------------- */
+
+/* Bandhani dot pattern used on saris. */
+.tw-pattern-bandhani {
+  background-image: radial-gradient(circle, var(--tw-marigold) 2px, transparent 3px);
+  background-size: 16px 16px;
+  background-color: var(--tw-sindoor);
+  color: var(--tw-cream);
+}
+
+/* Diagonal stripes borrowed from auto-rickshaw side panels. */
+.tw-pattern-rickshaw {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--tw-tulsi) 0 20px,
+    var(--tw-haldi) 20px 40px
+  );
+  color: var(--tw-black);
+}
+
+/* Warli-style dots and lines (approximated with radial and linear gradients). */
+.tw-pattern-warli {
+  background-color: #b3612a;
+  background-image:
+    radial-gradient(circle, #f4e6c1 2px, transparent 3px);
+  background-size: 24px 24px;
+  color: #f4e6c1;
+}
+
+/* Kanjivaram gold border check. */
+.tw-pattern-check {
+  background:
+    linear-gradient(45deg, var(--tw-brass) 25%, transparent 25%) 0 0/20px 20px,
+    linear-gradient(-45deg, var(--tw-brass) 25%, transparent 25%) 0 10px/20px 20px,
+    var(--tw-sindoor);
+}
+
+/* Aged paper for classifieds and old menus. */
+.tw-paper {
+  background:
+    radial-gradient(ellipse at top, rgba(0,0,0,0.02), transparent 60%),
+    linear-gradient(180deg, #f6ecd3, #f0e2c0);
+  color: #2b1e0a;
+  border: 1px solid #b8a274;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  10. Badges and pills                                                      */
+/* -------------------------------------------------------------------------- */
+
+.tw-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--tw-marigold);
+  color: var(--tw-black);
+  border: 2px solid var(--tw-black);
+}
+.tw-badge-sindoor { background: var(--tw-sindoor); color: #ffffff; }
+.tw-badge-mehndi { background: var(--tw-mehndi); color: #ffffff; }
+.tw-badge-peacock { background: var(--tw-peacock); color: #ffffff; }
+.tw-badge-jamun { background: var(--tw-jamun); color: #ffffff; }
+.tw-badge-veg {
+  background: #ffffff;
+  color: var(--tw-tulsi);
+  border-color: var(--tw-tulsi);
+}
+.tw-badge-veg::before {
+  content: "●";
+  color: var(--tw-tulsi);
+}
+.tw-badge-non-veg {
+  background: #ffffff;
+  color: var(--tw-lal);
+  border-color: var(--tw-lal);
+}
+.tw-badge-non-veg::before {
+  content: "▲";
+  color: var(--tw-lal);
+}
+
+/* Rubber stamp effect, like the ones on official forms. */
+.tw-stamp {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 3px solid var(--tw-lal);
+  color: var(--tw-lal);
+  font-family: var(--tw-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transform: rotate(-8deg);
+  background: transparent;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  11. Forms                                                                 */
+/* -------------------------------------------------------------------------- */
+
+.tw-input, .tw-textarea, .tw-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid var(--tw-border);
+  border-radius: var(--tw-radius-sm);
+  background: var(--tw-ivory);
+  color: var(--tw-fg);
+  font-family: var(--tw-font-body);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.tw-input:focus, .tw-textarea:focus, .tw-select:focus {
+  outline: none;
+  border-color: var(--tw-sindoor);
+  box-shadow: 0 0 0 3px rgba(216, 30, 43, 0.25);
+}
+.tw-label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 700;
+  color: var(--tw-fg);
+}
+.tw-help { font-size: 0.85rem; color: var(--tw-muted); }
+
+/* -------------------------------------------------------------------------- */
+/*  12. Navigation                                                            */
+/* -------------------------------------------------------------------------- */
+
+.tw-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--tw-space-4) var(--tw-space-6);
+  background: var(--tw-ivory);
+  border-bottom: 4px solid var(--tw-black);
+}
+.tw-navbar-brand {
+  font-family: var(--tw-font-display);
+  font-size: 1.5rem;
+  color: var(--tw-lal);
+  text-decoration: none;
+}
+.tw-navbar-brand:hover { color: var(--tw-sindoor); }
+.tw-navbar-nav {
+  display: flex;
+  gap: var(--tw-space-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tw-nav-link {
+  color: var(--tw-fg);
+  text-decoration: none;
+  font-weight: 700;
+  position: relative;
+}
+.tw-nav-link:hover { color: var(--tw-sindoor); }
+.tw-nav-link.tw-active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 3px;
+  background: var(--tw-sindoor);
+}
+
+/* -------------------------------------------------------------------------- */
+/*  13. Announcements (marquee, hoarding)                                     */
+/* -------------------------------------------------------------------------- */
+
+.tw-hoarding {
+  background: var(--tw-marigold);
+  color: var(--tw-black);
+  border-top: 4px solid var(--tw-black);
+  border-bottom: 4px solid var(--tw-black);
+  padding: var(--tw-space-3);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.tw-hoarding-track {
+  display: inline-block;
+  padding-left: 100%;
+  animation: tw-scroll 22s linear infinite;
+  font-family: var(--tw-font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+@keyframes tw-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.tw-hoarding:hover .tw-hoarding-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .tw-hoarding-track { animation: none; padding-left: 0; }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  14. Special-purpose blocks                                                */
+/* -------------------------------------------------------------------------- */
+
+/* Chai cup: a container styled like a paper cup of tea. */
+.tw-chai-cup {
+  position: relative;
+  padding: var(--tw-space-6) var(--tw-space-6) var(--tw-space-4);
+  background: linear-gradient(180deg, #f7dfa5 0%, #b87333 100%);
+  color: var(--tw-black);
+  border: 3px solid var(--tw-black);
+  border-radius: 6px 6px 30% 30% / 6px 6px 12% 12%;
+  box-shadow: var(--tw-shadow);
+}
+.tw-chai-cup::after {
+  content: "";
+  position: absolute;
+  top: 8px; left: 8px; right: 8px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* Ticket stub: perforated edge on both sides. */
+.tw-ticket {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--tw-space-4);
+  padding: var(--tw-space-4);
+  background: var(--tw-cream);
+  border: 2px dashed var(--tw-border);
+  border-radius: var(--tw-radius);
+  font-family: var(--tw-font-mono);
+}
+.tw-ticket::before, .tw-ticket::after {
+  content: "";
+  position: absolute;
+  top: 50%; width: 20px; height: 20px;
+  background: var(--tw-bg);
+  border: 2px dashed var(--tw-border);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.tw-ticket::before { left: -12px; }
+.tw-ticket::after { right: -12px; }
+
+/* Signboard: painted metal look, riveted corners. */
+.tw-signboard {
+  position: relative;
+  background: var(--tw-neel);
+  color: var(--tw-cream);
+  border: 4px solid var(--tw-brass);
+  padding: var(--tw-space-6);
+  font-family: var(--tw-font-display);
+  text-align: center;
+  box-shadow: var(--tw-shadow);
+}
+.tw-signboard::before,
+.tw-signboard::after {
+  content: "";
+  position: absolute;
+  width: 10px; height: 10px;
+  background: var(--tw-brass);
+  border-radius: 50%;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+.tw-signboard::before { top: 8px; left: 8px; box-shadow: inset 1px 1px 0 rgba(255,255,255,.4), 220px 0 0 var(--tw-brass); }
+.tw-signboard::after  { bottom: 8px; left: 8px; box-shadow: inset 1px 1px 0 rgba(255,255,255,.4), 220px 0 0 var(--tw-brass); }
+
+/* Alerts */
+.tw-alert {
+  padding: var(--tw-space-4);
+  border-radius: var(--tw-radius);
+  border-left: 6px solid var(--tw-marigold);
+  background: var(--tw-cream);
+  color: var(--tw-fg);
+}
+.tw-alert-sindoor { border-color: var(--tw-sindoor); background: #fdecee; }
+.tw-alert-mehndi { border-color: var(--tw-mehndi); background: #edf4dd; }
+.tw-alert-peacock { border-color: var(--tw-peacock); background: #dfeef2; }
+
+/* Tables */
+.tw-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--tw-cream);
+  border: 3px solid var(--tw-border);
+  font-family: var(--tw-font-body);
+}
+.tw-table th, .tw-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--tw-border);
+  text-align: left;
+}
+.tw-table th {
+  background: var(--tw-marigold);
+  color: var(--tw-black);
+  font-family: var(--tw-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.tw-table tr:nth-child(even) td { background: rgba(255, 176, 0, 0.08); }
+
+/* Rangoli spinner for loading states. */
+.tw-rangoli-spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, var(--tw-marigold) 4px, transparent 5px),
+    conic-gradient(var(--tw-sindoor), var(--tw-marigold), var(--tw-mor-pankh), var(--tw-jamun), var(--tw-sindoor));
+  animation: tw-spin 1.6s linear infinite;
+}
+@keyframes tw-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .tw-rangoli-spinner { animation: none; }
+}
+
+/* Om, swastika (peace symbol), namaste — used as small decoration. */
+.tw-om::before { content: "ॐ"; font-family: var(--tw-font-devanagari); margin-right: 6px; color: var(--tw-lal); }
+.tw-shri::before { content: "श्री "; font-family: var(--tw-font-devanagari); color: var(--tw-lal); }
+
+/* -------------------------------------------------------------------------- */
+/*  15. Effects: animations                                                   */
+/* -------------------------------------------------------------------------- */
+
+.tw-anim-shake { animation: tw-shake 300ms ease-in-out; }
+@keyframes tw-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.tw-anim-bounce { animation: tw-bounce 800ms infinite; }
+@keyframes tw-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.tw-anim-flicker { animation: tw-flicker 2s infinite; }
+@keyframes tw-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-anim-shake, .tw-anim-bounce, .tw-anim-flicker { animation: none; }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  16. Responsive helpers                                                    */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .tw-grid-cols-2, .tw-grid-cols-3, .tw-grid-cols-4, .tw-grid-cols-5, .tw-grid-cols-6 {
+    grid-template-columns: 1fr;
+  }
+  .tw-grid-cols-12 { grid-template-columns: repeat(2, 1fr); }
+  .tw-md\:hidden { display: none; }
+  .tw-text-6xl, .tw-text-7xl { font-size: 3rem; }
+  .tw-navbar { flex-direction: column; gap: var(--tw-space-3); }
+  .tw-navbar-nav { flex-wrap: wrap; justify-content: center; }
+}
+
+@media (min-width: 769px) {
+  .tw-md\:flex { display: flex; }
+  .tw-md\:grid { display: grid; }
+  .tw-md\:hidden { display: none; }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  17. Utility miscellany                                                    */
+/* -------------------------------------------------------------------------- */
+
+.tw-w-full { width: 100%; }
+.tw-w-auto { width: auto; }
+.tw-w-half { width: 50%; }
+.tw-h-full { height: 100%; }
+.tw-h-screen { height: 100vh; }
+.tw-min-h-screen { min-height: 100vh; }
+.tw-max-w-prose { max-width: 65ch; }
+.tw-max-w-md { max-width: 480px; }
+.tw-max-w-lg { max-width: 720px; }
+.tw-max-w-xl { max-width: 960px; }
+
+.tw-relative { position: relative; }
+.tw-absolute { position: absolute; }
+.tw-fixed { position: fixed; }
+.tw-sticky { position: sticky; top: 0; }
+
+.tw-z-10 { z-index: 10; }
+.tw-z-50 { z-index: 50; }
+
+.tw-overflow-hidden { overflow: hidden; }
+.tw-overflow-auto { overflow: auto; }
+
+.tw-cursor-pointer { cursor: pointer; }
+.tw-select-none { user-select: none; }
+
+.tw-list-none { list-style: none; padding-left: 0; margin: 0; }
+.tw-space-y-2 > * + * { margin-top: var(--tw-space-2); }
+.tw-space-y-4 > * + * { margin-top: var(--tw-space-4); }
+.tw-space-y-6 > * + * { margin-top: var(--tw-space-6); }
+.tw-space-y-8 > * + * { margin-top: var(--tw-space-8); }

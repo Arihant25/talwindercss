@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Showcase · TalwinderCSS</title>
+  <meta name="description" content="Six full pages built with TalwinderCSS: a dhaba menu, a matrimonial ad, a wedding invitation, a cricket scoreboard, an auto rickshaw booking screen, and a newspaper front page." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Yatra+One&family=Rozha+One&family=Kalam:wght@400;700&family=JetBrains+Mono&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/talwinder.css" />
+  <style>
+    .demo-tile {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 3px solid var(--tw-black);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--tw-cream);
+      box-shadow: var(--tw-shadow);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+    .demo-tile:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--tw-black); color: inherit; }
+    .demo-tile .thumb {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      background: var(--tw-ivory);
+    }
+    .demo-tile .thumb::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.15));
+    }
+    .demo-tile .body { padding: 16px 20px; border-top: 3px solid var(--tw-black); }
+    .demo-tile h3 { margin: 0; font-size: 1.4rem; color: var(--tw-lal); }
+    .demo-tile p { margin: 6px 0 0; color: var(--tw-muted); font-size: 0.95rem; }
+
+    /* Miniature previews for each tile. Each is a tiny composition
+       that hints at the demo without loading it in an iframe. */
+    .thumb-dhaba {
+      background: var(--tw-mehndi);
+      color: var(--tw-cream);
+      padding: 20px;
+      font-family: var(--tw-font-display);
+    }
+    .thumb-dhaba .header { display: flex; justify-content: space-between; border-bottom: 2px dashed var(--tw-cream); padding-bottom: 6px; font-size: 0.9rem; }
+    .thumb-dhaba .row { display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.85rem; }
+
+    .thumb-matri {
+      background: #f6ecd3;
+      color: #1a1a1a;
+      padding: 16px;
+      font-family: "Times New Roman", serif;
+      line-height: 1.3;
+    }
+    .thumb-matri .col-title { font-weight: 900; text-transform: uppercase; border-bottom: 2px solid #1a1a1a; padding-bottom: 4px; margin-bottom: 6px; text-align: center; }
+    .thumb-matri .ad { font-size: 0.65rem; margin-bottom: 6px; }
+    .thumb-matri .ad b { text-transform: uppercase; }
+
+    .thumb-wedding {
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,.5), transparent 50%),
+        var(--tw-lal);
+      color: var(--tw-haldi);
+      padding: 20px;
+      text-align: center;
+      font-family: var(--tw-font-display);
+    }
+    .thumb-wedding .om { font-size: 2rem; color: var(--tw-haldi); }
+    .thumb-wedding .names { font-size: 1.4rem; margin: 8px 0; }
+    .thumb-wedding .and { font-family: var(--tw-font-hand); font-size: 1rem; color: white; }
+
+    .thumb-cricket {
+      background: linear-gradient(180deg, var(--tw-mor-pankh) 0%, #0a4d40 100%);
+      color: white;
+      padding: 16px;
+      font-family: var(--tw-font-mono);
+    }
+    .thumb-cricket .score { font-size: 1.8rem; font-weight: 700; letter-spacing: 0.05em; }
+    .thumb-cricket .over { font-size: 0.85rem; opacity: 0.8; }
+    .thumb-cricket .strip { margin-top: 12px; display: flex; gap: 4px; }
+    .thumb-cricket .ball { width: 22px; height: 22px; border-radius: 50%; background: white; color: var(--tw-mor-pankh); font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+    .thumb-cricket .ball.six { background: var(--tw-marigold); color: black; }
+    .thumb-cricket .ball.four { background: var(--tw-sindoor); color: white; }
+
+    .thumb-rickshaw {
+      background: repeating-linear-gradient(135deg, var(--tw-tulsi) 0 20px, var(--tw-haldi) 20px 40px);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .thumb-rickshaw .plate {
+      background: var(--tw-haldi);
+      color: black;
+      border: 3px solid black;
+      padding: 8px 14px;
+      font-family: var(--tw-font-display);
+      font-size: 1.2rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 4px 4px 0 black;
+    }
+
+    .thumb-news {
+      background: #f6ecd3;
+      color: black;
+      padding: 12px;
+      font-family: "Times New Roman", serif;
+    }
+    .thumb-news .masthead { text-align: center; border-top: 3px double black; border-bottom: 3px double black; padding: 4px 0; }
+    .thumb-news .masthead .title { font-family: "Georgia", serif; font-weight: 900; font-size: 1.4rem; letter-spacing: 0.05em; }
+    .thumb-news .masthead .sub { font-size: 0.65rem; }
+    .thumb-news .lede { font-size: 0.7rem; margin-top: 8px; line-height: 1.3; }
+    .thumb-news .lede b { display: block; font-size: 0.85rem; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <nav class="tw-navbar">
+    <a href="../index.html" class="tw-navbar-brand">तalwinder<span class="tw-text-sindoor">CSS</span></a>
+    <ul class="tw-navbar-nav">
+      <li><a href="../index.html" class="tw-nav-link">Home</a></li>
+      <li><a href="../docs/index.html" class="tw-nav-link">Docs</a></li>
+      <li><a href="index.html" class="tw-nav-link tw-active">Showcase</a></li>
+      <li><a href="https://github.com/Arihant25/talwindercss" class="tw-nav-link">GitHub</a></li>
+    </ul>
+  </nav>
+
+  <header class="tw-py-12 tw-text-center" style="background: var(--tw-cream); border-bottom: 3px solid var(--tw-black);">
+    <div class="tw-container">
+      <h1 class="tw-text-5xl tw-mb-2">Six pages, one CSS file</h1>
+      <p class="tw-max-w-prose tw-mx-auto tw-text-lg tw-text-muted">Every demo below loads the same <code>talwinder.css</code>. No JavaScript frameworks. Each demo has a small page-only <code>&lt;style&gt;</code> block for its own quirks (the wedding invite's double border, the newspaper's column rules), around 100 lines each.</p>
+    </div>
+  </header>
+
+  <section class="tw-py-12">
+    <div class="tw-container">
+      <div class="tw-grid tw-grid-cols-3 tw-gap-6">
+
+        <a href="dhaba/index.html" class="demo-tile">
+          <div class="thumb thumb-dhaba">
+            <div class="header"><span>SHARMA DHABA</span><span>Est. 1974</span></div>
+            <div class="row"><span>Aloo paratha</span><span>₹60</span></div>
+            <div class="row"><span>Dal makhani</span><span>₹140</span></div>
+            <div class="row"><span>Butter naan</span><span>₹40</span></div>
+            <div class="row"><span>Kesar lassi</span><span>₹55</span></div>
+          </div>
+          <div class="body">
+            <h3>Sharma Dhaba menu</h3>
+            <p>A highway dhaba's menu card, complete with dashed dividers and hand-lettered specials.</p>
+          </div>
+        </a>
+
+        <a href="matrimonial/index.html" class="demo-tile">
+          <div class="thumb thumb-matri">
+            <div class="col-title">Matrimonial</div>
+            <div class="ad"><b>Wanted alliance:</b> Fair, slim, homely girl for engineer boy 5'11", Kanpur based, ₹18L p.a.</div>
+            <div class="ad"><b>Seeks:</b> Suitable match for MD (Medicine) girl, 28, working in AIIMS. Contact after 6pm.</div>
+            <div class="ad"><b>Wanted:</b> Kayastha groom, 27–32, MBA/CA/Engineer, non-drinker.</div>
+          </div>
+          <div class="body">
+            <h3>Sunday classifieds</h3>
+            <p>A newspaper matrimonial page. Two black-bordered columns, aged paper, and the same clipped grammar you've read for decades.</p>
+          </div>
+        </a>
+
+        <a href="wedding/index.html" class="demo-tile">
+          <div class="thumb thumb-wedding">
+            <div class="om">ॐ</div>
+            <div class="names">Ananya</div>
+            <div class="and">weds</div>
+            <div class="names">Raghav</div>
+          </div>
+          <div class="body">
+            <h3>Wedding invitation</h3>
+            <p>A single-page e-invite with marigold borders, the schedule of events, and a map to the venue.</p>
+          </div>
+        </a>
+
+        <a href="cricket/index.html" class="demo-tile">
+          <div class="thumb thumb-cricket">
+            <div>IND vs AUS · T20</div>
+            <div class="score">187/4</div>
+            <div class="over">18.3 overs · RR 10.16</div>
+            <div class="strip">
+              <div class="ball">1</div>
+              <div class="ball four">4</div>
+              <div class="ball">·</div>
+              <div class="ball">2</div>
+              <div class="ball six">6</div>
+              <div class="ball">W</div>
+            </div>
+          </div>
+          <div class="body">
+            <h3>Live cricket scoreboard</h3>
+            <p>A T20 match in progress. Score tiles, ball-by-ball strip, and a batting card with strike rates.</p>
+          </div>
+        </a>
+
+        <a href="rickshaw/index.html" class="demo-tile">
+          <div class="thumb thumb-rickshaw">
+            <div class="plate">₹ 84<br /><span style="font-size: 0.7rem;">2.4 km · 8 min</span></div>
+          </div>
+          <div class="body">
+            <h3>Auto booking</h3>
+            <p>A booking screen for an auto rickshaw, meter fare and all. Green-and-yellow stripes, three-wheeler energy.</p>
+          </div>
+        </a>
+
+        <a href="newspaper/index.html" class="demo-tile">
+          <div class="thumb thumb-news">
+            <div class="masthead">
+              <div class="title">THE MADRAS CHRONICLE</div>
+              <div class="sub">Founded 1912 · Wednesday · ₹8</div>
+            </div>
+            <div class="lede">
+              <b>Monsoon returns after week-long lull</b>
+              The Met department has upgraded its forecast for coastal Tamil Nadu. Fishermen have been advised to stay ashore till Friday morning.
+            </div>
+          </div>
+          <div class="body">
+            <h3>Newspaper front page</h3>
+            <p>A serif-heavy broadsheet front page with a masthead, three columns, and a boxed weather report in the corner.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="tw-py-6 tw-text-center" style="background: var(--tw-charcoal); color: var(--tw-cream); border-top: 4px solid var(--tw-marigold);">
+    <p class="tw-mb-0 tw-text-sm">Each demo's source is in the <a href="https://github.com/Arihant25/talwindercss/tree/main/showcase" style="color: var(--tw-marigold);">showcase folder</a>. Fork away.</p>
+  </footer>
+</body>
+</html>

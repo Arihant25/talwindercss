@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book an auto · Rickshaw Ride</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Yatra+One&family=Kalam:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/talwinder.css" />
+  <style>
+    body { background: var(--tw-charcoal); color: var(--tw-cream); font-family: var(--tw-font-body); min-height: 100vh; }
+
+    .app-shell {
+      max-width: 420px;
+      margin: 30px auto;
+      background: var(--tw-ivory);
+      color: var(--tw-charcoal);
+      border-radius: 32px;
+      overflow: hidden;
+      border: 8px solid #1a1a1a;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .status-bar {
+      background: black;
+      color: white;
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--tw-font-mono);
+      font-size: 0.75rem;
+    }
+
+    .header {
+      background: repeating-linear-gradient(135deg, var(--tw-tulsi) 0 20px, var(--tw-haldi) 20px 40px);
+      padding: 30px 20px 40px;
+      color: var(--tw-black);
+      text-align: center;
+      border-bottom: 3px solid var(--tw-black);
+    }
+    .header h1 {
+      background: var(--tw-black);
+      color: var(--tw-haldi);
+      display: inline-block;
+      padding: 8px 20px;
+      font-family: var(--tw-font-display);
+      font-size: 1.6rem;
+      border: 3px solid var(--tw-haldi);
+      transform: rotate(-2deg);
+      margin: 0;
+    }
+    .header .tag {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--tw-ivory);
+      color: var(--tw-black);
+      border: 2px solid var(--tw-black);
+      padding: 4px 10px;
+      font-family: var(--tw-font-hand);
+      font-size: 1rem;
+    }
+
+    .body { padding: 20px; }
+
+    .location {
+      background: white;
+      border: 2px solid var(--tw-black);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 4px 4px 0 var(--tw-black);
+      margin-bottom: 20px;
+    }
+    .location .stop {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 8px 0;
+    }
+    .location .stop + .stop { border-top: 1px dashed rgba(0,0,0,0.2); }
+    .location .stop .pin { font-family: var(--tw-font-display); font-size: 1.2rem; text-align: center; }
+    .location .stop.pickup .pin { color: var(--tw-mor-pankh); }
+    .location .stop.drop .pin { color: var(--tw-sindoor); }
+    .location .stop .name { font-weight: 700; font-size: 1rem; }
+    .location .stop .sub { font-size: 0.85rem; color: var(--tw-muted); }
+
+    .fare-card {
+      background: var(--tw-haldi);
+      color: var(--tw-black);
+      border: 4px solid var(--tw-black);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 6px 6px 0 var(--tw-black);
+      position: relative;
+    }
+    .fare-card::before {
+      content: "METER";
+      position: absolute;
+      top: -12px; left: 20px;
+      background: var(--tw-black);
+      color: var(--tw-haldi);
+      padding: 2px 10px;
+      font-family: var(--tw-font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+    }
+    .fare-card .amount {
+      font-family: var(--tw-font-display);
+      font-size: 3.4rem;
+      line-height: 1;
+      color: var(--tw-lal);
+    }
+    .fare-card .breakdown {
+      margin-top: 12px;
+      font-family: var(--tw-font-mono);
+      font-size: 0.85rem;
+      display: grid;
+      gap: 4px;
+    }
+    .fare-card .breakdown .row { display: flex; justify-content: space-between; }
+    .fare-card .breakdown .row.total { border-top: 2px solid var(--tw-black); padding-top: 4px; font-weight: 700; }
+
+    .ride-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .ride-details .cell {
+      background: var(--tw-cream);
+      border: 2px solid var(--tw-black);
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+    }
+    .ride-details .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--tw-muted); }
+    .ride-details .value { font-family: var(--tw-font-display); font-size: 1.2rem; color: var(--tw-lal); }
+
+    .driver-card {
+      background: white;
+      border: 2px solid var(--tw-black);
+      border-radius: 12px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 20px;
+      box-shadow: 4px 4px 0 var(--tw-black);
+    }
+    .driver-card .avatar {
+      width: 60px; height: 60px;
+      background: var(--tw-marigold);
+      border-radius: 50%;
+      border: 3px solid var(--tw-black);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--tw-font-display);
+      font-size: 1.6rem;
+    }
+    .driver-card .name { font-weight: 700; font-size: 1.1rem; }
+    .driver-card .plate {
+      font-family: var(--tw-font-mono);
+      background: var(--tw-haldi);
+      display: inline-block;
+      padding: 2px 8px;
+      border: 2px solid var(--tw-black);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
+    .driver-card .rating { color: var(--tw-marigold); font-size: 1.2rem; text-align: right; }
+    .driver-card .rides { font-size: 0.75rem; color: var(--tw-muted); text-align: right; }
+
+    .book-button {
+      width: 100%;
+      padding: 18px;
+      background: repeating-linear-gradient(45deg, var(--tw-marigold) 0 14px, var(--tw-sindoor) 14px 28px, var(--tw-mor-pankh) 28px 42px);
+      color: white;
+      border: 4px solid var(--tw-black);
+      border-bottom-width: 8px;
+      font-family: var(--tw-font-display);
+      font-size: 1.4rem;
+      cursor: pointer;
+      text-shadow: 2px 2px 0 var(--tw-black);
+      letter-spacing: 0.1em;
+      box-shadow: 4px 4px 0 var(--tw-black);
+    }
+    .book-button:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--tw-black); }
+
+    .tips {
+      margin-top: 16px;
+      padding: 12px;
+      background: var(--tw-sand);
+      border: 2px dashed var(--tw-chai);
+      border-radius: 8px;
+      font-family: var(--tw-font-hand);
+      color: var(--tw-chai);
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .back-link { position: fixed; top: 12px; left: 12px; z-index: 10; }
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="tw-btn tw-btn-sm back-link">← All demos</a>
+
+  <div class="app-shell">
+    <div class="status-bar">
+      <span>9:42</span>
+      <span>4G · Full battery · No signal in the tunnel</span>
+    </div>
+
+    <div class="header">
+      <h1>Rickshaw Ride</h1>
+      <div class="tag">Book an auto in 30 seconds</div>
+    </div>
+
+    <div class="body">
+      <div class="location">
+        <div class="stop pickup">
+          <div class="pin">●</div>
+          <div>
+            <div class="name">Koramangala 5th Block</div>
+            <div class="sub">Sony World signal, near Sagar Ratna</div>
+          </div>
+        </div>
+        <div class="stop drop">
+          <div class="pin">▼</div>
+          <div>
+            <div class="name">Indiranagar 100 Ft Road</div>
+            <div class="sub">Opposite CultFit, past the third speed breaker</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fare-card">
+        <div class="amount">₹ 84</div>
+        <div class="breakdown">
+          <div class="row"><span>Base fare (first 2 km)</span><span>₹35</span></div>
+          <div class="row"><span>Distance charge (0.4 km × ₹18)</span><span>₹7</span></div>
+          <div class="row"><span>Waiting time (2 min)</span><span>₹4</span></div>
+          <div class="row"><span>Convenience</span><span>₹15</span></div>
+          <div class="row"><span>Night charge (11pm - 5am)</span><span>₹23</span></div>
+          <div class="row total"><span>Total (approx)</span><span>₹84</span></div>
+        </div>
+      </div>
+
+      <div class="ride-details">
+        <div class="cell"><div class="label">Distance</div><div class="value">2.4 km</div></div>
+        <div class="cell"><div class="label">ETA</div><div class="value">8 min</div></div>
+        <div class="cell"><div class="label">Away</div><div class="value">3 min</div></div>
+      </div>
+
+      <div class="driver-card">
+        <div class="avatar">R</div>
+        <div>
+          <div class="name">Ramesh Kumar</div>
+          <div class="plate">KA 05 AB 4712</div>
+        </div>
+        <div>
+          <div class="rating">★ 4.9</div>
+          <div class="rides">2,481 rides</div>
+        </div>
+      </div>
+
+      <button class="book-button">CONFIRM RIDE</button>
+
+      <div class="tips">
+        Driver will call once before starting. No cancellation fee if the auto doesn't arrive in 10 minutes.
+      </div>
+    </div>
+  </div>
+</body>
+</html>

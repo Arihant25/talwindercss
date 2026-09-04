@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ananya weds Raghav · Wedding invitation</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Yatra+One&family=Rozha+One&family=Kalam:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/talwinder.css" />
+  <style>
+    body { background: var(--tw-lal); color: var(--tw-haldi); }
+
+    .invite {
+      max-width: 720px;
+      margin: 40px auto;
+      background:
+        radial-gradient(circle at 50% 0, rgba(255,255,255,0.15), transparent 60%),
+        var(--tw-lal);
+      color: var(--tw-haldi);
+      border: 12px double var(--tw-haldi);
+      padding: 60px 40px;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .invite::before, .invite::after {
+      content: "❋";
+      position: absolute;
+      font-size: 3rem;
+      color: var(--tw-marigold);
+      line-height: 1;
+    }
+    .invite::before { top: 20px; left: 30px; }
+    .invite::after  { top: 20px; right: 30px; }
+
+    .om {
+      font-family: var(--tw-font-devanagari);
+      font-size: 3rem;
+      color: var(--tw-haldi);
+      margin-bottom: 12px;
+    }
+    .with-blessings {
+      font-family: var(--tw-font-hand);
+      font-size: 1.1rem;
+      color: #ffe680;
+      margin-bottom: 24px;
+    }
+
+    .family-line {
+      font-family: var(--tw-font-body);
+      color: #ffe680;
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+    .family-line b { color: var(--tw-haldi); font-weight: 700; }
+
+    .names {
+      font-family: var(--tw-font-display);
+      font-size: 4rem;
+      color: var(--tw-haldi);
+      line-height: 1;
+    }
+    .weds {
+      font-family: var(--tw-font-hand);
+      font-size: 1.6rem;
+      color: white;
+      margin: 12px 0;
+    }
+
+    .devanagari-names {
+      font-family: var(--tw-font-devanagari);
+      font-size: 1.6rem;
+      color: #ffe680;
+      margin-top: 8px;
+    }
+
+    .schedule {
+      margin-top: 40px;
+      background: var(--tw-haldi);
+      color: var(--tw-lal);
+      border: 3px solid var(--tw-lal);
+      padding: 24px;
+      text-align: left;
+    }
+    .schedule h3 {
+      text-align: center;
+      font-family: var(--tw-font-display);
+      color: var(--tw-lal);
+      margin-bottom: 16px;
+      font-size: 1.8rem;
+    }
+    .event {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.3);
+    }
+    .event:last-child { border-bottom: 0; }
+    .event .title { font-family: var(--tw-font-display); font-size: 1.2rem; }
+    .event .desc { font-family: var(--tw-font-body); font-size: 0.9rem; color: #7b4a10; }
+    .event .when { font-family: var(--tw-font-mono); font-size: 0.9rem; text-align: right; white-space: nowrap; }
+    .event .when b { display: block; font-family: var(--tw-font-display); font-size: 1.1rem; color: var(--tw-lal); }
+
+    .venue {
+      margin-top: 32px;
+      color: #ffe680;
+    }
+    .venue h3 { font-family: var(--tw-font-display); color: var(--tw-haldi); margin-bottom: 8px; }
+
+    .rsvp {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .rsvp .card {
+      background: rgba(255,230,128,0.15);
+      border: 2px solid var(--tw-haldi);
+      padding: 12px 20px;
+      min-width: 180px;
+    }
+    .rsvp .card .who { font-family: var(--tw-font-display); font-size: 1.1rem; color: var(--tw-haldi); }
+    .rsvp .card .phone { font-family: var(--tw-font-mono); color: #ffe680; }
+
+    .footer-line {
+      margin-top: 32px;
+      font-family: var(--tw-font-hand);
+      color: #ffe680;
+      font-size: 1.1rem;
+    }
+
+    .back-link { position: fixed; top: 12px; left: 12px; z-index: 10; background: var(--tw-haldi); color: var(--tw-lal); border-color: var(--tw-lal); }
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="tw-btn tw-btn-sm back-link">← All demos</a>
+
+  <div class="invite">
+    <div class="om">ॐ श्री गणेशाय नमः</div>
+    <div class="with-blessings">With the blessings of our elders, we invite you to celebrate the wedding of</div>
+
+    <div class="family-line"><b>Mr. Rajesh &amp; Mrs. Priya Iyer</b> · Chennai</div>
+
+    <div class="names">Ananya</div>
+    <div class="devanagari-names">अनन्या</div>
+    <div class="weds">weds</div>
+    <div class="names">Raghav</div>
+    <div class="devanagari-names">राघव</div>
+
+    <div class="family-line tw-mt-6">S/o <b>Dr. Anil &amp; Mrs. Sunita Menon</b> · Bengaluru</div>
+
+    <div class="schedule">
+      <h3>Auspicious events</h3>
+      <div class="event">
+        <div>
+          <div class="title">Mehendi</div>
+          <div class="desc">Please wear something bright. Light lunch to follow.</div>
+        </div>
+        <div class="when"><b>Fri, 12 Dec</b>11 am onwards</div>
+      </div>
+      <div class="event">
+        <div>
+          <div class="title">Sangeet</div>
+          <div class="desc">Choreographed by no one. Please dance.</div>
+        </div>
+        <div class="when"><b>Sat, 13 Dec</b>7:30 pm</div>
+      </div>
+      <div class="event">
+        <div>
+          <div class="title">Wedding ceremony</div>
+          <div class="desc">Muhurtham timing sharp. Please be seated by 6:30.</div>
+        </div>
+        <div class="when"><b>Sun, 14 Dec</b>6:52 am</div>
+      </div>
+      <div class="event">
+        <div>
+          <div class="title">Reception dinner</div>
+          <div class="desc">Formal wear. Photos in the garden.</div>
+        </div>
+        <div class="when"><b>Sun, 14 Dec</b>7:30 pm</div>
+      </div>
+    </div>
+
+    <div class="venue">
+      <h3>The Grand Chola Ballroom</h3>
+      <p class="tw-mb-1">Iyer's Convention Centre, T. Nagar</p>
+      <p class="tw-mb-1">Chennai — 600017</p>
+      <p class="tw-mb-0"><a href="#" style="color: var(--tw-marigold);">Get directions →</a></p>
+    </div>
+
+    <div class="rsvp">
+      <div class="card">
+        <div class="who">Bride's side</div>
+        <div class="phone">+91 98400 12345</div>
+      </div>
+      <div class="card">
+        <div class="who">Groom's side</div>
+        <div class="phone">+91 98865 67890</div>
+      </div>
+    </div>
+
+    <div class="footer-line">"Kindly grace the occasion with your family."</div>
+  </div>
+</body>
+</html>

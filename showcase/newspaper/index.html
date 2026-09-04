@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Madras Chronicle · Wednesday</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Yatra+One&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/talwinder.css" />
+  <style>
+    body {
+      background: #c8b78c;
+      font-family: "Times New Roman", "Noto Serif", serif;
+      color: #1a1a1a;
+    }
+
+    .paper {
+      max-width: 1100px;
+      margin: 20px auto;
+      background:
+        radial-gradient(ellipse at top, rgba(0,0,0,0.03), transparent 60%),
+        linear-gradient(180deg, #f6ecd3, #ecdfb4);
+      color: #1a1a1a;
+      padding: 24px 36px;
+      border: 1px solid #8b7a4a;
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.15);
+    }
+
+    .top-line { display: flex; justify-content: space-between; font-size: 0.75rem; padding-bottom: 6px; border-bottom: 1px solid #6b5a3e; }
+
+    .masthead { text-align: center; padding: 8px 0; border-top: 3px solid #1a1a1a; border-bottom: 3px double #1a1a1a; margin: 4px 0 12px; }
+    .masthead .name { font-family: "Georgia", serif; font-size: 3.6rem; font-weight: 900; letter-spacing: 0.05em; line-height: 1; }
+    .masthead .strap { font-family: "Georgia", serif; font-style: italic; font-size: 0.9rem; margin-top: 4px; }
+    .masthead .meta { display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 8px; padding: 0 12px; }
+
+    .layout { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 16px; }
+    .layout > div { border-right: 1px solid #6b5a3e; padding-right: 20px; }
+    .layout > div:last-child { border-right: 0; padding-right: 0; }
+
+    .headline {
+      font-family: "Georgia", serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 0 0 8px;
+    }
+    .subhead {
+      font-family: "Georgia", serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      margin: 0 0 12px;
+      color: #333;
+    }
+    .byline {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #6b5a3e;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #6b5a3e;
+    }
+    .body-text { font-size: 0.9rem; line-height: 1.5; text-align: justify; }
+    .body-text p { margin: 0 0 8px; text-indent: 12px; }
+    .body-text p:first-child { text-indent: 0; }
+    .body-text p:first-child::first-letter {
+      font-family: "Georgia", serif;
+      font-size: 3.2rem;
+      font-weight: 900;
+      float: left;
+      line-height: 0.9;
+      margin: 4px 6px 0 0;
+      color: var(--tw-lal);
+    }
+
+    .weather-box {
+      background: white;
+      border: 2px solid #1a1a1a;
+      padding: 12px;
+      margin: 12px 0;
+    }
+    .weather-box h4 { font-family: "Georgia", serif; font-size: 1rem; margin: 0 0 6px; text-transform: uppercase; border-bottom: 1px solid #1a1a1a; padding-bottom: 4px; }
+    .weather-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 2px 0; }
+
+    .ad-box {
+      border: 3px double #1a1a1a;
+      padding: 12px;
+      text-align: center;
+      background: rgba(255,255,255,0.3);
+      margin: 12px 0;
+    }
+    .ad-box h4 { font-family: "Georgia", serif; font-size: 1.4rem; margin: 0; color: var(--tw-lal); text-transform: uppercase; letter-spacing: 0.05em; }
+    .ad-box p { font-size: 0.85rem; margin: 4px 0 0; font-style: italic; }
+    .ad-box .discount { font-family: "Georgia", serif; font-weight: 900; font-size: 1.8rem; color: var(--tw-lal); }
+
+    .section-head {
+      font-family: "Georgia", serif;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      background: #1a1a1a;
+      color: #f6ecd3;
+      padding: 4px 8px;
+      margin: 16px 0 10px;
+    }
+
+    .brief {
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #6b5a3e;
+    }
+    .brief h5 { font-family: "Georgia", serif; font-size: 1rem; margin: 0 0 4px; }
+
+    .stock-table { width: 100%; border-collapse: collapse; font-family: monospace; font-size: 0.8rem; margin-bottom: 12px; }
+    .stock-table th, .stock-table td { padding: 2px 4px; text-align: right; border-bottom: 1px dotted #6b5a3e; }
+    .stock-table th { text-transform: uppercase; letter-spacing: 0.05em; text-align: right; }
+    .stock-table td:first-child, .stock-table th:first-child { text-align: left; }
+    .stock-table .up { color: var(--tw-tulsi); }
+    .stock-table .down { color: var(--tw-lal); }
+
+    .cartoon-box {
+      background: white;
+      border: 2px solid #1a1a1a;
+      padding: 12px;
+      text-align: center;
+      margin: 12px 0;
+      font-family: "Georgia", serif;
+    }
+    .cartoon-box .art {
+      height: 100px;
+      background:
+        radial-gradient(circle at 30% 40%, #1a1a1a 3px, transparent 4px),
+        radial-gradient(circle at 65% 40%, #1a1a1a 3px, transparent 4px),
+        radial-gradient(ellipse at 50% 65%, transparent 25%, #1a1a1a 26%, #1a1a1a 28%, transparent 29%);
+      background-size: 100% 100%;
+    }
+    .cartoon-box .caption { font-style: italic; font-size: 0.8rem; margin-top: 6px; }
+
+    .back-link { position: fixed; top: 12px; left: 12px; z-index: 10; background: white; }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .layout > div { border-right: 0; padding-right: 0; border-bottom: 1px solid #6b5a3e; padding-bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="tw-btn tw-btn-sm back-link">← All demos</a>
+
+  <div class="paper">
+    <div class="top-line">
+      <span>Volume LIV · Issue 231</span>
+      <span>Registered No. TN/CH/0089/2024</span>
+      <span>Late City Edition</span>
+    </div>
+
+    <div class="masthead">
+      <div class="name">THE MADRAS CHRONICLE</div>
+      <div class="strap">"Ordinary news, told plainly." Founded 1912.</div>
+      <div class="meta">
+        <span>Wednesday, 19 November</span>
+        <span>Chennai · 32°C, humid</span>
+        <span>₹8 (₹14 with weekend supplement)</span>
+      </div>
+    </div>
+
+    <div class="layout">
+
+      <div>
+        <div class="byline">Lead story · By our Chief Correspondent</div>
+        <h2 class="headline">Monsoon returns after week-long lull, fishermen advised to stay ashore</h2>
+        <p class="subhead">Coastal districts brace for heavy showers till Friday morning. Suburban rail services expected to run late.</p>
+        <div class="body-text">
+          <p>The Regional Meteorological Centre upgraded its forecast on Tuesday evening, saying a low-pressure area off the Bay of Bengal had strengthened faster than expected. Rainfall of upto 12 centimetres is now likely across Kanyakumari, Ramanathapuram, and Nagapattinam districts by Thursday night.</p>
+          <p>Fishermen have been asked to return to port immediately. Sixteen mechanised boats were still at sea as of Tuesday evening, according to figures released by the Fisheries Department. Local associations at Kasimedu and Marina harbours have set up radio contact for the crews.</p>
+          <p>The city corporation opened four temporary shelters in low-lying wards along the Cooum. Storm-water drains near Anna Salai are being tested for capacity, though officials admitted that the network south of Nandanam is still under construction.</p>
+          <p>Suburban rail services from Beach to Tambaram are expected to run 10 to 15 minutes late from Wednesday afternoon. School holiday announcement is being considered by the district collector.</p>
+        </div>
+
+        <div class="section-head">City briefs</div>
+        <div class="brief">
+          <h5>Metro fares to stay unchanged</h5>
+          The transport minister said in reply to a query in the Assembly that Chennai Metro fares will remain at current levels through the next fiscal year. The last revision was in 2022.
+        </div>
+        <div class="brief">
+          <h5>Two-day trade fair opens at Nandanam</h5>
+          Handloom weavers from Kanchipuram, Arni, and Kumbakonam will display their new season's work. Entry free. Discounts on cash purchases.
+        </div>
+      </div>
+
+      <div>
+        <div class="weather-box">
+          <h4>Weather across South India</h4>
+          <div class="weather-row"><b>Chennai</b><span>32° / 26° · Rain</span></div>
+          <div class="weather-row"><b>Bengaluru</b><span>28° / 19° · Cloudy</span></div>
+          <div class="weather-row"><b>Hyderabad</b><span>31° / 22° · Clear</span></div>
+          <div class="weather-row"><b>Kochi</b><span>30° / 25° · Rain</span></div>
+          <div class="weather-row"><b>Vizag</b><span>29° / 24° · Overcast</span></div>
+          <div class="weather-row"><b>Coimbatore</b><span>27° / 21° · Pleasant</span></div>
+        </div>
+
+        <div class="byline">National</div>
+        <h3 class="headline" style="font-size: 1.4rem;">Cabinet clears fresh subsidy for cotton growers</h3>
+        <div class="body-text">
+          <p>The Union Cabinet on Tuesday approved a Rs. 1,700 crore support package for cotton growers in five states. The scheme covers three quintals per acre and will be paid directly into bank accounts linked to the farmer's Aadhaar.</p>
+          <p>Farmer bodies in Maharashtra and Telangana welcomed the move but said the ceiling should be raised to five quintals. The Minister of Agriculture is expected to visit Nagpur next week.</p>
+        </div>
+
+        <div class="ad-box">
+          <h4>Vasanth &amp; Sons Silks</h4>
+          <div class="discount">40% off</div>
+          <p>On all Kanjeevaram sarees. This week only. Ranganathan Street, T. Nagar. Trial rooms open till 9 pm.</p>
+        </div>
+
+        <div class="section-head">Editorial · A fair rain</div>
+        <div class="body-text">
+          <p>Every October we are told the drainage will hold. Every November it does not. This is not a failure of the monsoon. It is a failure of the maintenance schedule. The corporation has the equipment. What it lacks is a reason to act between rains.</p>
+          <p>A modest suggestion: publish the desilting log online, ward by ward. Let residents know when the drain outside their gate was last cleared. Public records have a way of getting the work done.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="cartoon-box">
+          <div class="art"></div>
+          <div class="caption">"The umbrella budget was sanctioned in 2019. We're still procuring the umbrellas."<br /><b style="font-style: normal;">— R. K. Ramesh, Cartoonist</b></div>
+        </div>
+
+        <div class="section-head">Markets · at close</div>
+        <table class="stock-table">
+          <thead><tr><th>Scrip</th><th>Close</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr><td>NIFTY 50</td><td>22,178</td><td class="up">+124</td></tr>
+            <tr><td>SENSEX</td><td>73,412</td><td class="up">+387</td></tr>
+            <tr><td>TCS</td><td>3,821</td><td class="up">+42</td></tr>
+            <tr><td>Reliance</td><td>2,674</td><td class="down">−18</td></tr>
+            <tr><td>HDFC Bank</td><td>1,548</td><td class="up">+11</td></tr>
+            <tr><td>Infosys</td><td>1,712</td><td class="down">−7</td></tr>
+            <tr><td>Bharti Airtel</td><td>1,203</td><td class="up">+24</td></tr>
+            <tr><td>Bajaj Auto</td><td>7,890</td><td class="down">−93</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size: 0.7rem; color: #4a3820; font-style: italic;">Closing prices, NSE. Compiled at 3:35 pm.</div>
+
+        <div class="section-head">Sports</div>
+        <div class="brief">
+          <h5>Ranji: Tamil Nadu 328/6 at stumps</h5>
+          Baba Aparajith unbeaten on 118. Karnataka bowlers toiled on a slow track. Play resumes at 9:30 am. Rain break may play spoilsport.
+        </div>
+        <div class="brief">
+          <h5>Chess: Praggnanandhaa wins in Wijk aan Zee</h5>
+          The 19-year-old grandmaster from Chennai defeated the Norwegian in 41 moves. He is now placed second on the leaderboard with three rounds to go.
+        </div>
+
+        <div class="ad-box" style="background: #fff2b8;">
+          <h4>Iyengar Bakery</h4>
+          <p>Fresh butter cookies, plum cake, and khara biscuits. Since 1972. Home delivery in T. Nagar, Nungambakkam, Adyar.</p>
+        </div>
+
+        <div class="section-head">Cinema listings</div>
+        <div class="brief" style="font-size: 0.8rem;">
+          <b>Sathyam:</b> Vada Chennai 2 (11am, 2pm, 6pm, 9pm) · <b>Prasads:</b> Retro Comedies fest · <b>Kamala:</b> Old Tamil classics, Fri onwards
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

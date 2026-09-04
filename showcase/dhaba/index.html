@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sharma Dhaba, Karnal · Menu</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Yatra+One&family=Rozha+One&family=Kalam:wght@400;700&family=JetBrains+Mono&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/talwinder.css" />
+  <style>
+    body { background: var(--tw-mehndi); }
+    .menu-card {
+      max-width: 720px;
+      margin: 40px auto;
+      background: #f0e6c8;
+      color: #1a1a1a;
+      border: 8px solid var(--tw-charcoal);
+      box-shadow: 12px 12px 0 var(--tw-black);
+      padding: 40px 48px;
+      position: relative;
+    }
+    .menu-card::before, .menu-card::after {
+      content: "";
+      position: absolute;
+      left: 20px; right: 20px;
+      height: 4px;
+      border-top: 2px solid var(--tw-charcoal);
+      border-bottom: 2px solid var(--tw-charcoal);
+    }
+    .menu-card::before { top: 12px; }
+    .menu-card::after { bottom: 12px; }
+
+    .menu-brand {
+      text-align: center;
+      font-family: var(--tw-font-display);
+      color: var(--tw-lal);
+    }
+    .menu-brand .name { font-size: 3.2rem; line-height: 1; }
+    .menu-brand .tag { font-family: var(--tw-font-body); color: #6b5a3e; margin-top: 4px; }
+
+    .menu-section h3 {
+      font-family: var(--tw-font-display);
+      color: var(--tw-lal);
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 1.8rem;
+    }
+    .menu-section h3 .devanagari {
+      font-family: var(--tw-font-devanagari);
+      color: var(--tw-mehndi);
+      font-size: 1.2rem;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px dashed rgba(0,0,0,0.4);
+    }
+    .menu-item .name { font-weight: 700; font-size: 1.05rem; }
+    .menu-item .dots { flex: 1; border-bottom: 2px dotted rgba(0,0,0,0.4); position: relative; top: -4px; }
+    .menu-item .price { font-family: var(--tw-font-display); color: var(--tw-lal); font-size: 1.1rem; }
+    .menu-item .desc { display: block; font-size: 0.85rem; color: #4a3820; margin-top: 2px; }
+
+    .specials {
+      margin-top: 32px;
+      background: var(--tw-lal);
+      color: #f6ecd3;
+      border: 3px solid var(--tw-charcoal);
+      padding: 20px 24px;
+      font-family: var(--tw-font-hand);
+      transform: rotate(-1.5deg);
+    }
+    .specials h4 { font-family: var(--tw-font-display); color: var(--tw-haldi); margin: 0 0 8px; font-size: 1.4rem; }
+    .specials ul { margin: 0; padding-left: 20px; }
+    .specials li { font-size: 1.1rem; margin-bottom: 4px; }
+
+    .footer-strip {
+      margin-top: 32px;
+      text-align: center;
+      font-family: var(--tw-font-body);
+      color: #4a3820;
+      font-size: 0.85rem;
+    }
+    .back-link { position: fixed; top: 16px; left: 16px; }
+  </style>
+</head>
+<body>
+  <a href="../index.html" class="tw-btn tw-btn-sm tw-btn-ghost back-link">← All demos</a>
+
+  <div class="tw-toran" style="max-width: 720px; margin: 20px auto 0;"></div>
+
+  <div class="menu-card">
+    <div class="menu-brand">
+      <div class="tw-om"></div>
+      <div class="name">Sharma Dhaba</div>
+      <div class="tag">GT Road, Karnal · Since 1974 · Trucks welcome, so are you</div>
+    </div>
+
+    <hr class="tw-divider-paisley" />
+
+    <div class="tw-grid tw-grid-cols-2 tw-gap-8">
+      <div>
+        <section class="menu-section">
+          <h3>Rotis &amp; parathas <span class="devanagari">रोटी</span></h3>
+          <div class="menu-item">
+            <span class="name"><span class="tw-badge tw-badge-veg tw-mr-2"></span>Tandoori roti</span>
+            <span class="dots"></span>
+            <span class="price">₹15</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Butter naan</span>
+            <span class="dots"></span>
+            <span class="price">₹40</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Aloo paratha</span>
+            <span class="dots"></span>
+            <span class="price">₹60</span>
+            <div class="desc" style="width: 100%">served with butter, dahi and pickle</div>
+          </div>
+          <div class="menu-item">
+            <span class="name">Paneer paratha</span>
+            <span class="dots"></span>
+            <span class="price">₹90</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Missi roti (bhatti)</span>
+            <span class="dots"></span>
+            <span class="price">₹35</span>
+          </div>
+        </section>
+
+        <section class="menu-section tw-mt-8">
+          <h3>Dal &amp; sabzi <span class="devanagari">दाल</span></h3>
+          <div class="menu-item">
+            <span class="name">Dal makhani</span>
+            <span class="dots"></span>
+            <span class="price">₹140</span>
+            <div class="desc" style="width: 100%">slow cooked over the tandoor for a full night</div>
+          </div>
+          <div class="menu-item">
+            <span class="name">Chana masala</span>
+            <span class="dots"></span>
+            <span class="price">₹110</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Baingan bharta</span>
+            <span class="dots"></span>
+            <span class="price">₹120</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Sarson ka saag</span>
+            <span class="dots"></span>
+            <span class="price">₹160</span>
+            <div class="desc" style="width: 100%">winters only. served with makki roti and gud.</div>
+          </div>
+        </section>
+      </div>
+
+      <div>
+        <section class="menu-section">
+          <h3>Rice &amp; biryani <span class="devanagari">चावल</span></h3>
+          <div class="menu-item">
+            <span class="name">Jeera rice</span>
+            <span class="dots"></span>
+            <span class="price">₹90</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">
+              <span class="tw-badge tw-badge-non-veg tw-mr-2"></span>
+              Mutton biryani
+            </span>
+            <span class="dots"></span>
+            <span class="price">₹280</span>
+            <div class="desc" style="width: 100%">Sunday special. limited plates.</div>
+          </div>
+          <div class="menu-item">
+            <span class="name">Veg pulao</span>
+            <span class="dots"></span>
+            <span class="price">₹140</span>
+          </div>
+        </section>
+
+        <section class="menu-section tw-mt-8">
+          <h3>Chai, lassi &amp; sweet <span class="devanagari">चाय</span></h3>
+          <div class="menu-item">
+            <span class="name">Cutting chai</span>
+            <span class="dots"></span>
+            <span class="price">₹15</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Kadak chai (full glass)</span>
+            <span class="dots"></span>
+            <span class="price">₹25</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Kesar lassi</span>
+            <span class="dots"></span>
+            <span class="price">₹55</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Gulab jamun (2 pc)</span>
+            <span class="dots"></span>
+            <span class="price">₹50</span>
+          </div>
+          <div class="menu-item">
+            <span class="name">Kheer (bowl)</span>
+            <span class="dots"></span>
+            <span class="price">₹80</span>
+          </div>
+        </section>
+
+        <div class="specials">
+          <h4>Aaj ka special</h4>
+          <ul>
+            <li>Kadhi pakoda with jeera rice</li>
+            <li>Amritsari kulcha thali</li>
+            <li>Free jaggery with every meal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="tw-divider-paisley" />
+
+    <div class="footer-strip">
+      <p class="tw-mb-1">Kitchen: 6 am to 12 midnight · Truck parking on the back · No online payments, cash and UPI accepted</p>
+      <p class="tw-mb-0">Phone: 9-anything. If it rings and rings, please try after 20 minutes.</p>
+    </div>
+  </div>
+
+  <div class="tw-toran" style="max-width: 720px; margin: 0 auto 40px; transform: scaleY(-1);"></div>
+
+</body>
+</html>

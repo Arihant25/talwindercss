@@ -1,0 +1,133 @@
+/* ==========================================================================
+   01. Tokens
+   Every visual decision in TalwinderCSS resolves to a custom property
+   declared here. Art styles (see 03-art-styles.css) work by reassigning
+   these, which is why one attribute can repaint an entire page.
+   ========================================================================== */
+
+/* Registered properties. Registration is what makes gradient angles and
+   colour stops animatable instead of snapping between keyframes. */
+@property --tw-zari-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --tw-sheen-pos {
+  syntax: "<percentage>";
+  initial-value: -40%;
+  inherits: false;
+}
+@property --tw-flame-lift {
+  syntax: "<length>";
+  initial-value: 0px;
+  inherits: false;
+}
+
+:root {
+  /* ---------------------------------------------------------------------
+     Raw pigments. Named after the thing, not the hex value. These stay
+     constant across art styles; the styles pick which ones to promote
+     into semantic roles.
+     --------------------------------------------------------------------- */
+  --tw-haldi: #f4c430;        /* turmeric */
+  --tw-marigold: #ffb000;     /* genda phool */
+  --tw-saffron: #ff9a1f;      /* kesar */
+  --tw-kesari: #ff6f00;       /* deeper saffron */
+  --tw-sindoor: #d81e2b;      /* vermilion */
+  --tw-lal: #a4161a;          /* deep red */
+  --tw-manjistha: #9e2b25;    /* madder root, the ajrakh red */
+  --tw-gulaal: #e91e63;       /* holi pink */
+  --tw-rani: #c2185b;         /* rani pink */
+  --tw-mehndi: #6b8e23;       /* henna */
+  --tw-tulsi: #2e7d32;        /* basil green */
+  --tw-mor: #0d7c66;          /* peacock neck */
+  --tw-peacock: #1e5f74;      /* peacock body */
+  --tw-neel: #1a3a8f;         /* indigo dye */
+  --tw-neelam: #14213d;       /* dark indigo */
+  --tw-jamun: #4a148c;        /* java plum */
+  --tw-baingan: #5b2333;      /* aubergine */
+  --tw-chai: #6d4c1a;
+  --tw-geru: #b3612a;         /* red ochre, the Warli ground */
+  --tw-multani: #c8a165;      /* fuller's earth */
+  --tw-sona: #c9a94a;         /* gold */
+  --tw-sona-light: #e8cf7a;
+  --tw-sona-dark: #8a6d20;
+  --tw-chandi: #c4c4c4;       /* silver */
+  --tw-tamba: #b87333;        /* copper */
+  --tw-cream: #fbf3e2;
+  --tw-ivory: #fffaf0;
+  --tw-hathi: #ded3bd;        /* elephant grey-beige */
+  --tw-kajal: #17130d;        /* lamp black */
+  --tw-siyahi: #241c12;       /* ink */
+
+  /* ---------------------------------------------------------------------
+     Semantic roles. Components only ever reference these.
+     --------------------------------------------------------------------- */
+  --tw-bg: var(--tw-ivory);
+  --tw-bg-image: none;
+  --tw-surface: var(--tw-cream);
+  --tw-surface-2: #f5e9d0;
+  --tw-surface-inv: var(--tw-kajal);
+
+  --tw-ink: var(--tw-siyahi);
+  --tw-ink-soft: #6b5a3e;
+  --tw-ink-inv: var(--tw-cream);
+
+  --tw-primary: var(--tw-sindoor);
+  --tw-on-primary: #ffffff;
+  --tw-accent: var(--tw-marigold);
+  --tw-on-accent: var(--tw-kajal);
+  --tw-support: var(--tw-mor);
+  --tw-on-support: #ffffff;
+
+  --tw-line: var(--tw-kajal);
+  --tw-line-soft: color-mix(in srgb, var(--tw-line) 25%, transparent);
+
+  /* Structure. Art styles push these around a lot: truck art wants a 5px
+     black outline, chikankari wants a 1px whisper. */
+  --tw-border-w: 3px;
+  --tw-border-w-thin: 1px;
+  --tw-border-w-thick: 6px;
+  --tw-radius: 10px;
+  --tw-radius-sm: 4px;
+  --tw-radius-lg: 22px;
+  --tw-radius-pill: 999px;
+
+  --tw-shadow-color: var(--tw-kajal);
+  --tw-shadow-x: 6px;
+  --tw-shadow-y: 6px;
+  --tw-shadow: var(--tw-shadow-x) var(--tw-shadow-y) 0 var(--tw-shadow-color);
+  --tw-shadow-sm: 3px 3px 0 var(--tw-shadow-color);
+  --tw-shadow-lg: 11px 11px 0 var(--tw-shadow-color);
+  --tw-shadow-soft: 0 10px 30px -8px color-mix(in srgb, var(--tw-shadow-color) 45%, transparent);
+
+  /* Ornament controls. --tw-orn-ink and --tw-orn-opacity are read by every
+     .tw-pattern-* class, so a style can dial ornamentation up or down
+     without touching individual rules. */
+  --tw-orn-ink: var(--tw-primary);
+  --tw-orn-ink-2: var(--tw-accent);
+  --tw-orn-opacity: 1;
+  --tw-orn-scale: 1;
+
+  /* Typography */
+  --tw-font-display: "Yatra One", "Rozha One", Georgia, serif;
+  --tw-font-body: "Noto Serif", "Tiro Devanagari Hindi", Georgia, serif;
+  --tw-font-hand: "Kalam", "Caveat", cursive;
+  --tw-font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  --tw-font-poster: "Rozha One", "Yatra One", Georgia, serif;
+  --tw-tracking-display: 0em;
+
+  /* Devanagari needs vertical room for matras above and below the
+     headline stroke. Latin-tuned line-heights clip them. */
+  --tw-leading-deva: 1.85;
+  --tw-leading-body: 1.62;
+  --tw-leading-display: 1.15;
+
+  /* Spacing, roughly a 4px grid. */
+  --tw-s1: 4px;   --tw-s2: 8px;   --tw-s3: 12px;  --tw-s4: 16px;
+  --tw-s5: 20px;  --tw-s6: 24px;  --tw-s8: 32px;  --tw-s10: 40px;
+  --tw-s12: 48px; --tw-s16: 64px; --tw-s20: 80px; --tw-s24: 96px;
+
+  --tw-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --tw-ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+}

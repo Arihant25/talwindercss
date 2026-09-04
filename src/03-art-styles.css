@@ -1,0 +1,292 @@
+/* ==========================================================================
+   03. Art styles
+   Set data-tw-art on <html>, or on any container to scope it. Each style
+   reassigns the semantic tokens from 01-tokens.css and nominates a
+   default ornament. Components read only tokens, so none of them need to
+   know which style is active.
+
+   Styles nest. A truck-art page can hold one ajrakh section.
+   ========================================================================== */
+
+/* --- Truck art -------------------------------------------------------------
+   Painted on the back of a Tata 1109. Maximum saturation, heavy black
+   keylines, a shadow you could trip over. This is the default because it
+   is the loudest and the framework should show its hand immediately. */
+[data-tw-art="truck"] {
+  --tw-bg: #fff6e0;
+  --tw-bg-image:
+    radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--tw-marigold) 30%, transparent), transparent 42%),
+    radial-gradient(circle at 88% 84%, color-mix(in srgb, var(--tw-sindoor) 22%, transparent), transparent 44%);
+  --tw-surface: #fffaf0;
+  --tw-surface-2: var(--tw-haldi);
+  --tw-ink: var(--tw-kajal);
+  --tw-ink-soft: #6b4a10;
+  --tw-primary: var(--tw-sindoor);
+  --tw-accent: var(--tw-marigold);
+  --tw-support: var(--tw-mor);
+  --tw-line: var(--tw-kajal);
+  --tw-border-w: 4px;
+  --tw-border-w-thick: 8px;
+  --tw-shadow-x: 7px;
+  --tw-shadow-y: 7px;
+  --tw-orn-ink: var(--tw-sindoor);
+  --tw-orn-ink-2: var(--tw-mor);
+  --tw-font-display: "Yatra One", Georgia, serif;
+  --tw-tracking-display: 0.02em;
+}
+
+/* --- Ajrakh ----------------------------------------------------------------
+   Block-printed in Kutch with madder red and indigo over sixteen
+   resist-and-dye stages. The palette is genuinely only three colours plus
+   the undyed cloth, so this style is the restrained one. */
+[data-tw-art="ajrakh"] {
+  --tw-bg: #10233f;
+  --tw-bg-image: none;
+  --tw-surface: #17335a;
+  --tw-surface-2: #0d1c33;
+  --tw-ink: #f2e4cd;
+  --tw-ink-soft: #a9bdd8;
+  --tw-ink-inv: #10233f;
+  --tw-primary: var(--tw-manjistha);
+  --tw-on-primary: #f7ead3;
+  --tw-accent: #f2e4cd;
+  --tw-on-accent: #10233f;
+  --tw-support: #2f6fb5;
+  --tw-line: #f2e4cd;
+  --tw-border-w: 2px;
+  --tw-shadow-color: #04101f;
+  --tw-shadow-x: 5px;
+  --tw-shadow-y: 5px;
+  --tw-orn-ink: #f2e4cd;
+  --tw-orn-ink-2: var(--tw-manjistha);
+  --tw-orn-opacity: 0.9;
+  --tw-radius: 3px;
+  --tw-radius-lg: 4px;
+  --tw-font-display: "Rozha One", Georgia, serif;
+}
+
+/* --- Tanjore ---------------------------------------------------------------
+   Thanjavur painting: gesso relief under 22-carat gold leaf, with the
+   background in deep red. The gold is the point, so surfaces get the
+   shimmer gradient and shadows go warm rather than black. */
+[data-tw-art="tanjore"] {
+  --tw-bg: #4a0f16;
+  --tw-bg-image:
+    radial-gradient(ellipse at 50% -10%, color-mix(in srgb, var(--tw-sona) 26%, transparent), transparent 58%);
+  --tw-surface: #631620;
+  --tw-surface-2: #3a0b11;
+  --tw-ink: #f6e3b6;
+  --tw-ink-soft: #d3ac6b;
+  --tw-ink-inv: #3a0b11;
+  --tw-primary: var(--tw-sona);
+  --tw-on-primary: #3a0b11;
+  --tw-accent: var(--tw-sona-light);
+  --tw-on-accent: #3a0b11;
+  --tw-support: #1f5f4f;
+  --tw-line: var(--tw-sona);
+  --tw-border-w: 3px;
+  --tw-border-w-thick: 7px;
+  --tw-shadow-color: #1c0508;
+  --tw-shadow-soft: 0 12px 34px -8px rgba(0, 0, 0, 0.7);
+  --tw-orn-ink: var(--tw-sona);
+  --tw-orn-ink-2: var(--tw-sona-light);
+  --tw-radius: 6px;
+  --tw-font-display: "Rozha One", Georgia, serif;
+}
+
+/* --- Madhubani -------------------------------------------------------------
+   Mithila painting on cow-dung-washed paper. Every empty area gets filled
+   with hatching, which is why the ornament opacity runs high here. */
+[data-tw-art="madhubani"] {
+  --tw-bg: #f0e0bd;
+  --tw-bg-image: none;
+  --tw-surface: #f7ecd2;
+  --tw-surface-2: #e4cfa4;
+  --tw-ink: #2a1a0d;
+  --tw-ink-soft: #6d5535;
+  --tw-primary: #b3352a;
+  --tw-on-primary: #f7ecd2;
+  --tw-accent: #d98324;
+  --tw-on-accent: #2a1a0d;
+  --tw-support: #2f6b4f;
+  --tw-line: #2a1a0d;
+  --tw-border-w: 2px;
+  --tw-shadow-color: #2a1a0d;
+  --tw-shadow-x: 4px;
+  --tw-shadow-y: 4px;
+  --tw-orn-ink: #b3352a;
+  --tw-orn-ink-2: #2f6b4f;
+  --tw-radius: 4px;
+  --tw-font-display: "Yatra One", Georgia, serif;
+}
+
+/* --- Chikankari ------------------------------------------------------------
+   Lucknow shadow-work on white cotton. White thread on white cloth, read
+   only by the shadow it casts. The quietest style in the framework and
+   the proof that it does not only shout. */
+[data-tw-art="chikankari"] {
+  --tw-bg: #fbfaf7;
+  --tw-bg-image: none;
+  --tw-surface: #ffffff;
+  --tw-surface-2: #f2f0ea;
+  --tw-ink: #3a3630;
+  --tw-ink-soft: #8c867c;
+  --tw-primary: #8fa9a1;
+  --tw-on-primary: #ffffff;
+  --tw-accent: #d8cfc0;
+  --tw-on-accent: #3a3630;
+  --tw-support: #b9c7c2;
+  --tw-line: #ddd8ce;
+  --tw-border-w: 1px;
+  --tw-border-w-thick: 2px;
+  --tw-shadow-color: rgba(58, 54, 48, 0.16);
+  --tw-shadow: 0 8px 24px -10px var(--tw-shadow-color);
+  --tw-shadow-sm: 0 4px 12px -6px var(--tw-shadow-color);
+  --tw-shadow-lg: 0 18px 44px -14px var(--tw-shadow-color);
+  --tw-orn-ink: #cfc7b8;
+  --tw-orn-ink-2: #e3ded4;
+  --tw-orn-opacity: 0.75;
+  --tw-radius: 14px;
+  --tw-radius-lg: 26px;
+  --tw-font-display: "Rozha One", Georgia, serif;
+}
+
+/* --- Warli -----------------------------------------------------------------
+   Rice paste on a mud wall. Two colours only: the ochre ground and the
+   white figures. Anything else would be wrong. */
+[data-tw-art="warli"] {
+  --tw-bg: var(--tw-geru);
+  --tw-bg-image: none;
+  --tw-surface: #a4552354;
+  --tw-surface-2: #97501f;
+  --tw-ink: #f6eddc;
+  --tw-ink-soft: #e2c9a8;
+  --tw-ink-inv: var(--tw-geru);
+  --tw-primary: #f6eddc;
+  --tw-on-primary: var(--tw-geru);
+  --tw-accent: #f6eddc;
+  --tw-on-accent: var(--tw-geru);
+  --tw-support: #f6eddc;
+  --tw-line: #f6eddc;
+  --tw-border-w: 2px;
+  --tw-shadow-color: #6d3712;
+  --tw-shadow-x: 4px;
+  --tw-shadow-y: 4px;
+  --tw-orn-ink: #f6eddc;
+  --tw-orn-ink-2: #f6eddc;
+  --tw-radius: 2px;
+  --tw-radius-lg: 3px;
+}
+
+/* --- Pichwai ---------------------------------------------------------------
+   Cloth hangings painted for the shrine at Nathdwara. Lotus ponds, cows,
+   peacocks, in deep greens against gold. */
+[data-tw-art="pichwai"] {
+  --tw-bg: #0e3b30;
+  --tw-bg-image:
+    radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--tw-sona) 18%, transparent), transparent 60%);
+  --tw-surface: #14503f;
+  --tw-surface-2: #0a2c24;
+  --tw-ink: #f3e6c4;
+  --tw-ink-soft: #bfd3bd;
+  --tw-ink-inv: #0a2c24;
+  --tw-primary: var(--tw-sona);
+  --tw-on-primary: #0a2c24;
+  --tw-accent: #e8b4c8;
+  --tw-on-accent: #0a2c24;
+  --tw-support: #6fa9a0;
+  --tw-line: var(--tw-sona);
+  --tw-border-w: 2px;
+  --tw-shadow-color: #04180f;
+  --tw-orn-ink: var(--tw-sona);
+  --tw-orn-ink-2: #e8b4c8;
+  --tw-radius: 8px;
+  --tw-font-display: "Rozha One", Georgia, serif;
+}
+
+/* --- Bollywood -------------------------------------------------------------
+   The hand-painted hoarding outside a single-screen cinema, before vinyl
+   printing killed the trade. Hot pink, cyan, and a hard drop shadow on
+   every letter. */
+[data-tw-art="bollywood"] {
+  --tw-bg: #14061f;
+  --tw-bg-image:
+    radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--tw-rani) 42%, transparent), transparent 46%),
+    radial-gradient(circle at 82% 78%, color-mix(in srgb, #00c2d1 34%, transparent), transparent 48%);
+  --tw-surface: #24103a;
+  --tw-surface-2: #16081f;
+  --tw-ink: #fff2b8;
+  --tw-ink-soft: #d7a3e0;
+  --tw-ink-inv: #14061f;
+  --tw-primary: #ff1f7a;
+  --tw-on-primary: #fff2b8;
+  --tw-accent: #00e5d0;
+  --tw-on-accent: #14061f;
+  --tw-support: #ffd400;
+  --tw-line: #fff2b8;
+  --tw-border-w: 3px;
+  --tw-shadow-color: #ff1f7a;
+  --tw-shadow-x: 6px;
+  --tw-shadow-y: 6px;
+  --tw-orn-ink: #00e5d0;
+  --tw-orn-ink-2: #ff1f7a;
+  --tw-radius: 6px;
+  --tw-font-display: "Yatra One", Georgia, serif;
+  --tw-tracking-display: 0.04em;
+}
+
+/* --- Raat ------------------------------------------------------------------
+   Night. A dhaba after midnight, lit by one bulb and the tandoor. Warm
+   dark rather than the usual blue-grey, because that is what the light
+   actually looks like. */
+[data-tw-art="raat"] {
+  --tw-bg: #100b05;
+  --tw-bg-image:
+    radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--tw-marigold) 12%, transparent), transparent 55%);
+  --tw-surface: #1c1409;
+  --tw-surface-2: #271b0c;
+  --tw-ink: #f4e6c1;
+  --tw-ink-soft: #a38b5e;
+  --tw-ink-inv: #100b05;
+  --tw-primary: var(--tw-marigold);
+  --tw-on-primary: #100b05;
+  --tw-accent: var(--tw-kesari);
+  --tw-on-accent: #100b05;
+  --tw-support: #4fa38c;
+  --tw-line: #f4e6c1;
+  --tw-border-w: 2px;
+  --tw-shadow-color: var(--tw-marigold);
+  --tw-shadow-x: 5px;
+  --tw-shadow-y: 5px;
+  --tw-orn-ink: var(--tw-marigold);
+  --tw-orn-ink-2: var(--tw-kesari);
+  --tw-orn-opacity: 0.55;
+}
+
+/* Follow the operating system unless the page asks for a specific style. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tw-art]) {
+    --tw-bg: #100b05;
+    --tw-surface: #1c1409;
+    --tw-surface-2: #271b0c;
+    --tw-ink: #f4e6c1;
+    --tw-ink-soft: #a38b5e;
+    --tw-ink-inv: #100b05;
+    --tw-primary: var(--tw-marigold);
+    --tw-on-primary: #100b05;
+    --tw-line: #f4e6c1;
+    --tw-shadow-color: var(--tw-marigold);
+    --tw-orn-ink: var(--tw-marigold);
+    --tw-orn-opacity: 0.55;
+  }
+}
+
+/* Cross-fade token changes so a live style switch reads as a dissolve
+   rather than a jump cut. Registered properties would animate anyway;
+   these are the plain ones that need help. */
+[data-tw-art] {
+  transition: background-color 320ms var(--tw-ease), color 320ms var(--tw-ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-tw-art] { transition: none; }
+}

@@ -1,0 +1,92 @@
+/* ==========================================================================
+   02. Ornaments
+   Every motif here is stored once, as an SVG alpha mask, in a custom
+   property. Patterns paint --tw-orn-ink through the mask, so a single
+   asset works in every art style and at every colour. Nothing is a
+   raster image and nothing needs a build step.
+   ========================================================================== */
+
+:root {
+
+  /* --- Kolam ------------------------------------------------------------
+     Pulli kolam is drawn by looping a continuous line around a grid of
+     dots. Circles on a 30px grid plus circles on the half-offsets produce
+     the interlace; the dots are drawn back on top. */
+  --tw-mask-kolam: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'><g fill='none' stroke='black' stroke-width='2.4'><circle cx='0' cy='0' r='15'/><circle cx='30' cy='0' r='15'/><circle cx='60' cy='0' r='15'/><circle cx='0' cy='30' r='15'/><circle cx='30' cy='30' r='15'/><circle cx='60' cy='30' r='15'/><circle cx='0' cy='60' r='15'/><circle cx='30' cy='60' r='15'/><circle cx='60' cy='60' r='15'/><circle cx='15' cy='15' r='15'/><circle cx='45' cy='15' r='15'/><circle cx='15' cy='45' r='15'/><circle cx='45' cy='45' r='15'/></g><g fill='black'><circle cx='15' cy='15' r='2.6'/><circle cx='45' cy='15' r='2.6'/><circle cx='15' cy='45' r='2.6'/><circle cx='45' cy='45' r='2.6'/><circle cx='0' cy='0' r='2.6'/><circle cx='30' cy='0' r='2.6'/><circle cx='60' cy='0' r='2.6'/><circle cx='0' cy='30' r='2.6'/><circle cx='30' cy='30' r='2.6'/><circle cx='60' cy='30' r='2.6'/><circle cx='0' cy='60' r='2.6'/><circle cx='30' cy='60' r='2.6'/><circle cx='60' cy='60' r='2.6'/></g></svg>");
+
+  /* --- Jaali ------------------------------------------------------------
+     Pierced stone screen. Drawn as ribs rather than as stone-with-holes:
+     a jaali reads by its lattice, and a mostly-opaque tile would flatten
+     into a wash at the low opacities these are used at. */
+  --tw-mask-jaali: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48'><g fill='none' stroke='black' stroke-width='2.2'><path d='M24 0 L48 24 L24 48 L0 24 Z'/><path d='M0 0 L11 11 M48 0 L37 11 M0 48 L11 37 M48 48 L37 37'/><circle cx='24' cy='24' r='7.5'/></g><g fill='black'><circle cx='0' cy='0' r='2.6'/><circle cx='48' cy='0' r='2.6'/><circle cx='0' cy='48' r='2.6'/><circle cx='48' cy='48' r='2.6'/><circle cx='24' cy='24' r='2.2'/></g></svg>");
+
+  /* --- Warli ------------------------------------------------------------
+     Two triangles meeting at the waist, a circle for the head, sticks for
+     limbs. Warli painting has no other vocabulary for a human figure. */
+  --tw-mask-warli: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='48'><g stroke='black' stroke-width='1.7' fill='none' stroke-linecap='round'><circle cx='14' cy='8' r='3.4' fill='black'/><path d='M9 12.5 L19 12.5 L14 21.5 Z' fill='black'/><path d='M14 21.5 L9 30.5 L19 30.5 Z' fill='black'/><path d='M9.5 14 L3 9'/><path d='M18.5 14 L25 9'/><path d='M11 30.5 L8.5 41'/><path d='M17 30.5 L19.5 41'/><circle cx='42' cy='8' r='3.4' fill='black'/><path d='M37 12.5 L47 12.5 L42 21.5 Z' fill='black'/><path d='M42 21.5 L37 30.5 L47 30.5 Z' fill='black'/><path d='M37.5 14 L31 18'/><path d='M46.5 14 L53 9'/><path d='M39 30.5 L36 41'/><path d='M45 30.5 L48 39'/><path d='M0 45 H56'/></g></svg>");
+
+  /* --- Ajrakh -----------------------------------------------------------
+     Kutch block print. A diagonal lattice, an eight-point star in each
+     cell, dots at the intersections. */
+  --tw-mask-ajrakh: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><g fill='none' stroke='black' stroke-width='1.1'><path d='M0 0 L40 40 M40 0 L0 40'/></g><g fill='black'><path d='M20 7l3.4 9.6L33 20l-9.6 3.4L20 33l-3.4-9.6L7 20l9.6-3.4Z'/><circle cx='0' cy='0' r='3'/><circle cx='40' cy='0' r='3'/><circle cx='0' cy='40' r='3'/><circle cx='40' cy='40' r='3'/><circle cx='20' cy='0' r='1.7'/><circle cx='0' cy='20' r='1.7'/><circle cx='40' cy='20' r='1.7'/><circle cx='20' cy='40' r='1.7'/></g></svg>");
+
+  /* --- Ikat -------------------------------------------------------------
+     Ikat gets its feathered edges from dyeing the yarn before weaving, so
+     the pattern never lands exactly. Stepped rows reproduce that. */
+  --tw-mask-ikat: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><g fill='black'><rect x='18' y='2' width='4' height='4'/><rect x='15' y='6' width='10' height='4'/><rect x='12' y='10' width='16' height='4'/><rect x='10' y='14' width='20' height='4'/><rect x='10' y='18' width='20' height='4'/><rect x='12' y='22' width='16' height='4'/><rect x='15' y='26' width='10' height='4'/><rect x='18' y='30' width='4' height='4'/><rect x='0' y='16' width='4' height='4'/><rect x='36' y='16' width='4' height='4'/><rect x='0' y='36' width='4' height='4'/><rect x='36' y='36' width='4' height='4'/></g></svg>");
+
+  /* --- Phulkari ---------------------------------------------------------
+     Darn-stitch chevrons worked in floss silk across the weave. */
+  --tw-mask-phulkari: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><g stroke='black' stroke-width='2.8' fill='none'><path d='M0 6 L6 0 L12 6 L18 0 L24 6'/><path d='M0 18 L6 12 L12 18 L18 12 L24 18'/><path d='M0 30 L6 24 L12 30 L18 24 L24 30'/></g></svg>");
+
+  /* --- Bandhani ---------------------------------------------------------
+     Tie-dye. Thousands of pinched knots, each leaving an undyed dot. The
+     second offset ring is what keeps it from reading as polka dots. */
+  --tw-mask-bandhani: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><g fill='black'><circle cx='6' cy='6' r='2.6'/><circle cx='22' cy='10' r='2.6'/><circle cx='12' cy='20' r='2.6'/><circle cx='28' cy='24' r='2.6'/><circle cx='2' cy='26' r='2.6'/><circle cx='18' cy='30' r='2.6'/><circle cx='30' cy='2' r='1.4'/><circle cx='14' cy='2' r='1.4'/><circle cx='24' cy='18' r='1.4'/><circle cx='6' cy='14' r='1.4'/></g></svg>");
+
+  /* --- Lotus medallion --------------------------------------------------
+     Eight petals on 45 degree rotations, the padma used as a ceiling
+     rose in temple and Pichwai painting alike. */
+  --tw-mask-lotus: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><g fill='black'><g transform='rotate(0 32 32)'><path d='M32 30 C27 21 27 11 32 4 C37 11 37 21 32 30Z'/></g><g transform='rotate(45 32 32)'><path d='M32 30 C27 21 27 11 32 4 C37 11 37 21 32 30Z'/></g><g transform='rotate(90 32 32)'><path d='M32 30 C27 21 27 11 32 4 C37 11 37 21 32 30Z'/></g><g transform='rotate(135 32 32)'><path d='M32 30 C27 21 27 11 32 4 C37 11 37 21 32 30Z'/></g><g transform='rotate(180 32 32)'><path d='M32 30 C27 21 27 11 32 4 C37 11 37 21 32 30Z'/></g><g transform='rotate(225 32 32)'><path d='M32 30 C27 21 27 11 32 4 C37 11 37 21 32 30Z'/></g><g transform='rotate(270 32 32)'><path d='M32 30 C27 21 27 11 32 4 C37 11 37 21 32 30Z'/></g><g transform='rotate(315 32 32)'><path d='M32 30 C27 21 27 11 32 4 C37 11 37 21 32 30Z'/></g><circle cx='32' cy='32' r='4.5'/></g></svg>");
+
+  /* --- Paisley strip ----------------------------------------------------
+     The boteh, or keri, or mango. Used along the edges of frames rather
+     than as a field pattern. */
+  --tw-mask-paisley: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='20'><g fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'><path d='M11 18 C4 16 2 10 4.5 6 C7 2 12 1 15.5 3.5 C19.5 6 20 11 16.5 14 C14.5 15.6 12.5 16.8 11 18 Z'/><path d='M11 14 C9 13 9 10 11 9 C13 8 14 10 13 11'/></g><g fill='black'><circle cx='26' cy='10' r='2'/><circle cx='33' cy='6' r='1.4'/><circle cx='33' cy='14' r='1.4'/><circle cx='40' cy='10' r='1.4'/></g></svg>");
+
+  /* --- Scallop strip ----------------------------------------------------
+     The hanging edge painted along the top of a truck's tailgate, and
+     along the awning of every sweet shop. */
+  --tw-mask-scallop: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='16'><g fill='black'><path d='M0 0 H32 V6 H0 Z'/><ellipse cx='8' cy='6' rx='8' ry='7'/><ellipse cx='24' cy='6' rx='8' ry='7'/></g></svg>");
+
+  /* --- Toran ------------------------------------------------------------
+     Marigold and mango-leaf strings hung across a doorway. */
+  --tw-mask-toran: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><g fill='black'><path d='M0 2 H40 V5 H0 Z'/><circle cx='10' cy='10' r='4.2'/><circle cx='10' cy='17.5' r='3.4'/><circle cx='10' cy='24' r='2.6'/><path d='M10 27 C7 31 8 36 10 38 C12 36 13 31 10 27 Z'/><circle cx='30' cy='9' r='3.4'/><circle cx='30' cy='15.5' r='2.6'/><path d='M30 18.5 C27 22 28 27 30 29 C32 27 33 22 30 18.5 Z'/><circle cx='20' cy='8' r='2.2'/><circle cx='0' cy='8' r='2.2'/><circle cx='40' cy='8' r='2.2'/></g></svg>");
+
+  /* --- Mirror work -----------------------------------------------------
+     Shisha embroidery: a disc of mirror held down by a ring of stitches. */
+  --tw-mask-shisha: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36'><g fill='none' stroke='black' stroke-width='2'><circle cx='18' cy='18' r='9'/></g><g fill='black'><circle cx='18' cy='5' r='1.6'/><circle cx='27' cy='9' r='1.6'/><circle cx='31' cy='18' r='1.6'/><circle cx='27' cy='27' r='1.6'/><circle cx='18' cy='31' r='1.6'/><circle cx='9' cy='27' r='1.6'/><circle cx='5' cy='18' r='1.6'/><circle cx='9' cy='9' r='1.6'/></g></svg>");
+
+  /* --- Madhubani fish --------------------------------------------------
+     Mithila painting fills every gap. Fish mean fertility and good luck,
+     which is why they turn up on wedding walls. */
+  --tw-mask-machhli: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='32'><g fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'><path d='M6 16 C12 6 26 6 32 16 C26 26 12 26 6 16 Z'/><path d='M32 16 L42 9 L40 16 L42 23 Z'/><circle cx='14' cy='14' r='1.6' fill='black'/><path d='M18 9 L18 23 M23 8 L23 24'/></g></svg>");
+
+  /* ---------------------------------------------------------------------
+     Structural shapes. These carry preserveAspectRatio='none' so they
+     stretch to whatever box you put them on, which a clip-path polygon
+     can do but a clip-path path() cannot.
+     --------------------------------------------------------------------- */
+
+  /* Gopuram: the stepped tower over a South Indian temple gateway. */
+  --tw-mask-gopuram: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path fill='black' d='M50 0 L56 6 L56 12 L62 12 L62 20 L70 20 L70 30 L78 30 L78 42 L86 42 L86 56 L93 56 L93 72 L100 72 L100 100 L0 100 L0 72 L7 72 L7 56 L14 56 L14 42 L22 42 L22 30 L30 30 L30 20 L38 20 L38 12 L44 12 L44 6 Z'/></svg>");
+
+  /* Ogee arch, the pointed profile of a Mughal doorway. */
+  --tw-mask-arch: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path fill='black' d='M50 1 C58 13 72 23 80 37 C84 45 84 51 84 57 L84 100 L16 100 L16 57 C16 51 16 45 20 37 C28 23 42 13 50 1 Z'/></svg>");
+
+  /* Chhatri: the onion dome on a pavilion. */
+  --tw-mask-dome: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path fill='black' d='M50 0 C52 7 55 10 59 14 C73 24 83 38 83 54 C83 72 68 82 50 82 C32 82 17 72 17 54 C17 38 27 24 41 14 C45 10 48 7 50 0 Z M13 80 H87 V94 H13 Z'/></svg>");
+
+  /* Patang, the fighting kite flown at Sankranti. */
+  --tw-mask-kite: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path fill='black' d='M50 0 L100 36 L50 100 L0 36 Z'/></svg>");
+}

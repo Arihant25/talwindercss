@@ -1,260 +1,393 @@
 <!doctype html>
-<html lang="en" data-tw-theme="din">
+<html lang="en" data-tw-art="truck">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TalwinderCSS · Utility CSS for building Indian-style websites</title>
-  <meta name="description" content="TalwinderCSS is one CSS file. Named colours, background patterns, and components based on everyday Indian design: truck art, matrimonial ads, bandhani prints, wedding cards, dhaba menus." />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Yatra+One&family=Rozha+One&family=Kalam:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="dist/talwinder.css" />
-  <style>
-    /* Page-only tweaks that aren't part of the framework itself. */
-    .hero {
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255, 176, 0, 0.35), transparent 45%),
-        radial-gradient(circle at 85% 80%, rgba(216, 30, 43, 0.25), transparent 45%),
-        var(--tw-ivory);
-      padding: 80px 0 60px;
-      border-bottom: 4px solid var(--tw-black);
-    }
-    .swatch { height: 96px; border: 3px solid var(--tw-black); border-radius: 8px; box-shadow: 4px 4px 0 var(--tw-black); }
-    .code-block { position: relative; }
-    .copy-btn {
-      position: absolute; top: 8px; right: 8px;
-      padding: 4px 10px;
-      background: var(--tw-marigold); color: var(--tw-black);
-      border: 2px solid var(--tw-black); border-radius: 4px;
-      font-size: 0.75rem; cursor: pointer;
-      font-family: var(--tw-font-body);
-    }
-    .marquee-line { display: inline-block; padding-right: 60px; }
-    .marquee-line b { color: var(--tw-sindoor); }
-    footer a { color: inherit; }
-    .feature-icon { font-size: 2rem; line-height: 1; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TalwinderCSS · Indian art traditions as a CSS framework</title>
+<meta name="description" content="Nine art styles, from Kutch block print to Thanjavur gold leaf, as one attribute you set on the html element. Ornaments are SVG masks tinted by CSS. One file, no build step, no JavaScript required.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Rozha+One&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Kalam:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="dist/talwinder.css">
+<style>
+  /* Page-specific composition. The framework supplies every colour and
+     ornament used below; these rules only arrange them. */
+
+  .hero { position: relative; overflow: hidden; padding: var(--tw-s20) 0 var(--tw-s16); }
+  /* The fade lives on the wrapper, not on the pattern itself. A single
+     element has one mask-image, so setting a fade here would replace the
+     jaali rather than combine with it. */
+  .hero-jaali {
+    position: absolute; inset: 0; z-index: -2;
+    opacity: 0.34;
+    -webkit-mask-image: linear-gradient(180deg, black 30%, transparent 88%);
+    mask-image: linear-gradient(180deg, black 30%, transparent 88%);
+  }
+  .hero-jaali > * { height: 100%; }
+  .hero-lockup { font-size: clamp(3.2rem, 1rem + 9vw, 8rem); line-height: 0.94; margin: 0 0 var(--tw-s5); }
+  .hero-lockup .deva { display: block; font-size: 0.42em; color: var(--tw-accent); line-height: 1.6; }
+
+  .switcher { position: sticky; top: 0; z-index: 40; background: var(--tw-surface); border-bottom: var(--tw-border-w) solid var(--tw-line); }
+  .switcher-inner { display: flex; align-items: center; gap: var(--tw-s3); padding: var(--tw-s3) var(--tw-s5); overflow-x: auto; }
+  .switcher-label { font-family: var(--tw-font-mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--tw-ink-soft); white-space: nowrap; }
+  .chip {
+    flex: none; padding: 0.4em 0.95em; cursor: pointer; white-space: nowrap;
+    font-family: var(--tw-font-display); font-size: 0.9rem;
+    color: var(--tw-ink); background: transparent;
+    border: 2px solid var(--tw-line); border-radius: var(--tw-radius-pill);
+    transition: background-color 160ms var(--tw-ease), color 160ms var(--tw-ease);
+  }
+  .chip:hover { background: color-mix(in srgb, var(--tw-primary) 16%, transparent); }
+  .chip[aria-pressed="true"] { background: var(--tw-primary); color: var(--tw-on-primary); border-color: var(--tw-primary); }
+
+  .style-note { min-height: 3.4em; }
+
+  .swatch-wall { display: grid; grid-template-columns: repeat(auto-fit, minmax(88px, 1fr)); gap: var(--tw-s2); }
+  .swatch { aspect-ratio: 1 / 1.15; border: 2px solid var(--tw-line); border-radius: var(--tw-radius-sm); display: grid; align-content: end; padding: 6px; }
+  .swatch span { font-family: var(--tw-font-mono); font-size: 0.6rem; background: rgba(0,0,0,.55); color: #fff; padding: 1px 4px; border-radius: 3px; justify-self: start; }
+
+  .motif-cell { display: grid; gap: var(--tw-s2); }
+  .motif-cell .tile { height: 130px; border: 2px solid var(--tw-line); border-radius: var(--tw-radius-sm); }
+  .motif-cell code { justify-self: start; }
+
+  .code-wrap { position: relative; }
+  .code-wrap pre { font-size: 0.76rem; padding-right: 4.5rem; }
+  .copy {
+    position: absolute; top: 8px; right: 8px; padding: 3px 10px;
+    font-family: var(--tw-font-mono); font-size: 0.7rem; cursor: pointer;
+    background: var(--tw-accent); color: var(--tw-on-accent);
+    border: 2px solid var(--tw-line); border-radius: 4px;
+  }
+
+  .kolam-rule { height: 62px; margin: var(--tw-s12) 0; }
+
+  .feature { padding: var(--tw-s6); border: var(--tw-border-w) solid var(--tw-line); border-radius: var(--tw-radius); background: var(--tw-surface); }
+  .feature h3 { margin-bottom: var(--tw-s2); }
+  .feature p { margin: 0; color: var(--tw-ink-soft); }
+
+  footer { background: var(--tw-surface-2); border-top: var(--tw-border-w) solid var(--tw-line); }
+</style>
 </head>
 <body>
-  <div class="tw-hoarding">
-    <div class="tw-hoarding-track">
-      <span class="marquee-line"><b>v1.0.0</b> is out. Zero build step, plain CSS, one file.</span>
-      <span class="marquee-line">Works with any framework or none at all.</span>
-      <span class="marquee-line">MIT licensed. Fork it, break it, ship it.</span>
-      <span class="marquee-line"><b>Horn OK Please.</b></span>
+
+<div class="tw-hoarding tw-no-print" aria-hidden="true">
+  <div class="tw-hoarding-track">
+    <span>v1.0.0 · nine art styles in one attribute</span><span>ornaments are SVG masks, tinted by CSS</span>
+    <span>no build step · no JavaScript required</span><span>MIT licensed</span><span>हॉर्न ओके प्लीज़</span>
+  </div>
+  <div class="tw-hoarding-track">
+    <span>v1.0.0 · nine art styles in one attribute</span><span>ornaments are SVG masks, tinted by CSS</span>
+    <span>no build step · no JavaScript required</span><span>MIT licensed</span><span>हॉर्न ओके प्लीज़</span>
+  </div>
+</div>
+
+<nav class="tw-nav">
+  <a href="./" class="tw-nav-brand">तalwinder<em class="tw-fg-accent">CSS</em></a>
+  <ul class="tw-nav-list">
+    <li><a class="tw-nav-link tw-active" href="./">Home</a></li>
+    <li><a class="tw-nav-link" href="docs/">Docs</a></li>
+    <li><a class="tw-nav-link" href="showcase/">Showcase</a></li>
+    <li><a class="tw-nav-link" href="https://github.com/Arihant25/talwindercss">GitHub</a></li>
+  </ul>
+</nav>
+
+<!-- The switcher rewrites data-tw-art on <html>. Every colour, ornament,
+     border weight and display face below responds to that one attribute. -->
+<div class="switcher tw-no-print">
+  <div class="switcher-inner" role="group" aria-label="Art style">
+    <span class="switcher-label">Art style</span>
+    <button class="chip" data-art="truck"      aria-pressed="true">Truck art</button>
+    <button class="chip" data-art="ajrakh"     aria-pressed="false">Ajrakh</button>
+    <button class="chip" data-art="tanjore"    aria-pressed="false">Tanjore</button>
+    <button class="chip" data-art="madhubani"  aria-pressed="false">Madhubani</button>
+    <button class="chip" data-art="chikankari" aria-pressed="false">Chikankari</button>
+    <button class="chip" data-art="warli"      aria-pressed="false">Warli</button>
+    <button class="chip" data-art="pichwai"    aria-pressed="false">Pichwai</button>
+    <button class="chip" data-art="bollywood"  aria-pressed="false">Bollywood</button>
+    <button class="chip" data-art="raat"       aria-pressed="false">Raat</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-jaali" aria-hidden="true"><div class="tw-pattern-jaali"></div></div>
+  <div class="tw-container tw-center">
+    <p class="tw-mono tw-xs tw-track-wide tw-upper tw-fg-soft tw-mb-4">A CSS framework · v1.0.0 · MIT</p>
+
+    <h1 class="hero-lockup tw-display">
+      TalwinderCSS
+      <span class="deva tw-deva" lang="hi">भारतीय कला, सीएसएस में</span>
+    </h1>
+
+    <p class="tw-xl tw-prose tw-mx-auto tw-mb-8">
+      Nine art traditions, from Kutch block print to Thanjavur gold leaf, each one an attribute
+      you set on <code>&lt;html&gt;</code>. Change it and the palette, ornaments, border weights
+      and display face all move together. The markup never changes.
+    </p>
+
+    <p class="style-note tw-hand tw-lg tw-prose tw-mx-auto tw-mb-8" id="note" aria-live="polite"></p>
+
+    <div class="tw-flex tw-wrap tw-gap-3 tw-justify-center tw-mb-12">
+      <a class="tw-btn tw-btn-truck tw-btn-lg" href="showcase/">See it in use</a>
+      <a class="tw-btn tw-btn-primary tw-btn-lg" href="docs/">Read the docs</a>
+      <a class="tw-btn tw-btn-ghost tw-btn-lg" href="https://github.com/Arihant25/talwindercss">GitHub</a>
+    </div>
+
+    <div class="code-wrap tw-max-w-lg tw-mx-auto" style="text-align:left">
+<pre><code>&lt;link rel="stylesheet" href="https://arihant25.github.io/talwindercss/dist/talwinder.min.css"&gt;
+&lt;html data-tw-art="ajrakh"&gt;</code></pre>
+      <button class="copy" data-copy>copy</button>
     </div>
   </div>
+</header>
 
-  <nav class="tw-navbar">
-    <a href="/" class="tw-navbar-brand">तalwinder<span class="tw-text-sindoor">CSS</span></a>
-    <ul class="tw-navbar-nav">
-      <li><a href="index.html" class="tw-nav-link tw-active">Home</a></li>
-      <li><a href="docs/index.html" class="tw-nav-link">Docs</a></li>
-      <li><a href="showcase/index.html" class="tw-nav-link">Showcase</a></li>
-      <li><a href="https://github.com/Arihant25/talwindercss" class="tw-nav-link">GitHub</a></li>
-    </ul>
-  </nav>
+<div class="tw-container">
+  <div class="kolam-rule tw-pattern-kolam tw-draw-kolam" aria-hidden="true"></div>
+</div>
 
-  <header class="hero">
-    <div class="tw-container tw-text-center">
-      <span class="tw-badge tw-badge-sindoor tw-mb-4">v1.0.0 · MIT</span>
-      <h1 class="tw-text-7xl tw-mb-4">
-        Utility CSS for building
-        <br />
-        <span class="tw-text-sindoor">Indian-style websites.</span>
-      </h1>
-      <p class="tw-text-xl tw-max-w-lg tw-mx-auto tw-mb-8 tw-text-charcoal">
-        One CSS file. Named colours (saffron, sindoor, mehndi), background patterns (bandhani, brocade, warli), and components (chai cup, ticket stub, classified ad) that you use as classes in your HTML. No JavaScript. No build step.
-      </p>
-      <div class="tw-flex tw-gap-4 tw-justify-center tw-flex-wrap">
-        <a href="docs/index.html" class="tw-btn tw-btn-truck">Read the docs</a>
-        <a href="showcase/index.html" class="tw-btn tw-btn-sindoor">See it in action</a>
-        <a href="https://github.com/Arihant25/talwindercss" class="tw-btn tw-btn-ghost">Star on GitHub</a>
-      </div>
+<!-- Palette -->
+<section class="tw-py-12">
+  <div class="tw-container">
+    <h2 class="tw-center tw-mb-2">The palette follows the style</h2>
+    <p class="tw-center tw-prose tw-mx-auto tw-fg-soft tw-mb-8">
+      Components never name a colour. They ask for <code>--tw-primary</code> or
+      <code>--tw-surface</code>, and the active art style decides what that means.
+      Switch styles above and watch these nine squares change their minds.
+    </p>
 
-      <div class="tw-mt-12 tw-max-w-lg tw-mx-auto tw-text-left code-block">
-        <pre><code>&lt;link rel="stylesheet" href="https://arihant25.github.io/talwindercss/dist/talwinder.css"&gt;</code></pre>
-        <button class="copy-btn" data-copy>copy</button>
-      </div>
+    <div class="swatch-wall tw-reveal">
+      <div class="swatch" style="background:var(--tw-bg)"><span>--tw-bg</span></div>
+      <div class="swatch" style="background:var(--tw-surface)"><span>surface</span></div>
+      <div class="swatch" style="background:var(--tw-surface-2)"><span>surface-2</span></div>
+      <div class="swatch" style="background:var(--tw-primary)"><span>primary</span></div>
+      <div class="swatch" style="background:var(--tw-accent)"><span>accent</span></div>
+      <div class="swatch" style="background:var(--tw-support)"><span>support</span></div>
+      <div class="swatch" style="background:var(--tw-ink)"><span>ink</span></div>
+      <div class="swatch" style="background:var(--tw-ink-soft)"><span>ink-soft</span></div>
+      <div class="swatch tw-zari"><span>zari</span></div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <section class="tw-py-16">
-    <div class="tw-container">
-      <div class="tw-text-center tw-mb-12">
-        <h2 class="tw-text-4xl tw-mb-2">Why another framework?</h2>
-        <p class="tw-text-muted tw-max-w-prose tw-mx-auto">There are frameworks for brutalism, glassmorphism, skeuomorphism. This one leans on visual vocabulary from India, which has been sitting there in plain sight the whole time.</p>
-      </div>
+<!-- Ornaments -->
+<section class="tw-py-12">
+  <div class="tw-container">
+    <h2 class="tw-center tw-mb-2">Ornaments are masks, not pictures</h2>
+    <p class="tw-center tw-prose tw-mx-auto tw-fg-soft tw-mb-8">
+      Every motif is stored once as an SVG alpha mask. The framework paints
+      <code>--tw-orn-ink</code> through it, so one asset serves all nine styles at any colour
+      and any size. Nothing here is a raster image and nothing is fetched over the network.
+    </p>
 
-      <div class="tw-grid tw-grid-cols-3 tw-gap-6">
-        <article class="tw-card">
-          <div class="feature-icon">🪔</div>
-          <h3 class="tw-text-xl tw-mt-2">Named colours you'll remember</h3>
-          <p class="tw-text-muted tw-mb-0">Saffron, sindoor, mehndi, jamun, mor-pankh. No hex code guessing. The palette maps to physical objects most people have seen.</p>
-        </article>
-        <article class="tw-card">
-          <div class="feature-icon">🧵</div>
-          <h3 class="tw-text-xl tw-mt-2">Patterns as backgrounds</h3>
-          <p class="tw-text-muted tw-mb-0">Bandhani dots, rickshaw diagonals, Warli-style repeats, gold-brocade checks. All done in CSS. No image files, no build step.</p>
-        </article>
-        <article class="tw-card">
-          <div class="feature-icon">🚛</div>
-          <h3 class="tw-text-xl tw-mt-2">Real components</h3>
-          <p class="tw-text-muted tw-mb-0">Truck-art buttons, chai-cup containers, classified-ad cards, rangoli spinners. Copy the class, keep your markup.</p>
-        </article>
-        <article class="tw-card">
-          <div class="feature-icon">📜</div>
-          <h3 class="tw-text-xl tw-mt-2">One file. No JavaScript.</h3>
-          <p class="tw-text-muted tw-mb-0">Around 25 KB of CSS. Add one <code>&lt;link&gt;</code> and you're done. No PostCSS, no config, no toolchain, no opinions about your bundler.</p>
-        </article>
-        <article class="tw-card">
-          <div class="feature-icon">🌙</div>
-          <h3 class="tw-text-xl tw-mt-2">Raat mode built in</h3>
-          <p class="tw-text-muted tw-mb-0">Set <code>data-tw-theme="raat"</code> on any element. The palette shifts to a warm dark that keeps marigold and sindoor readable at night.</p>
-        </article>
-        <article class="tw-card">
-          <div class="feature-icon">🤝</div>
-          <h3 class="tw-text-xl tw-mt-2">Plays nicely</h3>
-          <p class="tw-text-muted tw-mb-0">Every class is prefixed with <code>tw-</code>. Drop it into an existing Tailwind, Bootstrap, or Bulma page without collisions.</p>
-        </article>
-      </div>
+    <div class="tw-grid-auto" style="--tw-min:170px">
+      <div class="motif-cell tw-reveal"><div class="tile tw-pattern-kolam"></div><code>tw-pattern-kolam</code></div>
+      <div class="motif-cell tw-reveal"><div class="tile tw-pattern-jaali"></div><code>tw-pattern-jaali</code></div>
+      <div class="motif-cell tw-reveal"><div class="tile tw-pattern-warli"></div><code>tw-pattern-warli</code></div>
+      <div class="motif-cell tw-reveal"><div class="tile tw-pattern-ajrakh"></div><code>tw-pattern-ajrakh</code></div>
+      <div class="motif-cell tw-reveal"><div class="tile tw-pattern-ikat"></div><code>tw-pattern-ikat</code></div>
+      <div class="motif-cell tw-reveal"><div class="tile tw-pattern-bandhani"></div><code>tw-pattern-bandhani</code></div>
+      <div class="motif-cell tw-reveal"><div class="tile tw-pattern-phulkari"></div><code>tw-pattern-phulkari</code></div>
+      <div class="motif-cell tw-reveal"><div class="tile tw-pattern-lotus"></div><code>tw-pattern-lotus</code></div>
+      <div class="motif-cell tw-reveal"><div class="tile tw-pattern-machhli"></div><code>tw-pattern-machhli</code></div>
+      <div class="motif-cell tw-reveal"><div class="tile tw-pattern-shisha"></div><code>tw-pattern-shisha</code></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <hr class="tw-divider-paisley" />
+<div class="tw-container"><div class="tw-edge tw-edge-paisley" aria-hidden="true"></div></div>
 
-  <section class="tw-py-16 tw-bg-cream" style="border-top: 3px solid var(--tw-black); border-bottom: 3px solid var(--tw-black);">
-    <div class="tw-container">
-      <div class="tw-text-center tw-mb-8">
-        <h2 class="tw-text-4xl tw-mb-2">The palette</h2>
-        <p class="tw-text-muted">Fifteen named colours. Each one earns its place.</p>
+<!-- Components -->
+<section class="tw-py-12">
+  <div class="tw-container">
+    <h2 class="tw-center tw-mb-2">Components that know where they came from</h2>
+    <p class="tw-center tw-prose tw-mx-auto tw-fg-soft tw-mb-8">
+      A thali is a circle with bowls around the rim. A jharokha is a balcony under an ogee arch.
+      These shapes have no equivalent in a Western component library, so the framework
+      supplies them.
+    </p>
+
+    <div class="tw-grid-auto tw-mb-8" style="--tw-min:280px">
+
+      <div class="tw-frame tw-frame-rosette tw-reveal">
+        <h3 class="tw-center">Framed panel</h3>
+        <p class="tw-mb-0 tw-fg-soft">Double keyline with lotus rosettes at the corners, the way a
+        Tanjore painting or a wedding card is framed. <code>tw-frame tw-frame-rosette</code></p>
       </div>
 
-      <div class="tw-grid tw-grid-cols-5 tw-gap-4">
-        <div><div class="swatch tw-bg-saffron"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-saffron</code></div></div>
-        <div><div class="swatch tw-bg-marigold"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-marigold</code></div></div>
-        <div><div class="swatch tw-bg-sindoor"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-sindoor</code></div></div>
-        <div><div class="swatch tw-bg-kesari"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-kesari</code></div></div>
-        <div><div class="swatch tw-bg-lal"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-lal</code></div></div>
-        <div><div class="swatch tw-bg-haldi"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-haldi</code></div></div>
-        <div><div class="swatch tw-bg-mehndi"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-mehndi</code></div></div>
-        <div><div class="swatch tw-bg-tulsi"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-tulsi</code></div></div>
-        <div><div class="swatch tw-bg-mor"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-mor</code></div></div>
-        <div><div class="swatch tw-bg-peacock"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-peacock</code></div></div>
-        <div><div class="swatch tw-bg-neel"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-neel</code></div></div>
-        <div><div class="swatch tw-bg-jamun"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-jamun</code></div></div>
-        <div><div class="swatch tw-bg-gulaal"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-gulaal</code></div></div>
-        <div><div class="swatch tw-bg-chai"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-chai</code></div></div>
-        <div><div class="swatch" style="background: linear-gradient(180deg,#e0c060,#a68830);"></div><div class="tw-mt-2 tw-text-sm"><code>tw-btn-brass</code></div></div>
+      <div class="tw-card tw-orn-ajrakh tw-reveal">
+        <h3>Card with ornament</h3>
+        <p class="tw-mb-0 tw-fg-soft">Any surface takes an <code>tw-orn-*</code> class to get a faint
+        motif behind its content, tinted to the active style.</p>
       </div>
+
+      <div class="tw-chai tw-reveal">
+        <h3 style="color:inherit">Chai glass</h3>
+        <p class="tw-mb-0">The cutting-chai tumbler: narrow at the base, meniscus at the top.
+        <code>tw-chai</code></p>
+      </div>
+
+      <div class="tw-jharokha tw-reveal">
+        <h3>Jharokha</h3>
+        <p class="tw-mb-0 tw-fg-soft">The overhanging balcony on a haveli. The arch is a mask,
+        so it is a real curve.</p>
+      </div>
+
+      <div class="tw-reveal tw-stack">
+        <div class="tw-ticket">
+          <div>
+            <div class="tw-xs tw-fg-soft">MMCT → NDLS</div>
+            <div class="tw-bold">Rajdhani 12951 · B4 / 21 · LB</div>
+            <div class="tw-xs">17 Dec · 16:35 · CNF</div>
+          </div>
+          <div class="tw-2xl tw-display tw-fg-primary">₹2,410</div>
+        </div>
+        <div class="tw-signboard">
+          <div class="tw-sm tw-track-wide">PLATFORM 7</div>
+          <div class="tw-2xl">Villupuram Jn.</div>
+        </div>
+        <div class="tw-flex tw-gap-3 tw-items-center">
+          <span class="tw-stamp">Paid</span>
+          <span class="tw-badge"><span class="tw-mark-veg"></span> Veg</span>
+          <span class="tw-badge tw-badge-primary"><span class="tw-mark-nonveg"></span> Non-veg</span>
+        </div>
+      </div>
+
+      <div class="tw-reveal tw-flex tw-col tw-items-center tw-gap-4">
+        <div class="tw-thali">
+          <div class="tw-katori">Dal</div>
+          <div class="tw-katori">Sabzi</div>
+          <div class="tw-katori">Kadhi</div>
+          <div class="tw-katori">Raita</div>
+          <div class="tw-katori">Kheer</div>
+          <div class="tw-katori">Achar</div>
+          <div class="tw-thali-center tw-display">Roti<br>&amp;<br>Chawal</div>
+        </div>
+        <code>tw-thali</code>
+      </div>
+
     </div>
-  </section>
 
-  <section class="tw-py-16">
-    <div class="tw-container">
-      <div class="tw-text-center tw-mb-12">
-        <h2 class="tw-text-4xl tw-mb-2">A few components</h2>
-        <p class="tw-text-muted">Every one of these is one class on plain HTML. No wrappers, no config.</p>
-      </div>
-
-      <div class="tw-grid tw-grid-cols-3 tw-gap-8 tw-items-start">
-
-        <div>
-          <div class="tw-card-rangoli tw-mb-4">
-            <h3 class="tw-text-xl tw-mb-2 tw-om">Rangoli card</h3>
-            <p class="tw-mb-0">Ornate corners without a single SVG. Just CSS pseudo-elements sitting on a bordered box.</p>
-          </div>
-          <pre><code>&lt;div class="tw-card-rangoli"&gt;
-  &lt;h3 class="tw-om"&gt;Namaste&lt;/h3&gt;
-  &lt;p&gt;Content goes here.&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-
-        <div>
-          <div class="tw-card-bandhani tw-mb-4">
-            <h3 class="tw-text-xl tw-mb-2">Bandhani card</h3>
-            <p class="tw-mb-0">Repeating dot pattern on a sindoor red base. Prints well, scales at any size, weighs almost nothing.</p>
-          </div>
-          <pre><code>&lt;div class="tw-card-bandhani"&gt;
-  &lt;h3&gt;Deep discount&lt;/h3&gt;
-  &lt;p&gt;Only today.&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-
-        <div>
-          <div class="tw-chai-cup tw-mb-4">
-            <h3 class="tw-text-xl tw-mb-2">Chai cup</h3>
-            <p class="tw-mb-0">Half kettle, half container. Use it for testimonials, quick tips, or that one sentence that needs a bit of warmth.</p>
-          </div>
-          <pre><code>&lt;div class="tw-chai-cup"&gt;
-  &lt;p&gt;Ek cutting, please.&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-
-        <div>
-          <div class="tw-mb-4">
-            <button class="tw-btn tw-btn-truck">Chalo shuru karein</button>
-          </div>
-          <pre><code>&lt;button class="tw-btn tw-btn-truck"&gt;
-  Chalo shuru karein
-&lt;/button&gt;</code></pre>
-        </div>
-
-        <div>
-          <div class="tw-signboard tw-mb-4">
-            <div class="tw-text-lg">Platform №&nbsp;7</div>
-            <div class="tw-text-2xl">Ahmedabad Jn.</div>
-          </div>
-          <pre><code>&lt;div class="tw-signboard"&gt;
-  Platform 7 · Ahmedabad Jn.
-&lt;/div&gt;</code></pre>
-        </div>
-
-        <div>
-          <div class="tw-ticket tw-mb-4">
-            <div>
-              <div class="tw-text-sm tw-text-muted">MUM → BLR</div>
-              <div class="tw-text-lg tw-font-bold">Coach B4 · Seat 21</div>
-              <div class="tw-text-sm">03 Nov · 20:15</div>
-            </div>
-            <div class="tw-text-3xl tw-font-display tw-text-sindoor">₹ 1240</div>
-          </div>
-          <pre><code>&lt;div class="tw-ticket"&gt; ... &lt;/div&gt;</code></pre>
-        </div>
-
-      </div>
+    <div class="tw-flex tw-wrap tw-gap-4 tw-items-center tw-justify-center tw-py-6">
+      <button class="tw-btn">Default</button>
+      <button class="tw-btn tw-btn-primary">Primary</button>
+      <button class="tw-btn tw-btn-support">Support</button>
+      <button class="tw-btn tw-btn-zari">Zari thread</button>
+      <button class="tw-btn tw-btn-truck">Horn OK Please</button>
+      <button class="tw-btn tw-btn-ghost">Ghost</button>
+      <span class="tw-charkha" role="img" aria-label="Loading"></span>
+      <span class="tw-diya" role="img" aria-label="Diya"></span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <hr class="tw-divider-paisley" />
+<div class="tw-container">
+  <div class="kolam-rule tw-pattern-kolam tw-draw-kolam" aria-hidden="true"></div>
+</div>
 
-  <section class="tw-py-16 tw-bg-cream" style="border-top: 3px solid var(--tw-black);">
-    <div class="tw-container tw-text-center">
-      <h2 class="tw-text-4xl tw-mb-4">The practical bits</h2>
-      <p class="tw-max-w-prose tw-mx-auto tw-text-lg tw-mb-8">
-        Every named colour clears WCAG AA on its recommended background. The dark theme keeps sindoor and marigold at readable contrast instead of desaturating them. Motion respects <code>prefers-reduced-motion</code>. Nothing depends on JavaScript. The whole file is around 25 KB uncompressed and gzips to about 6 KB.
-      </p>
-      <a href="docs/index.html" class="tw-btn tw-btn-sindoor tw-btn-lg">Full documentation</a>
+<!-- Why -->
+<section class="tw-py-12">
+  <div class="tw-container">
+    <h2 class="tw-center tw-mb-8">How it is put together</h2>
+    <div class="tw-grid-auto" style="--tw-min:270px">
+      <article class="feature tw-reveal">
+        <h3>One attribute, whole page</h3>
+        <p>Art styles reassign semantic tokens. Components read only tokens. That indirection is
+        why nine wildly different looks need no component-level overrides.</p>
+      </article>
+      <article class="feature tw-reveal">
+        <h3>Styles nest</h3>
+        <p>Set <code>data-tw-art</code> on any element, not just the root. A truck-art page can
+        hold one chikankari section without a wrapper class or a cascade fight.</p>
+      </article>
+      <article class="feature tw-reveal">
+        <h3>Scroll-driven, not timer-driven</h3>
+        <p>The kolam rules above draw themselves using <code>animation-timeline: view()</code>,
+        behind an <code>@supports</code> guard. No scroll listener, no observer, no JavaScript.</p>
+      </article>
+      <article class="feature tw-reveal">
+        <h3>Indic scripts get room</h3>
+        <p>Devanagari, Tamil and Bengali hang glyph parts above and below the line. The base
+        stylesheet gives <code>:lang()</code> matches a taller line-height so matras are not clipped.</p>
+      </article>
+      <article class="feature tw-reveal">
+        <h3>Sized honestly</h3>
+        <p>39 KB minified, 9 KB over the wire, ornaments included. The motifs are inline SVG
+        masks, so there is no sprite sheet and no second request.</p>
+      </article>
+      <article class="feature tw-reveal">
+        <h3>Prefixed and quiet</h3>
+        <p>Every class starts with <code>tw-</code> and every variable with <code>--tw-</code>.
+        Drop it beside Bootstrap or Tailwind without a collision.</p>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="tw-py-8 tw-text-center" style="background: var(--tw-charcoal); color: var(--tw-cream);">
-    <p class="tw-mb-2">Made by <a href="https://arihant25.github.io" style="color: var(--tw-marigold);">Arihant Tripathy</a>. Named after a friend.</p>
-    <p class="tw-text-sm tw-text-muted tw-mb-0">MIT licensed. The colour palette is borrowed from streets, temples, and paint shops.</p>
-  </footer>
+<section class="tw-py-16">
+  <div class="tw-container tw-center">
+    <h2 class="tw-mb-4">Nine styles. Same markup.</h2>
+    <p class="tw-prose tw-mx-auto tw-fg-soft tw-mb-8">
+      The showcase has six full pages built on this file: a dhaba menu, a Sunday matrimonial
+      column, a wedding invitation, a live cricket scoreboard, an auto booking screen, and a
+      broadsheet front page.
+    </p>
+    <a class="tw-btn tw-btn-primary tw-btn-lg" href="showcase/">Open the showcase</a>
+  </div>
+</section>
 
-  <script>
-    document.querySelectorAll('[data-copy]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const code = btn.previousElementSibling.querySelector('code').innerText;
-        navigator.clipboard.writeText(code).then(() => {
-          const original = btn.innerText;
-          btn.innerText = 'copied';
-          setTimeout(() => (btn.innerText = original), 1200);
-        });
-      });
+<footer class="tw-py-8">
+  <div class="tw-container tw-center">
+    <div class="tw-edge tw-edge-toran tw-sway tw-mb-6" aria-hidden="true"></div>
+    <p class="tw-mb-2">Built by <a href="https://arihant25.github.io">Arihant Tripathy</a>.</p>
+    <p class="tw-sm tw-fg-soft tw-mb-0">
+      MIT licensed. Motifs are drawn from living craft traditions: Kutch block print, Mithila
+      painting, Warli wall painting, Lucknow chikankari, Nathdwara pichwai, Thanjavur gilding.
+    </p>
+  </div>
+</footer>
+
+<script>
+  /* Progressive enhancement only. Without this script the page still
+     renders in whatever style the html element was served with. */
+  const NOTES = {
+    truck:      "Truck art. Painted on tailgates across the Grand Trunk Road, where every surface is a chance to say something and no colour is ever held back.",
+    ajrakh:     "Ajrakh. Block printed in Kutch through sixteen rounds of resist and dye. Madder red, indigo, and the undyed cloth. Three colours, no more.",
+    tanjore:    "Tanjore. Gesso relief under twenty-two carat gold leaf, on a ground of deep red. The gold is not decoration on the painting; it is the painting.",
+    madhubani:  "Madhubani. Mithila painting, done on walls for weddings and on paper since the drought of 1966. No area is left empty.",
+    chikankari: "Chikankari. Lucknow shadow work: white thread on white cotton, read only by the shadow it throws. The framework can whisper too.",
+    warli:      "Warli. Rice paste on a mud wall, in circles, triangles and lines. Two colours, because a third would be inventing something.",
+    pichwai:    "Pichwai. Cloth hung behind the deity at Nathdwara. Lotus ponds, cows and peacocks, in deep green against gold.",
+    bollywood:  "Bollywood hoarding. Hand painted six metres tall outside single-screen cinemas, until vinyl printing ended the trade in the nineties.",
+    raat:       "Raat. A dhaba at two in the morning, lit by one bulb and the tandoor. Warm dark, not the blue-grey that dark modes usually settle for."
+  };
+
+  const root = document.documentElement;
+  const note = document.getElementById("note");
+  const chips = document.querySelectorAll(".chip");
+
+  function apply(art) {
+    root.setAttribute("data-tw-art", art);
+    note.textContent = NOTES[art] || "";
+    chips.forEach(c => c.setAttribute("aria-pressed", String(c.dataset.art === art)));
+    try { localStorage.setItem("tw-art", art); } catch {}
+  }
+
+  chips.forEach(c => c.addEventListener("click", () => apply(c.dataset.art)));
+
+  let saved = null;
+  try { saved = localStorage.getItem("tw-art"); } catch {}
+  apply(saved && NOTES[saved] ? saved : "truck");
+
+  document.querySelectorAll("[data-copy]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const code = btn.previousElementSibling.innerText;
+      try {
+        await navigator.clipboard.writeText(code);
+        btn.textContent = "copied";
+        setTimeout(() => (btn.textContent = "copy"), 1400);
+      } catch { btn.textContent = "press ctrl+c"; }
     });
-  </script>
+  });
+</script>
 </body>
 </html>

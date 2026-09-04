@@ -1,0 +1,470 @@
+/* ==========================================================================
+   06. Components
+   Each reads only semantic tokens, so every one of these restyles itself
+   when the art style changes. Nothing below hardcodes a colour.
+   ========================================================================== */
+
+/* --- Buttons -------------------------------------------------------------- */
+
+.tw-btn {
+  --_bg: var(--tw-accent);
+  --_fg: var(--tw-on-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tw-s2);
+  padding: 0.75em 1.5em;
+  font-family: var(--tw-font-display);
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: var(--tw-tracking-display);
+  color: var(--_fg);
+  background: var(--_bg);
+  border: var(--tw-border-w) solid var(--tw-line);
+  border-radius: var(--tw-radius);
+  box-shadow: var(--tw-shadow-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 140ms var(--tw-ease), box-shadow 140ms var(--tw-ease), background-color 140ms var(--tw-ease);
+}
+.tw-btn:hover {
+  color: var(--_fg);
+  transform: translate(-2px, -2px);
+  box-shadow: calc(var(--tw-shadow-x) - 1px) calc(var(--tw-shadow-y) - 1px) 0 var(--tw-shadow-color);
+}
+.tw-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--tw-shadow-color);
+}
+
+.tw-btn-primary { --_bg: var(--tw-primary); --_fg: var(--tw-on-primary); }
+.tw-btn-support { --_bg: var(--tw-support); --_fg: var(--tw-on-support); }
+.tw-btn-ghost   { --_bg: transparent; --_fg: var(--tw-ink); }
+.tw-btn-ghost:hover { --_bg: color-mix(in srgb, var(--tw-primary) 12%, transparent); }
+.tw-btn-sm { font-size: 0.85rem; padding: 0.55em 1.1em; }
+.tw-btn-lg { font-size: 1.25rem; padding: 0.85em 1.9em; }
+.tw-btn-block { display: flex; width: 100%; }
+
+/* Zari button: gold thread edge that catches light on hover. */
+.tw-btn-zari {
+  --_fg: #2a1a05;
+  border-color: var(--tw-sona-dark);
+  background-image:
+    linear-gradient(180deg, var(--tw-sona-light), var(--tw-sona) 48%, var(--tw-sona-dark));
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+.tw-btn-zari::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.75) 50%, transparent 62%);
+  transform: translateX(var(--tw-sheen-pos));
+  transition: --tw-sheen-pos 620ms var(--tw-ease);
+}
+.tw-btn-zari:hover::after { --tw-sheen-pos: 140%; }
+
+/* Truck button: the painted tailgate, stripes and all. */
+.tw-btn-truck {
+  --_fg: #fff;
+  border-width: var(--tw-border-w-thick);
+  border-bottom-width: calc(var(--tw-border-w-thick) + 4px);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--tw-accent) 0 14px,
+    var(--tw-primary) 14px 28px,
+    var(--tw-support) 28px 42px);
+  text-shadow: 2px 2px 0 var(--tw-kajal);
+  letter-spacing: 0.06em;
+}
+
+/* --- Surfaces ------------------------------------------------------------- */
+
+.tw-card {
+  background: var(--tw-surface);
+  color: var(--tw-ink);
+  border: var(--tw-border-w) solid var(--tw-line);
+  border-radius: var(--tw-radius);
+  padding: var(--tw-s6);
+  box-shadow: var(--tw-shadow);
+}
+
+/* Jharokha: the overhanging enclosed balcony on a Rajasthani haveli.
+   The arch is a mask, so the top edge is a real curve rather than a
+   border-radius approximation. */
+.tw-jharokha {
+  background: var(--tw-surface);
+  color: var(--tw-ink);
+  border: var(--tw-border-w) solid var(--tw-line);
+  /* The arch narrows to roughly 16% inset at the shoulders, so the side
+     padding has to clear that or text runs under the curve. */
+  padding: calc(var(--tw-s20) + var(--tw-s2)) var(--tw-s10) var(--tw-s8);
+  text-align: center;
+  -webkit-mask-image: var(--tw-mask-arch);
+  mask-image: var(--tw-mask-arch);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Framed panel: a double keyline with corner rosettes, the way a
+   Tanjore painting or a wedding invitation is framed. */
+.tw-frame {
+  position: relative;
+  background: var(--tw-surface);
+  border: var(--tw-border-w) solid var(--tw-line);
+  padding: var(--tw-s8);
+  box-shadow: var(--tw-shadow);
+}
+.tw-frame::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid var(--tw-line);
+  pointer-events: none;
+}
+.tw-frame-rosette::after {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  pointer-events: none;
+  background-color: var(--tw-orn-ink);
+  -webkit-mask-image: var(--tw-mask-lotus), var(--tw-mask-lotus), var(--tw-mask-lotus), var(--tw-mask-lotus);
+  mask-image: var(--tw-mask-lotus), var(--tw-mask-lotus), var(--tw-mask-lotus), var(--tw-mask-lotus);
+  -webkit-mask-size: 34px 34px;
+  mask-size: 34px 34px;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: left top, right top, left bottom, right bottom;
+  mask-position: left top, right top, left bottom, right bottom;
+}
+
+/* Thali: circular plate with katoris around the rim. Six children max,
+   which is also how many bowls fit on a real thali. */
+.tw-thali {
+  --_d: 340px;
+  position: relative;
+  width: var(--_d);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--tw-surface);
+  border: var(--tw-border-w-thick) solid var(--tw-line);
+  box-shadow: var(--tw-shadow), inset 0 0 0 10px color-mix(in srgb, var(--tw-line) 12%, transparent);
+  display: grid;
+  place-items: center;
+  margin-inline: auto;
+}
+.tw-thali > .tw-katori {
+  position: absolute;
+  width: 27%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--tw-surface-2);
+  border: var(--tw-border-w) solid var(--tw-line);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  padding: 4px;
+  /* Position each katori by rotating out to the rim, then rotating the
+     bowl itself back upright so the label stays level. */
+  transform:
+    rotate(calc(var(--_i) * 60deg))
+    translate(calc(var(--_d) * 0.33))
+    rotate(calc(var(--_i) * -60deg));
+}
+.tw-thali > .tw-katori:nth-child(1) { --_i: 0; }
+.tw-thali > .tw-katori:nth-child(2) { --_i: 1; }
+.tw-thali > .tw-katori:nth-child(3) { --_i: 2; }
+.tw-thali > .tw-katori:nth-child(4) { --_i: 3; }
+.tw-thali > .tw-katori:nth-child(5) { --_i: 4; }
+.tw-thali > .tw-katori:nth-child(6) { --_i: 5; }
+.tw-thali-center { text-align: center; max-width: 34%; }
+
+/* Chai glass: the cutting-chai tumbler, narrow at the base. */
+.tw-chai {
+  position: relative;
+  padding: var(--tw-s8) var(--tw-s6) var(--tw-s6);
+  color: var(--tw-kajal);
+  background: linear-gradient(180deg, #f2dca8 0%, #cd9a52 55%, #9a6a2c 100%);
+  border: var(--tw-border-w) solid var(--tw-line);
+  border-radius: 4px 4px 44% 44% / 4px 4px 16% 16%;
+  box-shadow: var(--tw-shadow);
+}
+.tw-chai::before {
+  content: "";
+  position: absolute;
+  top: 9px; left: 10px; right: 10px;
+  height: 13px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.22);
+}
+
+/* Ticket with punched edges. The notches are radial gradients rather
+   than pseudo-elements, so both sides survive on a coloured page. */
+.tw-ticket {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--tw-s4);
+  align-items: center;
+  padding: var(--tw-s5) var(--tw-s6);
+  background:
+    radial-gradient(circle at left  center, transparent 11px, var(--tw-surface) 11.5px),
+    radial-gradient(circle at right center, transparent 11px, var(--tw-surface) 11.5px);
+  background-size: 50.5% 100%;
+  background-position: left, right;
+  background-repeat: no-repeat;
+  border: var(--tw-border-w-thin) dashed var(--tw-line);
+  font-family: var(--tw-font-mono);
+}
+
+/* Rubber stamp, the kind that lands on every government form. */
+.tw-stamp {
+  display: inline-block;
+  padding: 0.45em 1em;
+  border: 3px double var(--tw-primary);
+  border-radius: 4px;
+  color: var(--tw-primary);
+  font-family: var(--tw-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  transform: rotate(-7deg);
+  opacity: 0.88;
+}
+
+/* Signboard: painted enamel plate with rivets at the corners. */
+.tw-signboard {
+  position: relative;
+  padding: var(--tw-s6) var(--tw-s8);
+  text-align: center;
+  font-family: var(--tw-font-display);
+  color: var(--tw-on-support);
+  background: var(--tw-support);
+  border: 4px solid var(--tw-accent);
+  border-radius: var(--tw-radius-sm);
+  box-shadow: var(--tw-shadow);
+}
+.tw-signboard::before, .tw-signboard::after {
+  content: "";
+  position: absolute;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--tw-accent);
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+.tw-signboard::before { top: 7px; left: 7px; }
+.tw-signboard::after  { bottom: 7px; right: 7px; }
+
+/* --- Badges --------------------------------------------------------------- */
+
+.tw-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.28em 0.8em;
+  border-radius: var(--tw-radius-pill);
+  border: 2px solid var(--tw-line);
+  background: var(--tw-accent);
+  color: var(--tw-on-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.tw-badge-primary { background: var(--tw-primary); color: var(--tw-on-primary); }
+.tw-badge-support { background: var(--tw-support); color: var(--tw-on-support); }
+
+/* The green dot and brown triangle printed on every packet of food sold
+   in India, as required by the Food Safety and Standards Regulations. */
+.tw-mark-veg, .tw-mark-nonveg {
+  display: inline-grid;
+  place-items: center;
+  width: 1.1em; height: 1.1em;
+  border: 2px solid currentColor;
+  border-radius: 2px;
+  vertical-align: -0.15em;
+}
+.tw-mark-veg { color: #2e7d32; }
+.tw-mark-nonveg { color: #8b1a1a; }
+.tw-mark-veg::before {
+  content: "";
+  width: 0.5em; height: 0.5em;
+  border-radius: 50%;
+  background: currentColor;
+}
+.tw-mark-nonveg::before {
+  content: "";
+  width: 0; height: 0;
+  border-left: 0.28em solid transparent;
+  border-right: 0.28em solid transparent;
+  border-bottom: 0.5em solid currentColor;
+}
+
+/* --- Forms ---------------------------------------------------------------- */
+
+.tw-input, .tw-select, .tw-textarea {
+  width: 100%;
+  padding: 0.65em 0.85em;
+  color: var(--tw-ink);
+  background: var(--tw-surface);
+  border: var(--tw-border-w-thin) solid var(--tw-line);
+  border-radius: var(--tw-radius-sm);
+  transition: border-color 140ms var(--tw-ease), box-shadow 140ms var(--tw-ease);
+}
+.tw-input:focus, .tw-select:focus, .tw-textarea:focus {
+  outline: none;
+  border-color: var(--tw-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tw-primary) 28%, transparent);
+}
+.tw-label { display: block; margin-bottom: 0.3em; font-weight: 700; }
+.tw-help { font-size: 0.85rem; color: var(--tw-ink-soft); }
+
+/* --- Navigation ----------------------------------------------------------- */
+
+.tw-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--tw-s4);
+  padding: var(--tw-s4) var(--tw-s6);
+  background: var(--tw-surface);
+  border-bottom: var(--tw-border-w) solid var(--tw-line);
+  flex-wrap: wrap;
+}
+.tw-nav-brand {
+  font-family: var(--tw-font-display);
+  font-size: 1.4rem;
+  color: var(--tw-primary);
+  text-decoration: none;
+}
+.tw-nav-list { display: flex; gap: var(--tw-s5); list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+.tw-nav-link {
+  color: var(--tw-ink);
+  text-decoration: none;
+  font-weight: 700;
+  padding-bottom: 2px;
+  border-bottom: 3px solid transparent;
+}
+.tw-nav-link:hover { color: var(--tw-primary); }
+.tw-nav-link[aria-current], .tw-nav-link.tw-active {
+  color: var(--tw-primary);
+  border-bottom-color: var(--tw-primary);
+}
+
+/* --- Hoarding ------------------------------------------------------------- */
+
+.tw-hoarding {
+  display: flex;
+  overflow: hidden;
+  padding: var(--tw-s3) 0;
+  background: var(--tw-accent);
+  color: var(--tw-on-accent);
+  border-block: var(--tw-border-w) solid var(--tw-line);
+  font-family: var(--tw-font-display);
+  user-select: none;
+}
+/* Two identical tracks scrolling one full width gives a seamless loop
+   without measuring anything in JavaScript. */
+.tw-hoarding-track {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--tw-s10);
+  padding-right: var(--tw-s10);
+  min-width: 100%;
+  animation: tw-marquee 26s linear infinite;
+}
+@keyframes tw-marquee { to { transform: translateX(-100%); } }
+.tw-hoarding:hover .tw-hoarding-track { animation-play-state: paused; }
+
+/* --- Alerts and tables ---------------------------------------------------- */
+
+.tw-alert {
+  padding: var(--tw-s4) var(--tw-s5);
+  border-radius: var(--tw-radius-sm);
+  border-left: 6px solid var(--tw-accent);
+  background: color-mix(in srgb, var(--tw-accent) 12%, var(--tw-surface));
+}
+.tw-alert-primary { border-left-color: var(--tw-primary); background: color-mix(in srgb, var(--tw-primary) 12%, var(--tw-surface)); }
+.tw-alert-support { border-left-color: var(--tw-support); background: color-mix(in srgb, var(--tw-support) 12%, var(--tw-surface)); }
+
+.tw-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--tw-surface);
+  border: var(--tw-border-w) solid var(--tw-line);
+}
+.tw-table th, .tw-table td {
+  padding: 0.6em 0.9em;
+  text-align: left;
+  border-bottom: 1px solid var(--tw-line-soft);
+}
+.tw-table th {
+  background: var(--tw-accent);
+  color: var(--tw-on-accent);
+  font-family: var(--tw-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.tw-table tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--tw-accent) 7%, transparent);
+}
+
+/* --- Loaders -------------------------------------------------------------- */
+
+/* Charkha, the spinning wheel. Spokes drawn with a repeating conic
+   gradient, hub punched out with a radial mask. */
+.tw-charkha {
+  width: 52px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(
+      var(--tw-primary) 0deg 6deg,
+      transparent 6deg 30deg),
+    radial-gradient(circle, transparent 34%, var(--tw-primary) 35% 42%, transparent 43%);
+  -webkit-mask: radial-gradient(circle, transparent 12%, black 13%);
+  mask: radial-gradient(circle, transparent 12%, black 13%);
+  animation: tw-spin 1.5s linear infinite;
+}
+@keyframes tw-spin { to { transform: rotate(360deg); } }
+
+/* Diya. The flame lifts and narrows on a loop. */
+.tw-diya {
+  --_w: 46px;
+  position: relative;
+  width: var(--_w);
+  height: calc(var(--_w) * 0.9);
+}
+.tw-diya::before {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 42%;
+  background: linear-gradient(180deg, var(--tw-tamba), #7a4415);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+.tw-diya::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 40%;
+  width: 28%;
+  height: 52%;
+  translate: -50% calc(var(--tw-flame-lift) * -1);
+  background: radial-gradient(ellipse at 50% 75%, #fff3c4 8%, var(--tw-marigold) 42%, var(--tw-kesari) 72%, transparent 78%);
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  filter: blur(0.4px);
+  animation: tw-flame 1.7s ease-in-out infinite;
+}
+@keyframes tw-flame {
+  0%, 100% { --tw-flame-lift: 0px;   scale: 1 1; }
+  50%      { --tw-flame-lift: 3px;   scale: 0.92 1.09; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-charkha, .tw-diya::after, .tw-hoarding-track { animation: none; }
+}

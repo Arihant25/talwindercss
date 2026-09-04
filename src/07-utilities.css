@@ -1,0 +1,230 @@
+/* ==========================================================================
+   07. Utilities
+   ========================================================================== */
+
+/* --- Layout --------------------------------------------------------------- */
+
+.tw-container { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: var(--tw-s5); }
+.tw-container-sm { max-width: 720px; }
+.tw-container-lg { max-width: 1420px; }
+
+.tw-flex { display: flex; }
+.tw-grid { display: grid; }
+.tw-block { display: block; }
+.tw-inline-block { display: inline-block; }
+.tw-inline-flex { display: inline-flex; }
+.tw-hidden { display: none; }
+
+.tw-col { flex-direction: column; }
+.tw-wrap { flex-wrap: wrap; }
+.tw-items-center { align-items: center; }
+.tw-items-start { align-items: flex-start; }
+.tw-items-end { align-items: flex-end; }
+.tw-justify-center { justify-content: center; }
+.tw-justify-between { justify-content: space-between; }
+.tw-justify-end { justify-content: flex-end; }
+.tw-place-center { place-items: center; }
+.tw-grow { flex: 1 1 0%; }
+
+/* Auto-fitting grid. --tw-min sets the smallest a column may get before
+   the count drops, so these need no breakpoints. */
+.tw-grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--tw-min, 260px), 100%), 1fr));
+  gap: var(--tw-s6);
+}
+.tw-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--tw-s6); }
+.tw-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--tw-s6); }
+.tw-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--tw-s6); }
+.tw-span-2 { grid-column: span 2; }
+.tw-span-full { grid-column: 1 / -1; }
+
+.tw-gap-1 { gap: var(--tw-s1); } .tw-gap-2 { gap: var(--tw-s2); }
+.tw-gap-3 { gap: var(--tw-s3); } .tw-gap-4 { gap: var(--tw-s4); }
+.tw-gap-6 { gap: var(--tw-s6); } .tw-gap-8 { gap: var(--tw-s8); }
+
+.tw-p-0 { padding: 0; } .tw-p-2 { padding: var(--tw-s2); }
+.tw-p-4 { padding: var(--tw-s4); } .tw-p-6 { padding: var(--tw-s6); }
+.tw-p-8 { padding: var(--tw-s8); } .tw-p-12 { padding: var(--tw-s12); }
+.tw-px-4 { padding-inline: var(--tw-s4); } .tw-px-6 { padding-inline: var(--tw-s6); }
+.tw-py-4 { padding-block: var(--tw-s4); } .tw-py-6 { padding-block: var(--tw-s6); }
+.tw-py-8 { padding-block: var(--tw-s8); } .tw-py-12 { padding-block: var(--tw-s12); }
+.tw-py-16 { padding-block: var(--tw-s16); } .tw-py-24 { padding-block: var(--tw-s24); }
+
+.tw-m-0 { margin: 0; } .tw-mx-auto { margin-inline: auto; }
+.tw-mt-2 { margin-top: var(--tw-s2); } .tw-mt-4 { margin-top: var(--tw-s4); }
+.tw-mt-6 { margin-top: var(--tw-s6); } .tw-mt-8 { margin-top: var(--tw-s8); }
+.tw-mt-12 { margin-top: var(--tw-s12); }
+.tw-mb-0 { margin-bottom: 0; } .tw-mb-2 { margin-bottom: var(--tw-s2); }
+.tw-mb-4 { margin-bottom: var(--tw-s4); } .tw-mb-6 { margin-bottom: var(--tw-s6); }
+.tw-mb-8 { margin-bottom: var(--tw-s8); } .tw-mb-12 { margin-bottom: var(--tw-s12); }
+
+.tw-stack > * + * { margin-top: var(--tw-stack, var(--tw-s4)); }
+.tw-stack-2 { --tw-stack: var(--tw-s2); }
+.tw-stack-6 { --tw-stack: var(--tw-s6); }
+.tw-stack-8 { --tw-stack: var(--tw-s8); }
+
+/* --- Type ----------------------------------------------------------------- */
+
+.tw-display { font-family: var(--tw-font-display); }
+.tw-body { font-family: var(--tw-font-body); }
+.tw-hand { font-family: var(--tw-font-hand); }
+.tw-mono { font-family: var(--tw-font-mono); }
+.tw-poster { font-family: var(--tw-font-poster); }
+
+.tw-xs { font-size: 0.75rem; }  .tw-sm { font-size: 0.875rem; }
+.tw-lg { font-size: 1.125rem; } .tw-xl { font-size: 1.25rem; }
+.tw-2xl { font-size: 1.5rem; }  .tw-3xl { font-size: 1.9rem; }
+.tw-4xl { font-size: 2.4rem; }  .tw-5xl { font-size: 3.1rem; }
+.tw-6xl { font-size: clamp(2.6rem, 1.4rem + 5vw, 4.6rem); }
+.tw-7xl { font-size: clamp(3rem, 1.4rem + 7vw, 6.2rem); }
+
+.tw-center { text-align: center; } .tw-right { text-align: right; }
+.tw-bold { font-weight: 700; } .tw-normal { font-weight: 400; }
+.tw-upper { text-transform: uppercase; }
+.tw-italic { font-style: italic; }
+.tw-track { letter-spacing: 0.08em; }
+.tw-track-wide { letter-spacing: 0.18em; }
+.tw-leading-tight { line-height: 1.15; }
+.tw-balance { text-wrap: balance; }
+.tw-prose { max-width: 62ch; }
+
+/* Outlined display type, the way a cinema hoarding is lettered. */
+.tw-outline-text {
+  color: var(--tw-surface);
+  -webkit-text-stroke: 2px var(--tw-ink);
+  paint-order: stroke fill;
+}
+.tw-shadow-text { text-shadow: 3px 3px 0 var(--tw-shadow-color); }
+
+/* --- Colour --------------------------------------------------------------- */
+
+.tw-fg-primary { color: var(--tw-primary); }
+.tw-fg-accent  { color: var(--tw-accent); }
+.tw-fg-support { color: var(--tw-support); }
+.tw-fg-soft    { color: var(--tw-ink-soft); }
+.tw-fg-inv     { color: var(--tw-ink-inv); }
+
+.tw-bg-surface { background: var(--tw-surface); }
+.tw-bg-surface-2 { background: var(--tw-surface-2); }
+.tw-bg-primary { background: var(--tw-primary); color: var(--tw-on-primary); }
+.tw-bg-accent  { background: var(--tw-accent); color: var(--tw-on-accent); }
+.tw-bg-support { background: var(--tw-support); color: var(--tw-on-support); }
+.tw-bg-none    { background: none; }
+
+/* Tiranga. Kept honest: exact flag ratios, chakra as a mask. */
+.tw-tiranga {
+  background: linear-gradient(180deg,
+    #ff9933 0 33.333%, #ffffff 33.333% 66.666%, #138808 66.666%);
+}
+.tw-tiranga-h {
+  background: linear-gradient(90deg,
+    #ff9933 0 33.333%, #ffffff 33.333% 66.666%, #138808 66.666%);
+}
+
+.tw-border { border: var(--tw-border-w) solid var(--tw-line); }
+.tw-border-thin { border: var(--tw-border-w-thin) solid var(--tw-line); }
+.tw-border-thick { border: var(--tw-border-w-thick) solid var(--tw-line); }
+.tw-border-t { border-top: var(--tw-border-w) solid var(--tw-line); }
+.tw-border-b { border-bottom: var(--tw-border-w) solid var(--tw-line); }
+.tw-border-none { border: 0; }
+
+.tw-round { border-radius: var(--tw-radius); }
+.tw-round-sm { border-radius: var(--tw-radius-sm); }
+.tw-round-lg { border-radius: var(--tw-radius-lg); }
+.tw-round-full { border-radius: 50%; }
+.tw-pill { border-radius: var(--tw-radius-pill); }
+.tw-square { border-radius: 0; }
+
+.tw-shadow { box-shadow: var(--tw-shadow); }
+.tw-shadow-sm { box-shadow: var(--tw-shadow-sm); }
+.tw-shadow-lg { box-shadow: var(--tw-shadow-lg); }
+.tw-shadow-soft { box-shadow: var(--tw-shadow-soft); }
+.tw-shadow-none { box-shadow: none; }
+
+/* --- Position and size ---------------------------------------------------- */
+
+.tw-relative { position: relative; }
+.tw-absolute { position: absolute; }
+.tw-sticky { position: sticky; top: 0; }
+.tw-fixed { position: fixed; }
+.tw-inset-0 { inset: 0; }
+.tw-z-10 { z-index: 10; } .tw-z-50 { z-index: 50; }
+
+.tw-w-full { width: 100%; }
+.tw-h-full { height: 100%; }
+.tw-min-h-screen { min-height: 100svh; }
+.tw-max-w-md { max-width: 480px; }
+.tw-max-w-lg { max-width: 720px; }
+.tw-max-w-xl { max-width: 980px; }
+.tw-square-ratio { aspect-ratio: 1; }
+
+.tw-clip { overflow: hidden; }
+.tw-scroll-x { overflow-x: auto; }
+.tw-list-none { list-style: none; padding-left: 0; margin: 0; }
+.tw-pointer { cursor: pointer; }
+.tw-no-select { user-select: none; }
+
+/* --- Motion --------------------------------------------------------------- */
+
+/* Entrance driven by scroll position rather than a timer, so an element
+   animates when it is actually seen. Falls back to visible in browsers
+   without animation-timeline. */
+@supports (animation-timeline: view()) {
+  /* The range ends at entry 100%, so an element is fully settled the
+     moment it has finished entering the viewport. Ending later (at a
+     cover percentage) leaves anything below the fold sitting at low
+     opacity on tall screens, which reads as a rendering bug. */
+  .tw-reveal {
+    animation: tw-reveal-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+  }
+  @keyframes tw-reveal-in {
+    from { opacity: 0; transform: translateY(24px) scale(0.98); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* Kolam that draws itself as the page scrolls, the way the pattern is
+     laid down one loop at a time on a doorstep at dawn. */
+  .tw-draw-kolam {
+    animation: tw-draw linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 50%;
+  }
+  @keyframes tw-draw {
+    from { clip-path: inset(0 100% 0 0); }
+    to   { clip-path: inset(0 0 0 0); }
+  }
+}
+
+.tw-hover-lift { transition: transform 180ms var(--tw-ease), box-shadow 180ms var(--tw-ease); }
+.tw-hover-lift:hover { transform: translate(-3px, -3px); box-shadow: var(--tw-shadow-lg); }
+
+.tw-bob { animation: tw-bob 2.6s ease-in-out infinite; }
+@keyframes tw-bob { 50% { transform: translateY(-7px); } }
+
+.tw-sway { animation: tw-sway 4s ease-in-out infinite; transform-origin: top center; }
+@keyframes tw-sway { 0%, 100% { rotate: -1.6deg; } 50% { rotate: 1.6deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-bob, .tw-sway, .tw-reveal, .tw-draw-kolam { animation: none; }
+  .tw-reveal { opacity: 1; transform: none; }
+  .tw-draw-kolam { clip-path: none; }
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .tw-grid-3, .tw-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .tw-grid-2, .tw-grid-3, .tw-grid-4 { grid-template-columns: 1fr; }
+  .tw-span-2 { grid-column: span 1; }
+  .tw-sm\:hidden { display: none; }
+  .tw-thali { --_d: min(300px, 86vw); }
+}
+@media print {
+  .tw-no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+}

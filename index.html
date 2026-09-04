@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en" data-tw-theme="din">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TalwinderCSS · Utility CSS for building Indian-style websites</title>
+  <meta name="description" content="TalwinderCSS is one CSS file. Named colours, background patterns, and components based on everyday Indian design: truck art, matrimonial ads, bandhani prints, wedding cards, dhaba menus." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Yatra+One&family=Rozha+One&family=Kalam:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dist/talwinder.css" />
+  <style>
+    /* Page-only tweaks that aren't part of the framework itself. */
+    .hero {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 176, 0, 0.35), transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(216, 30, 43, 0.25), transparent 45%),
+        var(--tw-ivory);
+      padding: 80px 0 60px;
+      border-bottom: 4px solid var(--tw-black);
+    }
+    .swatch { height: 96px; border: 3px solid var(--tw-black); border-radius: 8px; box-shadow: 4px 4px 0 var(--tw-black); }
+    .code-block { position: relative; }
+    .copy-btn {
+      position: absolute; top: 8px; right: 8px;
+      padding: 4px 10px;
+      background: var(--tw-marigold); color: var(--tw-black);
+      border: 2px solid var(--tw-black); border-radius: 4px;
+      font-size: 0.75rem; cursor: pointer;
+      font-family: var(--tw-font-body);
+    }
+    .marquee-line { display: inline-block; padding-right: 60px; }
+    .marquee-line b { color: var(--tw-sindoor); }
+    footer a { color: inherit; }
+    .feature-icon { font-size: 2rem; line-height: 1; }
+  </style>
+</head>
+<body>
+  <div class="tw-hoarding">
+    <div class="tw-hoarding-track">
+      <span class="marquee-line"><b>v1.0.0</b> is out. Zero build step, plain CSS, one file.</span>
+      <span class="marquee-line">Works with any framework or none at all.</span>
+      <span class="marquee-line">MIT licensed. Fork it, break it, ship it.</span>
+      <span class="marquee-line"><b>Horn OK Please.</b></span>
+    </div>
+  </div>
+
+  <nav class="tw-navbar">
+    <a href="/" class="tw-navbar-brand">तalwinder<span class="tw-text-sindoor">CSS</span></a>
+    <ul class="tw-navbar-nav">
+      <li><a href="index.html" class="tw-nav-link tw-active">Home</a></li>
+      <li><a href="docs/index.html" class="tw-nav-link">Docs</a></li>
+      <li><a href="showcase/index.html" class="tw-nav-link">Showcase</a></li>
+      <li><a href="https://github.com/Arihant25/talwindercss" class="tw-nav-link">GitHub</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="tw-container tw-text-center">
+      <span class="tw-badge tw-badge-sindoor tw-mb-4">v1.0.0 · MIT</span>
+      <h1 class="tw-text-7xl tw-mb-4">
+        Utility CSS for building
+        <br />
+        <span class="tw-text-sindoor">Indian-style websites.</span>
+      </h1>
+      <p class="tw-text-xl tw-max-w-lg tw-mx-auto tw-mb-8 tw-text-charcoal">
+        One CSS file. Named colours (saffron, sindoor, mehndi), background patterns (bandhani, brocade, warli), and components (chai cup, ticket stub, classified ad) that you use as classes in your HTML. No JavaScript. No build step.
+      </p>
+      <div class="tw-flex tw-gap-4 tw-justify-center tw-flex-wrap">
+        <a href="docs/index.html" class="tw-btn tw-btn-truck">Read the docs</a>
+        <a href="showcase/index.html" class="tw-btn tw-btn-sindoor">See it in action</a>
+        <a href="https://github.com/Arihant25/talwindercss" class="tw-btn tw-btn-ghost">Star on GitHub</a>
+      </div>
+
+      <div class="tw-mt-12 tw-max-w-lg tw-mx-auto tw-text-left code-block">
+        <pre><code>&lt;link rel="stylesheet" href="https://arihant25.github.io/talwindercss/dist/talwinder.css"&gt;</code></pre>
+        <button class="copy-btn" data-copy>copy</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="tw-py-16">
+    <div class="tw-container">
+      <div class="tw-text-center tw-mb-12">
+        <h2 class="tw-text-4xl tw-mb-2">Why another framework?</h2>
+        <p class="tw-text-muted tw-max-w-prose tw-mx-auto">There are frameworks for brutalism, glassmorphism, skeuomorphism. This one leans on visual vocabulary from India, which has been sitting there in plain sight the whole time.</p>
+      </div>
+
+      <div class="tw-grid tw-grid-cols-3 tw-gap-6">
+        <article class="tw-card">
+          <div class="feature-icon">🪔</div>
+          <h3 class="tw-text-xl tw-mt-2">Named colours you'll remember</h3>
+          <p class="tw-text-muted tw-mb-0">Saffron, sindoor, mehndi, jamun, mor-pankh. No hex code guessing. The palette maps to physical objects most people have seen.</p>
+        </article>
+        <article class="tw-card">
+          <div class="feature-icon">🧵</div>
+          <h3 class="tw-text-xl tw-mt-2">Patterns as backgrounds</h3>
+          <p class="tw-text-muted tw-mb-0">Bandhani dots, rickshaw diagonals, Warli-style repeats, gold-brocade checks. All done in CSS. No image files, no build step.</p>
+        </article>
+        <article class="tw-card">
+          <div class="feature-icon">🚛</div>
+          <h3 class="tw-text-xl tw-mt-2">Real components</h3>
+          <p class="tw-text-muted tw-mb-0">Truck-art buttons, chai-cup containers, classified-ad cards, rangoli spinners. Copy the class, keep your markup.</p>
+        </article>
+        <article class="tw-card">
+          <div class="feature-icon">📜</div>
+          <h3 class="tw-text-xl tw-mt-2">One file. No JavaScript.</h3>
+          <p class="tw-text-muted tw-mb-0">Around 25 KB of CSS. Add one <code>&lt;link&gt;</code> and you're done. No PostCSS, no config, no toolchain, no opinions about your bundler.</p>
+        </article>
+        <article class="tw-card">
+          <div class="feature-icon">🌙</div>
+          <h3 class="tw-text-xl tw-mt-2">Raat mode built in</h3>
+          <p class="tw-text-muted tw-mb-0">Set <code>data-tw-theme="raat"</code> on any element. The palette shifts to a warm dark that keeps marigold and sindoor readable at night.</p>
+        </article>
+        <article class="tw-card">
+          <div class="feature-icon">🤝</div>
+          <h3 class="tw-text-xl tw-mt-2">Plays nicely</h3>
+          <p class="tw-text-muted tw-mb-0">Every class is prefixed with <code>tw-</code>. Drop it into an existing Tailwind, Bootstrap, or Bulma page without collisions.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="tw-divider-paisley" />
+
+  <section class="tw-py-16 tw-bg-cream" style="border-top: 3px solid var(--tw-black); border-bottom: 3px solid var(--tw-black);">
+    <div class="tw-container">
+      <div class="tw-text-center tw-mb-8">
+        <h2 class="tw-text-4xl tw-mb-2">The palette</h2>
+        <p class="tw-text-muted">Fifteen named colours. Each one earns its place.</p>
+      </div>
+
+      <div class="tw-grid tw-grid-cols-5 tw-gap-4">
+        <div><div class="swatch tw-bg-saffron"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-saffron</code></div></div>
+        <div><div class="swatch tw-bg-marigold"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-marigold</code></div></div>
+        <div><div class="swatch tw-bg-sindoor"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-sindoor</code></div></div>
+        <div><div class="swatch tw-bg-kesari"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-kesari</code></div></div>
+        <div><div class="swatch tw-bg-lal"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-lal</code></div></div>
+        <div><div class="swatch tw-bg-haldi"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-haldi</code></div></div>
+        <div><div class="swatch tw-bg-mehndi"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-mehndi</code></div></div>
+        <div><div class="swatch tw-bg-tulsi"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-tulsi</code></div></div>
+        <div><div class="swatch tw-bg-mor"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-mor</code></div></div>
+        <div><div class="swatch tw-bg-peacock"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-peacock</code></div></div>
+        <div><div class="swatch tw-bg-neel"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-neel</code></div></div>
+        <div><div class="swatch tw-bg-jamun"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-jamun</code></div></div>
+        <div><div class="swatch tw-bg-gulaal"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-gulaal</code></div></div>
+        <div><div class="swatch tw-bg-chai"></div><div class="tw-mt-2 tw-text-sm"><code>tw-bg-chai</code></div></div>
+        <div><div class="swatch" style="background: linear-gradient(180deg,#e0c060,#a68830);"></div><div class="tw-mt-2 tw-text-sm"><code>tw-btn-brass</code></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tw-py-16">
+    <div class="tw-container">
+      <div class="tw-text-center tw-mb-12">
+        <h2 class="tw-text-4xl tw-mb-2">A few components</h2>
+        <p class="tw-text-muted">Every one of these is one class on plain HTML. No wrappers, no config.</p>
+      </div>
+
+      <div class="tw-grid tw-grid-cols-3 tw-gap-8 tw-items-start">
+
+        <div>
+          <div class="tw-card-rangoli tw-mb-4">
+            <h3 class="tw-text-xl tw-mb-2 tw-om">Rangoli card</h3>
+            <p class="tw-mb-0">Ornate corners without a single SVG. Just CSS pseudo-elements sitting on a bordered box.</p>
+          </div>
+          <pre><code>&lt;div class="tw-card-rangoli"&gt;
+  &lt;h3 class="tw-om"&gt;Namaste&lt;/h3&gt;
+  &lt;p&gt;Content goes here.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div>
+          <div class="tw-card-bandhani tw-mb-4">
+            <h3 class="tw-text-xl tw-mb-2">Bandhani card</h3>
+            <p class="tw-mb-0">Repeating dot pattern on a sindoor red base. Prints well, scales at any size, weighs almost nothing.</p>
+          </div>
+          <pre><code>&lt;div class="tw-card-bandhani"&gt;
+  &lt;h3&gt;Deep discount&lt;/h3&gt;
+  &lt;p&gt;Only today.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div>
+          <div class="tw-chai-cup tw-mb-4">
+            <h3 class="tw-text-xl tw-mb-2">Chai cup</h3>
+            <p class="tw-mb-0">Half kettle, half container. Use it for testimonials, quick tips, or that one sentence that needs a bit of warmth.</p>
+          </div>
+          <pre><code>&lt;div class="tw-chai-cup"&gt;
+  &lt;p&gt;Ek cutting, please.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div>
+          <div class="tw-mb-4">
+            <button class="tw-btn tw-btn-truck">Chalo shuru karein</button>
+          </div>
+          <pre><code>&lt;button class="tw-btn tw-btn-truck"&gt;
+  Chalo shuru karein
+&lt;/button&gt;</code></pre>
+        </div>
+
+        <div>
+          <div class="tw-signboard tw-mb-4">
+            <div class="tw-text-lg">Platform №&nbsp;7</div>
+            <div class="tw-text-2xl">Ahmedabad Jn.</div>
+          </div>
+          <pre><code>&lt;div class="tw-signboard"&gt;
+  Platform 7 · Ahmedabad Jn.
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div>
+          <div class="tw-ticket tw-mb-4">
+            <div>
+              <div class="tw-text-sm tw-text-muted">MUM → BLR</div>
+              <div class="tw-text-lg tw-font-bold">Coach B4 · Seat 21</div>
+              <div class="tw-text-sm">03 Nov · 20:15</div>
+            </div>
+            <div class="tw-text-3xl tw-font-display tw-text-sindoor">₹ 1240</div>
+          </div>
+          <pre><code>&lt;div class="tw-ticket"&gt; ... &lt;/div&gt;</code></pre>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="tw-divider-paisley" />
+
+  <section class="tw-py-16 tw-bg-cream" style="border-top: 3px solid var(--tw-black);">
+    <div class="tw-container tw-text-center">
+      <h2 class="tw-text-4xl tw-mb-4">The practical bits</h2>
+      <p class="tw-max-w-prose tw-mx-auto tw-text-lg tw-mb-8">
+        Every named colour clears WCAG AA on its recommended background. The dark theme keeps sindoor and marigold at readable contrast instead of desaturating them. Motion respects <code>prefers-reduced-motion</code>. Nothing depends on JavaScript. The whole file is around 25 KB uncompressed and gzips to about 6 KB.
+      </p>
+      <a href="docs/index.html" class="tw-btn tw-btn-sindoor tw-btn-lg">Full documentation</a>
+    </div>
+  </section>
+
+  <footer class="tw-py-8 tw-text-center" style="background: var(--tw-charcoal); color: var(--tw-cream);">
+    <p class="tw-mb-2">Made by <a href="https://arihant25.github.io" style="color: var(--tw-marigold);">Arihant Tripathy</a>. Named after a friend.</p>
+    <p class="tw-text-sm tw-text-muted tw-mb-0">MIT licensed. The colour palette is borrowed from streets, temples, and paint shops.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const code = btn.previousElementSibling.querySelector('code').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          const original = btn.innerText;
+          btn.innerText = 'copied';
+          setTimeout(() => (btn.innerText = original), 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

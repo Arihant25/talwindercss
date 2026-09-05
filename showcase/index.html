@@ -34,12 +34,15 @@
     border-bottom: var(--tw-border-w) solid var(--tw-line);
     background: var(--tw-surface-2);
   }
+  /* Laid out at 1100px and scaled to 0.3, so the preview is the real page
+     at desktop width. Centred with transform-origin at top centre, which
+     keeps the whole width in frame whatever the tile grows to. */
   .peek iframe {
-    position: absolute; top: 0; left: 0;
-    width: 1280px; height: 1000px;
+    position: absolute; top: 0; left: 50%;
+    width: 1100px; height: 880px;
     border: 0;
-    transform: scale(0.36);
-    transform-origin: 0 0;
+    transform: translateX(-50%) scale(0.3);
+    transform-origin: top center;
     pointer-events: none;
   }
   .peek::after {
@@ -55,18 +58,17 @@
 
   @media (max-width: 640px) {
     .peek { height: 200px; }
-    .peek iframe { transform: scale(0.3); }
   }
 </style>
 </head>
 <body>
 
 <nav class="tw-nav">
-  <a href="../" class="tw-nav-brand">तalwinder<em class="tw-fg-accent">CSS</em></a>
+  <a href="../index.html" class="tw-nav-brand">तalwinder<em class="tw-fg-accent">CSS</em></a>
   <ul class="tw-nav-list">
-    <li><a class="tw-nav-link" href="../">Home</a></li>
-    <li><a class="tw-nav-link" href="../docs/">Docs</a></li>
-    <li><a class="tw-nav-link tw-active" href="./">Showcase</a></li>
+    <li><a class="tw-nav-link" href="../index.html">Home</a></li>
+    <li><a class="tw-nav-link" href="../docs/index.html">Docs</a></li>
+    <li><a class="tw-nav-link tw-active" href="./index.html">Showcase</a></li>
     <li><a class="tw-nav-link" href="https://github.com/Arihant25/talwindercss">GitHub</a></li>
   </ul>
 </nav>
@@ -86,8 +88,8 @@
   <div class="tw-container">
     <div class="tw-grid-auto" style="--tw-min:330px">
 
-      <a class="tile" href="dhaba/">
-        <div class="peek"><iframe src="dhaba/" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
+      <a class="tile" href="dhaba/index.html">
+        <div class="peek"><iframe src="dhaba/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
         <div class="meta">
           <h3>Highway dhaba menu</h3>
           <p>A truck stop on NH-44 at Murthal. Tandoor breads, dals, and chai served through the
@@ -96,8 +98,8 @@
         </div>
       </a>
 
-      <a class="tile" href="wedding/">
-        <div class="peek"><iframe src="wedding/" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
+      <a class="tile" href="wedding/index.html">
+        <div class="peek"><iframe src="wedding/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
         <div class="meta">
           <h3>Wedding invitation</h3>
           <p>Gold leaf on deep red, the register a South Indian wedding card is printed in.
@@ -106,8 +108,8 @@
         </div>
       </a>
 
-      <a class="tile" href="matrimonial/">
-        <div class="peek"><iframe src="matrimonial/" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
+      <a class="tile" href="matrimonial/index.html">
+        <div class="peek"><iframe src="matrimonial/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
         <div class="meta">
           <h3>Sunday matrimonials</h3>
           <p>The classified columns, set three-up with rules between them, in the clipped
@@ -116,8 +118,8 @@
         </div>
       </a>
 
-      <a class="tile" href="cricket/">
-        <div class="peek"><iframe src="cricket/" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
+      <a class="tile" href="cricket/index.html">
+        <div class="peek"><iframe src="cricket/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
         <div class="meta">
           <h3>Live cricket scoreboard</h3>
           <p>A T20 in the last two overs. Batting and bowling cards, a ball-by-ball strip, and
@@ -126,8 +128,8 @@
         </div>
       </a>
 
-      <a class="tile" href="rickshaw/">
-        <div class="peek"><iframe src="rickshaw/" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
+      <a class="tile" href="rickshaw/index.html">
+        <div class="peek"><iframe src="rickshaw/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
         <div class="meta">
           <h3>Auto booking screen</h3>
           <p>A phone-sized booking flow with an itemised meter fare, in the green and yellow
@@ -136,8 +138,8 @@
         </div>
       </a>
 
-      <a class="tile" href="newspaper/">
-        <div class="peek"><iframe src="newspaper/" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
+      <a class="tile" href="newspaper/index.html">
+        <div class="peek"><iframe src="newspaper/index.html" loading="lazy" tabindex="-1" title="" aria-hidden="true" scrolling="no"></iframe></div>
         <div class="meta">
           <h3>Broadsheet front page</h3>
           <p>Masthead, three columns with rules, a drop cap on the lead, a boxed weather panel,
@@ -160,7 +162,7 @@
     </p>
     <div class="tw-flex tw-gap-3 tw-justify-center tw-wrap">
       <a class="tw-btn tw-btn-primary" href="https://github.com/Arihant25/talwindercss/tree/main/showcase">Browse on GitHub</a>
-      <a class="tw-btn tw-btn-ghost" href="../docs/">Read the docs</a>
+      <a class="tw-btn tw-btn-ghost" href="../docs/index.html">Read the docs</a>
     </div>
   </div>
 </section>

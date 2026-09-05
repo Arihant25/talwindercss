@@ -242,7 +242,11 @@
        long city name. */
     .wx { table-layout: fixed; }
     .wx th, .wx td { padding: 0.3em 0.22em; }
-    .wx td:first-child { font-size: 0.72rem; line-height: 1.25; hyphens: auto; overflow-wrap: break-word; }
+    .wx th:first-child, .wx td:first-child { width: 46%; }
+    /* Thiruvananthapuram has no break opportunity in it, so a fixed
+       layout alone still lets it run over the MAX column. */
+    .wx td:first-child { font-size: 0.7rem; line-height: 1.25; overflow-wrap: anywhere; }
+    .wx th { letter-spacing: 0.04em; }
     .wx th:first-child { font-size: 0.6rem; }
     .wx .num { font-size: 0.68rem; }
 
@@ -372,7 +376,7 @@
 
   <div class="rail">
     <span>Late City Edition &nbsp;&middot;&nbsp; 24 pages &nbsp;&middot;&nbsp; Registered with the Registrar of Newspapers KARENG/1927/00114</span>
-    <a href="../" class="tw-btn tw-btn-sm tw-no-print">Back to showcase</a>
+    <a href="../index.html" class="tw-btn tw-btn-sm tw-no-print">Back to showcase</a>
   </div>
 
   <header class="masthead">

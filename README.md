@@ -9,7 +9,7 @@ Change it and the palette, ornaments, border weights and display face all move t
 
 [Site](https://arihant25.github.io/talwindercss) · [Docs](https://arihant25.github.io/talwindercss/docs/) · [Showcase](https://arihant25.github.io/talwindercss/showcase/)
 
-39 KB minified · 9 KB gzipped · no build step · no JavaScript · MIT
+40 KB minified · 9.5 KB gzipped · no build step · no JavaScript · MIT
 
 </div>
 

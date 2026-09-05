@@ -1,0 +1,9 @@
+# Normalise to LF in the repository. Contributors on Windows keep CRLF in
+# their working tree; what gets committed stays LF either way.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff  binary
+*.woff2 binary

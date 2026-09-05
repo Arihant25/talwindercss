@@ -94,14 +94,21 @@
    The arch is a mask, so the top edge is a real curve rather than a
    border-radius approximation. */
 .tw-jharokha {
-  background: var(--tw-surface);
+  /* No border. A border is painted on the element's rectangle and the mask
+     then cuts it away along the curve, which leaves an outline on the flat
+     bottom edge and nothing on the arch. The surface colour carries the
+     shape instead. */
+  background: var(--tw-surface-2);
   color: var(--tw-ink);
-  border: var(--tw-border-w) solid var(--tw-line);
-  /* The arch mask reaches its full width only below the shoulders, and it
-     narrows to a 16% inset on each side. Side padding is therefore a
-     percentage, not a fixed length: a fixed value clears the curve at one
-     width and gets sliced by it at another. */
-  padding: var(--tw-s16) 21% var(--tw-s8);
+  /* The arch mask keeps its sides at a 6% inset and puts the dome in the
+     top 42%, so ordinary side padding clears the curve at any width. The
+     top padding is what has to be generous, since that is where the shape
+     narrows.
+
+     Percentage padding is deliberately not used here: it resolves against
+     the containing block, not the element, so on a narrow item inside a
+     wide parent it collapses the content box to nothing. */
+  padding: var(--tw-s20) var(--tw-s8) var(--tw-s8);
   text-align: center;
   -webkit-mask-image: var(--tw-mask-arch);
   mask-image: var(--tw-mask-arch);

@@ -81,8 +81,11 @@
   /* Gopuram: the stepped tower over a South Indian temple gateway. */
   --tw-mask-gopuram: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path fill='black' d='M50 0 L56 6 L56 12 L62 12 L62 20 L70 20 L70 30 L78 30 L78 42 L86 42 L86 56 L93 56 L93 72 L100 72 L100 100 L0 100 L0 72 L7 72 L7 56 L14 56 L14 42 L22 42 L22 30 L30 30 L30 20 L38 20 L38 12 L44 12 L44 6 Z'/></svg>");
 
-  /* Ogee arch, the pointed profile of a Mughal doorway. */
-  --tw-mask-arch: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path fill='black' d='M50 1 C58 13 72 23 80 37 C84 45 84 51 84 57 L84 100 L16 100 L16 57 C16 51 16 45 20 37 C28 23 42 13 50 1 Z'/></svg>");
+  /* Ogee arch, the profile of a Mughal doorway. The dome is kept to the
+     top 40% and the point is slight: preserveAspectRatio='none' stretches
+     whatever is here, and a tall shoulder plus a sharp apex turns gothic
+     the moment the box is taller than it is wide. */
+  --tw-mask-arch: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path fill='black' d='M50 0 C76 4 94 20 94 42 L94 100 L6 100 L6 42 C6 20 24 4 50 0 Z'/></svg>");
 
   /* Chhatri: the onion dome on a pavilion. */
   --tw-mask-dome: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path fill='black' d='M50 0 C52 7 55 10 59 14 C73 24 83 38 83 54 C83 72 68 82 50 82 C32 82 17 72 17 54 C17 38 27 24 41 14 C45 10 48 7 50 0 Z M13 80 H87 V94 H13 Z'/></svg>");

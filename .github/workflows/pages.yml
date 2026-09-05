@@ -24,7 +24,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       # dist/ is committed so the CDN link works without a build. Rebuild
       # here and fail if the result differs, which catches a src/ edit

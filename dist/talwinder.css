@@ -1479,10 +1479,14 @@ hr { border: 0; border-top: 2px solid var(--tw-line-soft); margin: var(--tw-s6) 
 
   /* Kolam that draws itself as the page scrolls, the way the pattern is
      laid down one loop at a time on a doorstep at dawn. */
+  /* Completes on entry, for the same reason as tw-reveal: a range that
+     runs into the cover phase leaves the kolam stuck part-drawn for
+     anyone who does not scroll past it, which reads as a broken asset
+     rather than an animation waiting its turn. */
   .tw-draw-kolam {
     animation: tw-draw linear both;
     animation-timeline: view();
-    animation-range: entry 0% cover 50%;
+    animation-range: entry 0% entry 100%;
   }
   @keyframes tw-draw {
     from { clip-path: inset(0 100% 0 0); }
